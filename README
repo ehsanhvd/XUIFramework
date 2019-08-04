@@ -4,6 +4,7 @@ Create android UI elements easily, made with kotlin
 
 ## Usage
 
+### Easy adapter
 ```kotlin
 val list = arrayListOf(
     TestData("item 1"),
@@ -17,7 +18,18 @@ recyclerView.adapter =
         view.setText(R.id.textTitle, item.name)
     }
 ```
-[WIKI](https://bitbucket.org/ehsan_hvd/xuiframwork/wiki/Home) for more info 
+
+### Easy image using glide
+```xml
+<--! or you can use GlideImageView -->
+<com.tpa.xuiframework.view.GlideImageViewCircle
+        android:layout_width="100dp"
+        app:url="@{testData.profile}" 
+        app:defaultDrawable="@drawable/ic_launcher"
+        android:layout_height="100dp"/>
+
+```
+[WIKI](https://bitbucket.org/ehsan_hvd/xuiframwork/wiki/Home) for more cool features 
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
