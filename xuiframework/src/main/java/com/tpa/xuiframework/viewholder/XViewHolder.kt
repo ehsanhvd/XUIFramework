@@ -1,10 +1,9 @@
-package com.tpa.xuiframework
+package com.tpa.xuiframework.viewholder
 
-import android.databinding.ViewDataBinding
 import android.support.v7.widget.RecyclerView
 import android.view.View
 
-class XViewHolder<T>(val viewDataBinding: ViewDataBinding) : RecyclerView.ViewHolder(viewDataBinding.root) {
+open class XViewHolder<T>(val view: View) : RecyclerView.ViewHolder(view) {
 
     var item: T? = null
     var renderer: ((View, T) -> Unit)? = null
@@ -21,8 +20,7 @@ class XViewHolder<T>(val viewDataBinding: ViewDataBinding) : RecyclerView.ViewHo
         renderer?.invoke(itemView, item)
     }
 
-    protected fun render(itemView: View, item: T) {
-        viewDataBinding.setVariable(1, item)
-        viewDataBinding.executePendingBindings()
+    protected open fun render(itemView: View, item: T) {
+
     }
 }

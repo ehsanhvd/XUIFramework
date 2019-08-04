@@ -1,24 +1,18 @@
 package com.tpa.xuiframework.view
 
 import android.content.Context
+import android.databinding.BindingAdapter
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import android.databinding.BindingAdapter
-import android.graphics.drawable.Drawable
-import android.content.res.TypedArray
-import android.util.TypedValue
-import android.graphics.drawable.ColorDrawable
-import android.support.v4.content.ContextCompat
-import android.support.v7.content.res.AppCompatResources
 import com.tpa.xuiframework.R
-import android.view.View.MeasureSpec
-import android.support.v7.widget.TintTypedArray.obtainStyledAttributes
 
 open class GlideImageView(context: Context, val attrs: AttributeSet?, val defStyleAttr: Int) :
     ImageView(context, attrs, defStyleAttr) {
 
+    var urlToLoad: String = ""
     var defDrawable: Drawable? = null
 
     constructor(context: Context) : this(context, null, 0)
@@ -44,6 +38,7 @@ open class GlideImageView(context: Context, val attrs: AttributeSet?, val defSty
     }
 
     public fun loadUrl(url: String) {
+        this.urlToLoad = url
         val request = Glide.with(getContext())
             .load(url)
 
