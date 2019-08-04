@@ -12,6 +12,7 @@ val list = arrayListOf(
     TestData("item 3")
 )
 
+//or you can use XAdapterBinding
 recyclerView.adapter =
     XAdapter(R.layout.row_list_test, list) { view, item ->
         //render each item here
@@ -24,11 +25,11 @@ recyclerView.adapter =
 <!-- or you can use GlideImageViewCircle for circle images -->
 <com.tpa.xuiframework.view.GlideImageView
         android:layout_width="100dp"
+        android:layout_height="100dp"
         app:url="@{testData.profile}" 
-        app:defaultDrawable="@drawable/ic_launcher"
-        android:layout_height="100dp"/>
-
+        app:defaultDrawable="@drawable/ic_launcher" />
 ```
+
 [WIKI](https://bitbucket.org/ehsan_hvd/xuiframwork/wiki/Home) for more cool features 
 
 ## Contributing
