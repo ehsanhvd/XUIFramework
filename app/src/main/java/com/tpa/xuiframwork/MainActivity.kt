@@ -19,6 +19,7 @@ class MainActivity : Activity() {
             TestData("item 3")
         )
 
+
 //        recyclerView.adapter =
 //            XAdapterBinding(R.layout.row_list_test, list) { view, item ->
 //                view.setText(R.id.textTitle, item.name)
