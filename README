@@ -21,8 +21,8 @@ recyclerView.adapter =
 
 ### Easy image using glide
 ```xml
-<--! or you can use GlideImageView -->
-<com.tpa.xuiframework.view.GlideImageViewCircle
+<!-- or you can use GlideImageViewCircle for circle images -->
+<com.tpa.xuiframework.view.GlideImageView
         android:layout_width="100dp"
         app:url="@{testData.profile}" 
         app:defaultDrawable="@drawable/ic_launcher"
