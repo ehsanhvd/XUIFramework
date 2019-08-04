@@ -13,8 +13,7 @@ val list = arrayListOf(
 )
 
 //or you can use XAdapterBinding
-recyclerView.adapter =
-    XAdapter(R.layout.row_list_test, list) { view, item ->
+recyclerView.adapter = XAdapter(R.layout.row_list_test, list) { view, item ->
         //render each item here
         view.setText(R.id.textTitle, item.name)
     }
