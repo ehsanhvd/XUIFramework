@@ -1,9 +1,10 @@
-package com.tpa.xuiframwork
+package com.tpa.xuiframwork.activity
 
 import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
-import com.tpa.xuiframework.adapter.XAdapterBinding
+import com.tpa.xuiframework.adapter.XAdapter
+import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
 
 class MainActivity : Activity() {
@@ -19,15 +20,13 @@ class MainActivity : Activity() {
             TestData("item 3")
         )
 
+        recyclerView.adapter =
+            XAdapter(R.layout.row_list_test, list) { view, item ->
+
+            }
 
 //        recyclerView.adapter =
-//            XAdapterBinding(R.layout.row_list_test, list) { view, item ->
-//                view.setText(R.id.textTitle, item.name)
-//                view.loadImage(R.id.imageProfile, item.profile)
-//            }
-
-        recyclerView.adapter =
-            XAdapterBinding(R.layout.row_list_test_binding, list)
+//            XAdapterBinding(R.layout.row_list_test_binding, list)
     }
 
 }

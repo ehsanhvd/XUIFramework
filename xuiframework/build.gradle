@@ -46,6 +46,10 @@ dependencies {
     implementation 'com.github.bumptech.glide:annotations:4.6.1'
     implementation 'jp.wasabeef:glide-transformations:3.0.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
+
+    implementation("com.squareup.okhttp3:okhttp:4.0.1")
+    implementation 'com.google.code.gson:gson:2.8.5'
+
 }
 repositories {
     mavenCentral()
