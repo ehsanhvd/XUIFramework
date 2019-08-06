@@ -32,7 +32,6 @@ class XRequest(val serviceName: String, val type: Type = Type.TYPE_GET, val para
 
         val urlString = url?.build()
 
-
         urlString?.let {
             val request = Request.Builder()
                 .url(it)
