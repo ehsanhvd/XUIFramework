@@ -14,25 +14,6 @@ open class XAdapter<T>(
 ) : RecyclerView.Adapter<XViewHolder<T>>() {
 
 
-//    constructor(res: Int, renderer: (View, T) -> Unit) : this(res, renderer = renderer) {
-//        add(request)
-//    }
-
-//    public fun add(request: XReq){
-//        url = HttpUrl.Builder()
-//            .scheme("http")
-//            .host("localhost")
-//            .addPathSegment("travelo")
-//            .addPathSegment("ws")
-//            .addPathSegment(request.serviceName + XConfig.serviceNamePostFix)
-//
-//        request.params.forEach {
-//            url?.addQueryParameter(it.name, it.value)
-//        }
-//
-//        println(url.toString())
-//    }
-
     override fun onCreateViewHolder(parent: ViewGroup, i: Int): XViewHolder<T> {
         return XViewHolder(LayoutInflater.from(parent.context).inflate(res, parent, false))
     }

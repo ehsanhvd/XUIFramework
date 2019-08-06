@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.tpa.xuiframework.viewholder.XViewHolder
 import com.tpa.xuiframework.viewholder.XViewHolderBinding
 
-class XAdapterBinding<T>(
+open class XAdapterBinding<T>(
     res: Int,
     list: ArrayList<T> = arrayListOf<T>(),
     renderer: ((View, T) -> Unit)? = null
@@ -18,7 +18,6 @@ class XAdapterBinding<T>(
 
         val binding =
             DataBindingUtil.inflate<ViewDataBinding>(LayoutInflater.from(parent.context), res, parent, false)
-//        return XViewHolder(LayoutInflater.from(parent.context).inflate(res, parent, false))
         return XViewHolderBinding(binding)
     }
 
