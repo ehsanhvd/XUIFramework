@@ -37,7 +37,7 @@ class XRequest(val serviceName: String, val type: Type = Type.TYPE_GET, val para
             val request = Request.Builder()
                 .url(it)
 
-            if (type == Type.TYPE_GET){
+            if (type == Type.TYPE_POST){
                 //TODO
             }
 
