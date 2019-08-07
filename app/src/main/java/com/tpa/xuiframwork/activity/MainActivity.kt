@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import com.tpa.xuiframework.activity.XActivity
 import com.tpa.xuiframework.adapter.PaginationAdapter
-import com.tpa.xuiframework.webservice.XRequest
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
 
@@ -38,23 +37,23 @@ class MainActivity : XActivity() {
 //            }
 
         recyclerView.adapter =
-            PaginationAdapter<TestData>(
+            PaginationAdapter(
                 R.layout.row_list_test_binding,
                 R.layout.row_loading,
-                list,
-                recyclerView
+                recyclerView, { paginationAdapter: PaginationAdapter<TestData>, i: Int ->
+                    paginationAdapter.loading = false
+                    //or you can use paginationAdapter.addItem(items)
+                }
             )
 
 
-        XRequest("gettravels")
-            .addParam("limit", 10)
-            .addParam("skip", 0)
-            .addParam("version", 3)
-            .start({
-                println(it)
-            }, {
-
-            })
+//        XRequest("gettravels")
+//            .addParam("limit", 10)
+//            .addParam("skip", 0)
+//            .addParam("version", 3)
+//            .start {
+//                println(it)
+//            }
     }
 
 }

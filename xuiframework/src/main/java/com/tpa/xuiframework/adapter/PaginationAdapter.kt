@@ -10,36 +10,45 @@ import com.tpa.xuiframework.viewholder.XViewHolder
 class PaginationAdapter<T>(
     @LayoutRes resId: Int,
     @LayoutRes val progressLayout: Int,
-    list: ArrayList<T> = arrayListOf<T>(),
     val recyclerView: RecyclerView,
+    val endListReached: ((PaginationAdapter<T>, Int) -> Unit)? = null,
     renderer: ((View, T) -> Unit)? = null
+
 ) :
-    XAdapterBinding<T>(resId, list, renderer) {
+    XAdapterBinding<T>(resId, arrayListOf(), renderer) {
 
     val VIEWTYPE_LOADING = 1
     val VIEWTYPE_CONTENT = 2
 
-    var loading = false
+    public var loading = false
+        set(value) {
+            field = value
+            if (loading){
+                recyclerView.post {
+                    notifyItemInserted(itemCount + 1)
+                }
+            } else {
+                notifyItemRemoved(itemCount)
+            }
+        }
 
     override fun onBindViewHolder(viewHolder: XViewHolder<T>, index: Int) {
-        if (getItemViewType(index) == 1){
+        if (getItemViewType(index) == 1) {
 
         } else {
             super.onBindViewHolder(viewHolder, index)
 
             if (index == itemCount - 1) {
                 println("end list")
+                endListReached?.let { it(this, itemCount) }
                 loading = true
-                recyclerView.post {
-                    notifyItemInserted(itemCount + 1)
-                }
             }
         }
 
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (loading && position == itemCount - 1){
+        return if (loading && position == itemCount - 1) {
             VIEWTYPE_LOADING
         } else {
             VIEWTYPE_CONTENT
@@ -47,9 +56,11 @@ class PaginationAdapter<T>(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, i: Int): XViewHolder<T> {
-        if (i == VIEWTYPE_LOADING){
-            return XViewHolder(LayoutInflater.from(parent.context)
-                .inflate(progressLayout, parent, false))
+        if (i == VIEWTYPE_LOADING) {
+            return XViewHolder(
+                LayoutInflater.from(parent.context)
+                    .inflate(progressLayout, parent, false)
+            )
         } else if (i == VIEWTYPE_CONTENT) {
             return super.onCreateViewHolder(parent, i)
         }
@@ -62,5 +73,12 @@ class PaginationAdapter<T>(
         } else {
             super.getItemCount()
         }
+    }
+
+    public fun addItem(items: List<T>){
+        loading = false
+        val oldSize = itemCount;
+        list.addAll(items)
+        notifyItemRangeInserted(oldSize, itemCount)
     }
 }

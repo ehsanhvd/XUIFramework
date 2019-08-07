@@ -19,8 +19,8 @@ class XRequest(val serviceName: String, val type: Type = Type.TYPE_GET, val para
         return this;
     }
 
-    public fun start(response: (json: JSONObject) -> Any,
-                     error: (e: IOException) -> Any) {
+    public fun start(error: (e: IOException) -> Any = {},
+                     response: (json: JSONObject) -> Any) {
 
         var url = baseUrl.toHttpUrlOrNull()?.newBuilder()?.addEncodedPathSegment(serviceName + serviceNamePostfix)
 
