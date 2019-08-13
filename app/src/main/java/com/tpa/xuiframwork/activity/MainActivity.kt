@@ -3,7 +3,7 @@ package com.tpa.xuiframwork.activity
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import com.tpa.xuiframework.activity.XActivity
-import com.tpa.xuiframework.adapter.PaginationAdapter
+import com.tpa.xuiframework.adapter.XAdapterBinding
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
 
@@ -31,20 +31,20 @@ class MainActivity : XActivity() {
             TestData("item 13")
         )
 
-//        recyclerView.adapter =
-//            XAdapter(R.layout.row_list_test, list) { view, item ->
-//
-//            }
-
         recyclerView.adapter =
-            PaginationAdapter(
-                R.layout.row_list_test_binding,
-                R.layout.row_loading,
-                recyclerView, { paginationAdapter: PaginationAdapter<TestData>, i: Int ->
-                    paginationAdapter.loading = false
-                    //or you can use paginationAdapter.addItem(items)
-                }
-            )
+            XAdapterBinding(R.layout.row_list_test_binding, list) { view, item ->
+
+            }
+
+//        recyclerView.adapter =
+//            PaginationAdapter(
+//                R.layout.row_list_test_binding,
+//                R.layout.row_loading,
+//                recyclerView, { paginationAdapter: PaginationAdapter<TestData>, i: Int ->
+//                    paginationAdapter.loading = false
+//                    //or you can use paginationAdapter.addItem(items)
+//                }
+//            )
 
 
 //        XRequest("gettravels")
