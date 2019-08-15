@@ -1,46 +1,69 @@
 package com.tpa.xuiframwork.activity
 
 import android.os.Bundle
-import android.support.v7.widget.RecyclerView
-import com.tpa.xuiframework.activity.XActivity
-import com.tpa.xuiframework.adapter.XAdapterBinding
+import android.view.View
+import com.tpa.xuiframework.activity.XDrawerActivity
 import com.tpa.xuiframwork.R
-import com.tpa.xuiframwork.entity.TestData
+import com.tpa.xuiframwork.fragment.BindingAdapterFragment
+import com.tpa.xuiframwork.fragment.PaginationAdapterFragment
+import com.tpa.xuiframwork.fragment.SimpleAdapterFragment
 
 
-class MainActivity : XActivity() {
+class MainActivity : XDrawerActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+        setDrawerView(R.layout.merge_drawer)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
-        val list = arrayListOf(
-            TestData("item 1", "https://pickaface.net/gallery/avatar/Benjohnsone54fbec7a167c5.png"),
-            TestData("item 2"),
-            TestData("item 3"),
-            TestData("item 4"),
-            TestData("item 5"),
-            TestData("item 6"),
-            TestData("item 7"),
-            TestData("item 8"),
-            TestData("item 9"),
-            TestData("item 10"),
-            TestData("item 11"),
-            TestData("item 12"),
-            TestData("item 13")
+        val fragments = arrayListOf(
+            SimpleAdapterFragment(),
+            BindingAdapterFragment(),
+            PaginationAdapterFragment()
         )
 
-        recyclerView.adapter =
-            XAdapterBinding(R.layout.row_list_test_binding, list) { view, item ->
-
+        setFragment(fragments[0], R.id.frameFragment)
+        val onMenuItemClick: (View) -> Unit = {
+            toggleDrawer()
+            if (it.tag is String) {
+                setFragment(fragments[(it.tag as String).toInt()], R.id.frameFragment)
             }
+        }
+
+        findViewById<View>(R.id.linSimpleAdapter).setOnClickListener(onMenuItemClick)
+        findViewById<View>(R.id.linBindingAdapter).setOnClickListener(onMenuItemClick)
+        findViewById<View>(R.id.linPaginationAdapter).setOnClickListener(onMenuItemClick)
+
+
+//        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+//
+//        val list = arrayListOf(
+//            TestData("item 1", "https://pickaface.net/gallery/avatar/Benjohnsone54fbec7a167c5.png"),
+//            TestData("item 2"),
+//            TestData("item 3"),
+//            TestData("item 4"),
+//            TestData("item 5"),
+//            TestData("item 6"),
+//            TestData("item 7"),
+//            TestData("item 8"),
+//            TestData("item 9"),
+//            TestData("item 10"),
+//            TestData("item 11"),
+//            TestData("item 12"),
+//            TestData("item 13")
+//        )
+//
+//        recyclerView.adapter =
+//            XAdapterBinding(R.layout.row_list_test_binding, list) { view, item ->
+//
+//            }
 
 //        recyclerView.adapter =
-//            PaginationAdapter(
+//            PaginationAdapterFragment(
 //                R.layout.row_list_test_binding,
 //                R.layout.row_loading,
-//                recyclerView, { paginationAdapter: PaginationAdapter<TestData>, i: Int ->
+//                recyclerView, { paginationAdapter: PaginationAdapterFragment<TestData>, i: Int ->
 //                    paginationAdapter.loading = false
 //                    //or you can use paginationAdapter.addItem(items)
 //                }

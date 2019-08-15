@@ -27,17 +27,12 @@ class XRecyclerView(context: Context, val attrs: AttributeSet?, val defStyleAttr
         post {
             layoutManager = GridLayoutManager(
                 context,
-                if (itemWidth == -1) {
+                if (itemWidth == -1 || width == 0) {
                     1
                 } else {
                     width / itemWidth
                 }
             )
         }
-    }
-
-    override fun onMeasure(widthSpec: Int, heightSpec: Int) {
-        super.onMeasure(widthSpec, heightSpec)
-
     }
 }

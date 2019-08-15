@@ -1,9 +1,11 @@
 package com.tpa.xuiframework.activity
 
-import android.app.Activity
+import android.support.v7.app.AppCompatActivity
 
-open abstract class XActivity: Activity() {
+open abstract class XActivity: AppCompatActivity() {
+
     protected fun getActivity(): XActivity{
         return this
     }
+
 }
