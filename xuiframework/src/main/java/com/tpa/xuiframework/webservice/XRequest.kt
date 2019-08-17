@@ -6,7 +6,14 @@ import org.json.JSONObject
 import java.io.IOException
 
 
-class XRequest(val serviceName: String, val type: Type = Type.TYPE_GET, val params: ArrayList<Param> = arrayListOf()) {
+fun xRequest (serviceName: String, block: XRequest.() -> Unit) : XRequest{
+    val xRequest = XRequest(serviceName)
+    block(xRequest)
+    return xRequest
+}
+
+
+data class XRequest(val serviceName: String, var type: Type = Type.TYPE_GET, val params: ArrayList<Param> = arrayListOf()) {
 
     companion object {
         var baseUrl: String = ""
@@ -14,13 +21,17 @@ class XRequest(val serviceName: String, val type: Type = Type.TYPE_GET, val para
         val client = OkHttpClient()
     }
 
-    public fun addParam(name: String, value: Any): XRequest {
-        params.add(Param(name, value.toString()))
+    operator fun Param.unaryPlus(){
+        addParam(this)
+    }
+
+    public fun addParam(param: Param): XRequest {
+        params.add(param)
         return this;
     }
 
-    public fun start(error: (e: IOException) -> Any = {},
-                     response: (json: JSONObject) -> Any) {
+    public fun start(response: (json: JSONObject) -> Any,
+                     error: (e: IOException) -> Any = {}) {
 
         var url = baseUrl.toHttpUrlOrNull()?.newBuilder()?.addEncodedPathSegment(serviceName + serviceNamePostfix)
 

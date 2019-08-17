@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import com.tpa.xuiframework.R
+import kotlinx.android.synthetic.main.activity_drawer.*
 
 open class XDrawerActivity : XActivity() {
 
@@ -22,19 +23,25 @@ open class XDrawerActivity : XActivity() {
     }
 
     fun getDrawerLayout() : DrawerLayout{
-        return findViewById(R.id.drawerView)
+        return drawerView
     }
 
     override fun setContentView(layoutResID: Int) {
         val activity = createActivityView()
         layoutInflater.inflate(layoutResID, activity.findViewById(R.id.frameContent))
         super.setContentView(activity)
+        onContentViewSet()
     }
 
     override fun setContentView(view: View?) {
         val activity = createActivityView()
         activity.findViewById<ViewGroup>(R.id.frameContent).addView(view)
         super.setContentView(activity)
+        onContentViewSet()
+    }
+
+    open fun onContentViewSet(){
+
     }
 
     private fun createActivityView(): View {
@@ -42,11 +49,11 @@ open class XDrawerActivity : XActivity() {
     }
 
     fun setDrawerView(view: View){
-
+        frameDrawer.addView(view)
     }
 
     fun setDrawerView(layoutResID: Int){
-        setDrawerView(layoutInflater.inflate(layoutResID, findViewById(R.id.frameDrawer)))
+        setDrawerView(layoutInflater.inflate(layoutResID, frameDrawer, false))
     }
 
     fun toggleDrawer() {

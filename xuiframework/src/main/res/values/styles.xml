@@ -1,3 +1,20 @@
 <resources>
 
+    <style name="ActionButton">
+        <item name="android:scaleType">center</item>
+        <item name="android:layout_width">?attr/actionBarSize</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:tint">@android:color/white</item>
+        <item name="android:background">@drawable/bg_selector</item>
+    </style>
+
+
+    <style name="ActivityHeading">
+        <item name="android:textSize">20sp</item>
+        <item name="textStyle">light</item>
+        <item name="android:gravity">start</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:maxLines">1</item>
+    </style>
+
 </resources>

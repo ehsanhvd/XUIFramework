@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomTextView">
+        <attr name="textStyle" format="enum">
+            <enum name="ultralight" value="1" />
+            <enum name="light" value="2" />
+            <enum name="medium" value="3" />
+            <enum name="bold" value="4" />
+        </attr>
+    </declare-styleable>
+</resources>

@@ -19,19 +19,19 @@ class BindingAdapterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val list = arrayListOf(
-            TestData("item 1", "https://pickaface.net/gallery/avatar/Benjohnsone54fbec7a167c5.png"),
-            TestData("item 2"),
-            TestData("item 3"),
-            TestData("item 4"),
-            TestData("item 5"),
-            TestData("item 6"),
-            TestData("item 7"),
-            TestData("item 8"),
-            TestData("item 9"),
-            TestData("item 10"),
-            TestData("item 11"),
-            TestData("item 12"),
-            TestData("item 13")
+            TestData("binded item 1", "https://pickaface.net/gallery/avatar/Benjohnsone54fbec7a167c5.png"),
+            TestData("binded item 2"),
+            TestData("binded item 3"),
+            TestData("binded item 4"),
+            TestData("binded item 5"),
+            TestData("binded item 6"),
+            TestData("binded item 7"),
+            TestData("binded item 8"),
+            TestData("binded item 9"),
+            TestData("binded item 10"),
+            TestData("binded item 11"),
+            TestData("binded item 12"),
+            TestData("binded item 13")
         )
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
