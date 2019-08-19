@@ -3,6 +3,7 @@ package com.tpa.xuiframwork.activity
 import android.os.Bundle
 import android.view.View
 import com.tpa.xuiframework.activity.XActionBarDrawerActivity
+import com.tpa.xuiframework.log
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.fragment.BindingAdapterFragment
 import com.tpa.xuiframwork.fragment.PaginationAdapterFragment
@@ -34,6 +35,8 @@ class MainActivity : XActionBarDrawerActivity() {
         findViewById<View>(R.id.linSimpleAdapter).setOnClickListener(onMenuItemClick)
         findViewById<View>(R.id.linBindingAdapter).setOnClickListener(onMenuItemClick)
         findViewById<View>(R.id.linPaginationAdapter).setOnClickListener(onMenuItemClick)
+
+        log("logged")
 
 //        xRequest("gettravels") {
 //            type = XRequest.Type.TYPE_GET

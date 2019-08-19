@@ -1,5 +1,6 @@
 package com.tpa.xuiframework.webservice
 
+import com.tpa.xuiframework.XConfig
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.json.JSONObject
@@ -16,8 +17,6 @@ fun xRequest (serviceName: String, block: XRequest.() -> Unit) : XRequest{
 data class XRequest(val serviceName: String, var type: Type = Type.TYPE_GET, val params: ArrayList<Param> = arrayListOf()) {
 
     companion object {
-        var baseUrl: String = ""
-        var serviceNamePostfix: String = ""
         val client = OkHttpClient()
     }
 
@@ -33,7 +32,7 @@ data class XRequest(val serviceName: String, var type: Type = Type.TYPE_GET, val
     public fun start(response: (json: JSONObject) -> Any,
                      error: (e: IOException) -> Any = {}) {
 
-        var url = baseUrl.toHttpUrlOrNull()?.newBuilder()?.addEncodedPathSegment(serviceName + serviceNamePostfix)
+        var url = XConfig.baseUrl.toHttpUrlOrNull()?.newBuilder()?.addEncodedPathSegment(serviceName + XConfig.serviceNamePostfix)
 
         if (type == Type.TYPE_GET){
             params.forEach {
