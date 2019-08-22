@@ -11,7 +11,7 @@ import com.tpa.xuiframework.adapter.PaginationAdapter
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
 
-class PaginationAdapterFragment : Fragment() {
+class AnkoAdapterFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_pagination_adapter, container, false)
     }
