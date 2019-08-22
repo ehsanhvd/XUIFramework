@@ -1,4 +1,4 @@
-package com.tpa.xuiframwork.view;
+package com.tpa.xuiframwork.customview;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

@@ -1,22 +1,24 @@
 package com.tpa.xuiframwork.activity
 
 import android.os.Bundle
-import android.view.View
+import android.view.ViewGroup
 import com.tpa.xuiframework.activity.XActionBarDrawerActivity
 import com.tpa.xuiframework.log
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.fragment.BindingAdapterFragment
 import com.tpa.xuiframwork.fragment.PaginationAdapterFragment
 import com.tpa.xuiframwork.fragment.SimpleAdapterFragment
+import com.tpa.xuiframwork.layout.DrawerView
+import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.setContentView
 
 
 class MainActivity : XActionBarDrawerActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main_activity)
-        setDrawerView(R.layout.merge_drawer)
 
+        MainActivityLayout().setContentView(this);
 
         val fragments = arrayListOf(
             SimpleAdapterFragment(),
@@ -24,17 +26,14 @@ class MainActivity : XActionBarDrawerActivity() {
             PaginationAdapterFragment()
         )
 
-        setFragment(fragments[0], R.id.frameFragment)
-        val onMenuItemClick: (View) -> Unit = {
+        val drawerView = DrawerView { s: String, i: Int ->
             toggleDrawer()
-            if (it.tag is String) {
-                setFragment(fragments[(it.tag as String).toInt()], R.id.frameFragment)
-            }
-        }
+            setFragment(fragments[i], R.id.frameFragment)
+        }.createView(AnkoContext.create(getActivity(), findViewById<ViewGroup>(R.id.frameDrawer)));
 
-        findViewById<View>(R.id.linSimpleAdapter).setOnClickListener(onMenuItemClick)
-        findViewById<View>(R.id.linBindingAdapter).setOnClickListener(onMenuItemClick)
-        findViewById<View>(R.id.linPaginationAdapter).setOnClickListener(onMenuItemClick)
+        setFragment(fragments[0], R.id.frameFragment)
+
+        setDrawerView(drawerView)
 
         log("logged")
 

@@ -5,9 +5,15 @@ import com.tpa.xuiframework.XConfig
 import com.tpa.xuiframework.XUtil
 
 class App : Application() {
+
+    companion object {
+        lateinit var app: App
+    }
+
     override fun onCreate() {
         super.onCreate()
 
+        app = this
         XConfig.app = this
         XConfig.logTag = "xuiSample"
 
