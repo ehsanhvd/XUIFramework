@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import com.tpa.xuiframework.R
+import com.tpa.xuiframework.extention.getActivityLabel
 import kotlinx.android.synthetic.main.merge_simple_drawer_layout.*
 
 open class XActionBarDrawerActivity : XDrawerActivity() {

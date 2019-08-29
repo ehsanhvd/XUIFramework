@@ -11,6 +11,8 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import com.tpa.xuiframework.R
 import kotlinx.android.synthetic.main.activity_drawer.*
+import org.jetbrains.anko.AnkoComponent
+import org.jetbrains.anko.AnkoContext
 
 open class XDrawerActivity : XActivity() {
 
@@ -50,6 +52,10 @@ open class XDrawerActivity : XActivity() {
 
     fun setDrawerView(view: View){
         frameDrawer.addView(view)
+    }
+
+    fun setDrawerView(view: AnkoComponent<ViewGroup>){
+        frameDrawer.addView(view.createView(AnkoContext.create(getActivity(), findViewById<ViewGroup>(R.id.frameDrawer))))
     }
 
     fun setDrawerView(layoutResID: Int){

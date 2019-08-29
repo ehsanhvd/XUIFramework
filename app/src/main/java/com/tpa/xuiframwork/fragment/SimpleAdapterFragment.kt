@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.tpa.xuiframework.adapter.XAdapter
 import com.tpa.xuiframework.extention.loadImage
 import com.tpa.xuiframework.extention.setText
+import com.tpa.xuiframework.extention.showSnackbar
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
 
@@ -41,6 +42,10 @@ class SimpleAdapterFragment : Fragment() {
             XAdapter(R.layout.row_list_test, list) { view, item ->
                 view.setText(R.id.textTitle, item.name)
                 view.loadImage(R.id.imageProfile, item.profile)
+
+                view.setOnClickListener {
+                    showSnackbar("Snackbar from fragment")
+                }
             }
 
     }

@@ -74,3 +74,27 @@ data class XRequest(
         TYPE_POST
     }
 }
+
+infix fun String.iz(value: String): Param {
+    return Param(this, value)
+}
+
+infix fun String.iz(value: Int): Param {
+    return Param(this, value)
+}
+
+infix fun String.iz(value: Long): Param {
+    return Param(this, value)
+}
+
+infix fun String.iz(value: Float): Param {
+    return Param(this, value)
+}
+
+infix fun String.iz(value: Double): Param {
+    return Param(this, value)
+}
+
+infix fun String.iz(value: Boolean): Param {
+    return Param(this, value)
+}

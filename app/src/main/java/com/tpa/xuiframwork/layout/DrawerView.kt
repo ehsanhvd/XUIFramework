@@ -13,7 +13,6 @@ class DrawerView(val onclick: (tag: String, i: Int) -> Unit = { s: String, i: In
 
     private val menus = arrayListOf(
         R.string.simpleAdapter,
-        R.string.bindingAdapter,
         R.string.paginationAdapter
     )
 
@@ -25,9 +24,9 @@ class DrawerView(val onclick: (tag: String, i: Int) -> Unit = { s: String, i: In
                     backgroundColor = XUtil.getAccentColor(ui.ctx)
                 }.lparams(matchParent, dip(200))
 
-                menuItem(0)
-                menuItem(1)
-                menuItem(2)
+                repeat(menus.size) {
+                    menuItem(it)
+                }
             }
         }
     }

@@ -7,9 +7,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.tpa.xuiframework.adapter.PaginationAdapter
+import com.tpa.xuiframework.adapter.XAdapter2
+import com.tpa.xuiframework.extention.loadImage
+import com.tpa.xuiframework.extention.setText
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
+import com.tpa.xuiframwork.layout.AnkoAdapterRowItem
 
 class AnkoAdapterFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -19,9 +22,11 @@ class AnkoAdapterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val viewComponent = AnkoAdapterRowItem()
+
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-        val pAdapter = PaginationAdapter<TestData>(
-            R.layout.row_list_test_binding,
+        val pAdapter = XAdapter2(
+            viewComponent,
             R.layout.row_loading,
             recyclerView,
             { adapter, lastIndex ->
@@ -30,6 +35,9 @@ class AnkoAdapterFragment : Fragment() {
                 Handler().postDelayed({
                     adapter.addItem(getList())
                 }, 2000)
+            }, { v: View, item: TestData ->
+                v.setText(R.id.textTitle, item.name)
+                v.loadImage(R.id.imageProfile, item.profile)
             }
         )
 

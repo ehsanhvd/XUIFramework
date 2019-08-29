@@ -4,10 +4,12 @@ import android.content.Context
 import android.databinding.BindingAdapter
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
+import android.view.ViewManager
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.tpa.xuiframework.R
+import org.jetbrains.anko.custom.ankoView
 
 open class GlideImageView(context: Context, val attrs: AttributeSet?, val defStyleAttr: Int) :
     ImageView(context, attrs, defStyleAttr) {
@@ -54,6 +56,13 @@ open class GlideImageView(context: Context, val attrs: AttributeSet?, val defSty
         fun setUrl(imageView: GlideImageView, url: String) {
             imageView.loadUrl(url)
         }
+
     }
+
 }
+
+
+fun ViewManager.glideImageView() = glideImageView {}
+inline fun ViewManager.glideImageView(init: GlideImageView.() -> Unit) =
+    ankoView({ GlideImageView(it) },0,  init)
 

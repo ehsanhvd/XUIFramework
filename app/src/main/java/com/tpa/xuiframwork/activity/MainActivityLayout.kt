@@ -8,6 +8,7 @@ import org.jetbrains.anko.frameLayout
 import org.jetbrains.anko.verticalLayout
 
 class MainActivityLayout : AnkoComponent<MainActivity> {
+
     override fun createView(ui: AnkoContext<MainActivity>): View {
         return with(ui) {
             verticalLayout {

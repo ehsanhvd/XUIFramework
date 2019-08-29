@@ -2,7 +2,9 @@ package com.tpa.xuiframework
 
 import android.content.Context
 import android.graphics.Typeface
+import android.support.design.widget.Snackbar
 import android.util.TypedValue
+import android.view.View
 
 
 class XUtil {
@@ -20,6 +22,10 @@ class XUtil {
             a.recycle()
 
             return color
+        }
+
+        fun showSnackbar(view: View, text: String) {
+            Snackbar.make(view, text, Snackbar.LENGTH_LONG).show()
         }
     }
 }
