@@ -4,21 +4,6 @@ Create android UI elements easily, made with kotlin
 
 ## Usage
 
-### Easy adapter
-```kotlin
-val list = arrayListOf(
-    TestData("item 1"),
-    TestData("item 2"),
-    TestData("item 3")
-)
-
-//or you can use XAdapterBinding
-recyclerView.adapter = XAdapter(R.layout.row_list_test, list) { view, item ->
-        //render each item here
-        view.setText(R.id.textTitle, item.name)
-    }
-```
-
 ### Easy image using glide
 ```xml
 <!-- or you can use GlideImageViewCircle for circle images -->
