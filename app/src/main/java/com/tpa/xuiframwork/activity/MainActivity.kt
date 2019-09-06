@@ -9,6 +9,7 @@ import com.tpa.xuiframework.webservice.iz
 import com.tpa.xuiframework.webservice.xRequest
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.fragment.AnkoAdapterFragment
+import com.tpa.xuiframwork.fragment.CustomViewsFragment
 import com.tpa.xuiframwork.fragment.SimpleAdapterFragment
 import com.tpa.xuiframwork.layout.DrawerView
 import org.jetbrains.anko.setContentView
@@ -24,7 +25,8 @@ class MainActivity : XActionBarDrawerActivity() {
 
         val fragments = arrayListOf(
             SimpleAdapterFragment(),
-            AnkoAdapterFragment()
+            AnkoAdapterFragment(),
+            CustomViewsFragment()
         )
 
         val drawerView = DrawerView { s: String, i: Int ->

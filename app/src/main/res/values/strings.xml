@@ -2,4 +2,5 @@
     <string name="app_name">XUIFramwork</string>
     <string name="simpleAdapter">Simple adapter</string>
     <string name="paginationAdapter">Pagination adapter</string>
+    <string name="customViews">Custom views</string>
 </resources>
