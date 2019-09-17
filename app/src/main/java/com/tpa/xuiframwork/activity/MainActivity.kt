@@ -1,6 +1,7 @@
 package com.tpa.xuiframwork.activity
 
 import android.os.Bundle
+import android.widget.CompoundButton
 import com.tpa.xuiframework.activity.XActionBarDrawerActivity
 import com.tpa.xuiframework.extention.showSnackbar
 import com.tpa.xuiframework.log
@@ -12,6 +13,7 @@ import com.tpa.xuiframwork.fragment.AnkoAdapterFragment
 import com.tpa.xuiframwork.fragment.CustomViewsFragment
 import com.tpa.xuiframwork.fragment.SimpleAdapterFragment
 import com.tpa.xuiframwork.layout.DrawerView
+import org.jetbrains.anko.sdk27.coroutines.onCheckedChange
 import org.jetbrains.anko.setContentView
 
 
@@ -52,6 +54,13 @@ class MainActivity : XActionBarDrawerActivity() {
         }, {
 
         })
+
+        findViewById<CompoundButton>(R.id.switchRtl).onCheckedChange { buttonView, isChecked ->
+
+        }
     }
 
+    override fun getActionbarXml(): Int {
+        return R.layout.merge_switch_drawer_layout
+    }
 }
