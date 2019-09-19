@@ -1,13 +1,21 @@
 package com.tpa.xuiframework.extention
 
 import android.app.Activity
+import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import com.tpa.xuiframework.XUtil
 import com.tpa.xuiframework.view.GlideImageView
+import org.jetbrains.anko.AnkoComponent
+import org.jetbrains.anko.AnkoContext
+
+fun ViewGroup.addView(ctext: Context, view: AnkoComponent<ViewGroup>){
+    this.addView(view.createView(AnkoContext.create(ctext, this)))
+}
 
 fun View.setText(id: Int, text: String) {
     findViewById<TextView>(id).setText(text)
