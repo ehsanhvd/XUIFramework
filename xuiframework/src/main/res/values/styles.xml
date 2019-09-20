@@ -12,7 +12,6 @@
     <style name="ActivityHeading">
         <item name="android:textSize">17sp</item>
         <item name="fontIndex">1</item>
-        <item name="android:gravity">start</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:maxLines">1</item>
     </style>

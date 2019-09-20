@@ -9,9 +9,9 @@ class CustomViewsFragmentLayout : AnkoComponent<ViewGroup> {
         verticalLayout {
             button("selector") {
                 onClick {
-                    val countries = listOf("item1", "item2", "item3", "item4")
-                    selector("Selector", countries, { dialogInterface, i ->
-                        toast(" ${countries[i]} chosen")
+                    val countries = listOf("آیتم ۱", "آیتم ۲", "آیتم ۳", "آیتم ۴")
+                    selector("انتخاب گر", countries, { dialogInterface, i ->
+                        toast(" ${countries[i]} انتخاب شد")
                     })
                 }
             }

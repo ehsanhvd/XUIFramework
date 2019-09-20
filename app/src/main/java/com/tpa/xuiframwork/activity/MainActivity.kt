@@ -56,7 +56,7 @@ class MainActivity : XActionBarDrawerActivity() {
         })
 
         findViewById<CompoundButton>(R.id.switchRtl).onCheckedChange { buttonView, isChecked ->
-
+            setLanguage(if (isChecked) "fa" else  "en")
         }
     }
 
