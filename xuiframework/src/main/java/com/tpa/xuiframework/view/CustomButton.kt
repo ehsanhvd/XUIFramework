@@ -2,12 +2,12 @@ package com.tpa.xuiframework.view
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.TextView
+import android.widget.Button
 import com.tpa.xuiframework.R
 import com.tpa.xuiframework.XConfig
 
-class CustomTextView(context: Context, val attrs: AttributeSet?, val defStyleAttr: Int) :
-    TextView(context, attrs, defStyleAttr) {
+class CustomButton(context: Context, val attrs: AttributeSet?, val defStyleAttr: Int) :
+    Button(context, attrs, defStyleAttr) {
 
     constructor(context: Context) : this(context, null, 0)
 

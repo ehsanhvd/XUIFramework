@@ -41,6 +41,12 @@ fun Boolean.ifT(op: () -> Any) {
     }
 }
 
+fun String.ifNotEmpty(op: () -> Any?) {
+    if (!this.isEmpty()) {
+        op()
+    }
+}
+
 fun Activity.getActivityLabel(): String? {
     try {
         val stringRes = this.packageManager.getActivityInfo(this.componentName, 0).labelRes

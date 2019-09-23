@@ -16,4 +16,26 @@
         <item name="android:maxLines">1</item>
     </style>
 
+    <!--button-->
+    <style name="FlatButton" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">?attr/colorAccent</item>
+        <item name="android:minWidth">64dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:background">@drawable/bg_selector_round_corners</item>
+    </style>
+
+    <style name="FlatButtonSmall" parent="FlatButton">
+        <item name="android:minHeight">0dp</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingBottom">3dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_height">36dp</item>
+    </style>
+
 </resources>

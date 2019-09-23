@@ -1,6 +1,7 @@
 package com.tpa.xuiframwork.layout
 
 import android.view.ViewGroup
+import com.tpa.xuiframework.utils.Dialogs
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
@@ -15,6 +16,28 @@ class CustomViewsFragmentLayout : AnkoComponent<ViewGroup> {
                     })
                 }
             }
+            linearLayout {
+                button("ask dialog") {
+                    onClick {
+                        Dialogs.ask(ui.ctx, "title", "body") {
+                            it.dismiss()
+                        }.show()
+                    }
+
+                }.lparams {
+                    weight = 1F
+                }
+                button("info dialog") {
+                    onClick {
+                        Dialogs.alert(ui.ctx, "title", "body") {
+                            it.dismiss()
+                        }.show()
+                    }
+                }.lparams {
+                    weight = 1F
+                }
+            }
+
         }
     }
 
