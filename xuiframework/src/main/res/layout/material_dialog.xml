@@ -16,6 +16,11 @@
         android:layout_height="wrap_content">
 
         <com.tpa.xuiframework.view.CustomButton
+            android:id="@+id/btnCancel"
+            style="@style/FlatButtonSmall"
+            android:text="@string/cancel" />
+
+        <com.tpa.xuiframework.view.CustomButton
             android:id="@+id/btnAccept"
             style="@style/FlatButtonSmall"
             android:layout_marginStart="8dp"

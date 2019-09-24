@@ -2,6 +2,7 @@ package com.tpa.xuiframwork.layout
 
 import android.view.ViewGroup
 import com.tpa.xuiframework.utils.Dialogs
+import com.tpa.xuiframwork.dialog.TestMaterialDialog
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
@@ -35,6 +36,13 @@ class CustomViewsFragmentLayout : AnkoComponent<ViewGroup> {
                     }
                 }.lparams {
                     weight = 1F
+                }
+            }
+            button("custom material dialog") {
+                onClick {
+                    TestMaterialDialog(ui.ctx){
+                        it.dismiss()
+                    }.show()
                 }
             }
 
