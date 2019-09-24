@@ -19,7 +19,7 @@ class CustomViewsFragmentLayout : AnkoComponent<ViewGroup> {
             linearLayout {
                 button("ask dialog") {
                     onClick {
-                        Dialogs.ask(ui.ctx, "title", "body") {
+                        Dialogs.ask(ui.ctx, "this is a title", " this is a question?") {
                             it.dismiss()
                         }.show()
                     }
@@ -29,7 +29,7 @@ class CustomViewsFragmentLayout : AnkoComponent<ViewGroup> {
                 }
                 button("info dialog") {
                     onClick {
-                        Dialogs.alert(ui.ctx, "title", "body") {
+                        Dialogs.alert(ui.ctx, "this is a title", "this is an info") {
                             it.dismiss()
                         }.show()
                     }

@@ -14,7 +14,7 @@ class Dialogs() {
 
     companion object {
 
-        val DIALOG_STYLE = R.style.DialogTheme
+        public val DIALOG_STYLE = R.style.DialogTheme
 
         fun ask(context: Context, title: String, body: String, okListener: ((Dialog) -> Unit)) : Dialog{
 
