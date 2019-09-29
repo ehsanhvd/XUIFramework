@@ -6,12 +6,22 @@ import android.widget.CheckBox
 import com.tpa.xuiframework.R
 import com.tpa.xuiframework.XConfig
 
-class CustomCheckbox(context: Context, val attrs: AttributeSet?, val defStyleAttr: Int) :
-    CheckBox(context, attrs, defStyleAttr) {
+class CustomCheckbox : CheckBox {
 
-    constructor(context: Context) : this(context, null, 0)
+    var attrs : AttributeSet? = null
+    var defStyleAttr : Int = 0
 
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
+    constructor(context: Context) : super(context){
+    }
+
+    constructor(context: Context, attrs : AttributeSet) : super(context,attrs){
+        this.attrs = attrs
+    }
+
+    constructor(context: Context,  attrs: AttributeSet , defStyleAttr : Int) : super(context, attrs, defStyleAttr){
+        this.attrs = attrs
+        this.defStyleAttr = defStyleAttr
+    }
 
     init {
         val ta = getContext().obtainStyledAttributes(attrs, R.styleable.CustomButton, defStyleAttr, 0)

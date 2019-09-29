@@ -1,6 +1,12 @@
 package com.tpa.xuiframwork.entity
 
-data class TestData(val name: String, val profile: String) {
+import com.tpa.xuiframework.form.Input
+
+class TestData(name: String, val profile: String) {
+
+    @Input("done!")
+    val name: String = name
+
     constructor(name: String) : this(name, "") {
 
     }

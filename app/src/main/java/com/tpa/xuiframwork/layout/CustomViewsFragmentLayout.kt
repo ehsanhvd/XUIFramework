@@ -2,6 +2,8 @@ package com.tpa.xuiframwork.layout
 
 import android.view.ViewGroup
 import com.tpa.xuiframework.utils.Dialogs
+import com.tpa.xuiframework.view.customSpinner
+import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.dialog.TestMaterialDialog
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
@@ -9,14 +11,12 @@ import org.jetbrains.anko.sdk27.coroutines.onClick
 class CustomViewsFragmentLayout : AnkoComponent<ViewGroup> {
     override fun createView(ui: AnkoContext<ViewGroup>) = with(ui) {
         verticalLayout {
-            button("selector") {
-                onClick {
-                    val countries = listOf("آیتم ۱", "آیتم ۲", "آیتم ۳", "آیتم ۴")
-                    selector("انتخاب گر", countries, { dialogInterface, i ->
-                        toast(" ${countries[i]} انتخاب شد")
-                    })
-                }
-            }
+            customSpinner(R.array.testArray) {
+
+
+            }.lparams(wrapContent, wrapContent)
+
+
             linearLayout {
                 button("ask dialog") {
                     onClick {
@@ -40,7 +40,7 @@ class CustomViewsFragmentLayout : AnkoComponent<ViewGroup> {
             }
             button("custom material dialog") {
                 onClick {
-                    TestMaterialDialog(ui.ctx){
+                    TestMaterialDialog(ui.ctx) {
                         it.dismiss()
                     }.show()
                 }

@@ -9,4 +9,8 @@
     <declare-styleable name="CustomButton">
         <attr name="fontIndex" />
     </declare-styleable>
+
+    <declare-styleable name="CustomEditText">
+        <attr name="fontIndex" />
+    </declare-styleable>
 </resources>
