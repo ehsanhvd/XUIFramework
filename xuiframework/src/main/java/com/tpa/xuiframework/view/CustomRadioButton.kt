@@ -6,7 +6,7 @@ import android.widget.RadioButton
 import com.tpa.xuiframework.R
 import com.tpa.xuiframework.XConfig
 
-class CustomRadiobutton : RadioButton {
+class CustomRadioButton : RadioButton {
 
     var attrs : AttributeSet? = null
     var defStyleAttr : Int = 0

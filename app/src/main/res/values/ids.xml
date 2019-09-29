@@ -3,5 +3,7 @@
     <item type="id" name="frameFragment" />
     <item name="checkTest" type="id" />
     <item name="textLabel" type="id" />
+    <item name="textDependant" type="id" />
     <item name="editAnother" type="id" />
+    <item name="radioOption" type="id" />
 </resources>
