@@ -4,7 +4,9 @@ import android.graphics.Color
 import android.support.v4.view.GravityCompat
 import android.text.InputFilter
 import android.text.InputType
+import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.CompoundButton
 import android.widget.LinearLayout
 import android.widget.Space
 import com.tpa.xuiframework.view.CustomButton
@@ -15,8 +17,13 @@ import org.jetbrains.anko.singleLine
 import org.jetbrains.anko.textColor
 import java.lang.reflect.Field
 
+open class Form private constructor(val parent: LinearLayout) :
+    CompoundButton.OnCheckedChangeListener {
 
-class Form {
+    private val dependencies: ArrayList<Dependency> = arrayListOf()
+    private var currentRow: LinearLayout? = null
+    private var lastView: View? = null
+    private var done = false
 
     companion object {
         fun with(parent: LinearLayout, entity: Any) {
@@ -30,117 +37,203 @@ class Form {
             }
         }
 
+        fun with(parent: LinearLayout): Form {
+            return Form(parent)
+        }
+
         private fun getValue(entity: Any, field: Field): Any? {
             field.setAccessible(true)
             return field.get(entity)
         }
     }
 
-    class Builder(val parent: LinearLayout) {
 
-        var currentRow: LinearLayout? = null;
+    fun editText(
+        hint: String = "",
+        text: String = "",
+        maxLength: Int = 50,
+        inputType: Int = InputType.TYPE_CLASS_TEXT,
+        imeOpt: Int = EditorInfo.IME_ACTION_NEXT,
+        id: Int = 0
 
-        fun editText(
-            hint: String = "",
-            text: String = "",
-            maxLength: Int = 50,
-            inputType: Int = InputType.TYPE_CLASS_TEXT,
-            imeOpt: Int = EditorInfo.IME_ACTION_NEXT,
-            id: Int = 0
+    ): Form {
+        val editText = CustomEditText(parent.context)
+        editText.singleLine = true
+        editText.setText(text)
+        editText.hint = hint
+        editText.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxLength))
+        editText.inputType = inputType
+        editText.imeOptions = imeOpt
+        editText.id = id
 
-        ): Builder {
-            val editText = CustomEditText(parent.context)
-            editText.singleLine = true
-            editText.setText(text)
-            editText.hint = hint
-            editText.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(maxLength))
-            editText.inputType = inputType
-            editText.imeOptions = imeOpt
-            editText.id = id
+        addRowIfNotExist()
+        currentRow!!.addView(editText, createLayoutParams(1F))
+        lastView = editText
+        return this
+    }
 
-            addRowIfNotExist()
-            currentRow!!.addView(editText, createLayoutParams(1F))
-            return this
+    fun button(
+        text: String,
+        id: Int = 0
+    ): Form {
+        val button = CustomButton(parent.context)
+        button.setText(text)
+        button.id = id
+
+        addRowIfNotExist()
+
+        val buttonParent = LinearLayout(parent.context)
+        buttonParent.addView(button, createLayoutParams())
+        buttonParent.gravity = GravityCompat.END
+        currentRow!!.addView(buttonParent, createLayoutParams(1F))
+        lastView = buttonParent
+        return this
+    }
+
+    fun checkbox(
+        text: String,
+        id: Int = 0,
+        checked: Boolean = false
+    ): Form {
+        val checkBox = CustomCheckbox(parent.context)
+        checkBox.text = text
+        checkBox.id = id
+        checkBox.setOnCheckedChangeListener(this)
+        checkBox.isChecked = checked
+
+        currentRow!!.addView(checkBox, createLayoutParams(1F))
+        lastView = checkBox
+        return this
+    }
+
+    fun text(
+        text: String,
+        id: Int = 0,
+        gravity: Int = GravityCompat.START
+    ): Form {
+        val textView = CustomTextView(parent.context)
+        textView.text = text
+        textView.id = id
+        textView.gravity = gravity
+        textView.textColor = Color.BLACK
+
+        currentRow!!.addView(textView, createLayoutParams(1F))
+        lastView = textView
+        return this
+    }
+
+    private fun addRowIfNotExist() {
+        if (currentRow == null) {
+            row()
         }
+    }
 
-        fun button(
-            text: String,
-            id: Int = 0
-        ): Builder {
-            val button = CustomButton(parent.context)
-            button.setText(text)
-            button.id = id
+    fun row(): Form {
+        currentRow = LinearLayout(parent.context)
+        currentRow!!.orientation = LinearLayout.HORIZONTAL
+        parent.addView(
+            currentRow,
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
 
-            addRowIfNotExist()
+        return this
+    }
 
-            val buttonParent = LinearLayout(parent.context)
-            buttonParent.addView(button, createLayoutParams())
-            buttonParent.gravity = GravityCompat.END
-            currentRow!!.addView(buttonParent, createLayoutParams(1F))
-            return this
+    fun depends(depends: Int, visibIfAvail: Int, visibIfNotAvail: Int): Form {
+        return depends(arrayListOf(depends), visibIfAvail, visibIfNotAvail)
+    }
+
+    fun depends(depends: List<Int>, visibIfAvail: Int, visibIfNotAvail: Int): Form {
+        if (lastView != null && lastView!!.id != 0) {
+            dependencies.add(Dependency(depends, lastView!!.id, visibIfAvail, visibIfNotAvail))
+        } else {
+            throw IllegalStateException("last view cannot be found")
         }
+        return this
+    }
 
-        fun checkbox(
-            text: String,
-            id: Int = 0
-        ): Builder {
-            val checkBox = CustomCheckbox(parent.context)
-            checkBox.text = text
-            checkBox.id = id
+    fun space(): Form {
+        val space = Space(parent.context)
+        addRowIfNotExist()
+        currentRow!!.addView(space, createLayoutParams(1F))
+        return this
+    }
 
-            currentRow!!.addView(checkBox, createLayoutParams(1F))
-            return this
+    private fun createLayoutParams(weight: Float): LinearLayout.LayoutParams {
+        return LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, weight)
+    }
+
+    private fun createLayoutParams(): LinearLayout.LayoutParams {
+        return LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+    }
+
+    override fun onCheckedChanged(button: CompoundButton?, b: Boolean) {
+        if (!done){
+            return
         }
+        for (dep in dependencies) {
+            for (master in dep.masters) {
+                if (button != null) {
+                    if (master == button.id) {
+                        //this view is master of someone
 
-        fun text(
-            text: String,
-            id: Int = 0,
-            gravity: Int = GravityCompat.START
-        ): Builder {
-            val textView = CustomTextView(parent.context)
-            textView.text = text
-            textView.id = id
-            textView.gravity = gravity
-            textView.textColor = Color.BLACK
-
-            currentRow!!.addView(textView, createLayoutParams(1F))
-            return this
+                        checkDependency(dep)
+                    }
+                } else {
+                    return
+                }
+            }
         }
+    }
 
-        private fun addRowIfNotExist() {
-            if (currentRow == null) {
-                row()
+    private fun checkDependency(dep: Dependency) {
+        if (dependenciesSatisfied(dependencies, dep.slave)) {
+            parent.findViewById<View>(dep.slave).visibility = dep.visibIfAvail
+        } else {
+            parent.findViewById<View>(dep.slave).visibility = dep.visibIfNotAvail
+        }
+    }
+
+    private fun dependenciesSatisfied(dependencies: ArrayList<Dependency>, slaveId: Int): Boolean {
+        for (dep in dependencies) {
+            if (dep.slave == slaveId) { //maybe multiple slaves...
+                for (master in dep.masters) {
+                    if (!isSatisfied(parent.findViewById(master), slaveId)) {
+                        return false
+                    }
+                }
             }
         }
 
-        fun row(): Builder {
-            currentRow = LinearLayout(parent.context)
-            currentRow!!.orientation = LinearLayout.HORIZONTAL
-            parent.addView(
-                currentRow,
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
+        return true
+    }
 
-            return this
+    protected open fun isSatisfied(masterView: View, slaveId: Int): Boolean {
+        if (masterView is CompoundButton) {
+            return masterView.isChecked
         }
+        return false
+    }
 
-        fun space(): Builder {
-            val space = Space(parent.context)
-            addRowIfNotExist()
-            currentRow!!.addView(space, createLayoutParams(1F))
-            return this
-        }
+    fun finish() {
+        done = true
+        refreshDependencies()
+    }
 
-        private fun createLayoutParams(weight: Float): LinearLayout.LayoutParams {
-            return LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, weight)
-        }
-
-        private fun createLayoutParams(): LinearLayout.LayoutParams {
-            return LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
+    public fun refreshDependencies() {
+        for (dep in dependencies) {
+            checkDependency(dep)
         }
     }
+
+    private data class Dependency(
+        val masters: List<Int>,
+        val slave: Int,
+        val visibIfAvail: Int,
+        val visibIfNotAvail: Int
+    )
 }
