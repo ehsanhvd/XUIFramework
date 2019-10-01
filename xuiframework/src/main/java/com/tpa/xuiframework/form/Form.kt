@@ -1,6 +1,7 @@
 package com.tpa.xuiframework.form
 
 import android.graphics.Color
+import android.support.annotation.ArrayRes
 import android.support.v4.view.GravityCompat
 import android.text.InputFilter
 import android.text.InputType
@@ -63,9 +64,19 @@ open class Form private constructor(val parent: LinearLayout) :
         editText.id = id
 
         addRowIfNotExist()
-        currentRow!!.addView(editText, createLayoutParams(1F))
-        lastView = editText
+        addViewToForm(editText)
         return this
+    }
+
+    fun spinner(@ArrayRes items: Int, render: ((View, String, Int) -> Unit)? = null): Form{
+        addViewToForm(CustomSpinner.withArray(parent.context, items, render))
+        return this
+    }
+
+    fun spinner(items: List<Any>, render: ((View, Any, Int) -> Unit)? = null){
+        val spinner = CustomSpinner(parent.context, items, render)
+        spinner.set(items)
+        addViewToForm(spinner)
     }
 
     fun button(
@@ -84,8 +95,7 @@ open class Form private constructor(val parent: LinearLayout) :
         val buttonParent = LinearLayout(parent.context)
         buttonParent.addView(button, createLayoutParamsWrapWidth())
         buttonParent.gravity = GravityCompat.END
-        currentRow!!.addView(buttonParent, createLayoutParams(1F))
-        lastView = buttonParent
+        addViewToForm(buttonParent)
         return this
     }
 
@@ -99,9 +109,7 @@ open class Form private constructor(val parent: LinearLayout) :
         checkBox.id = id
         checkBox.setOnCheckedChangeListener(this)
         checkBox.isChecked = checked
-
-        currentRow!!.addView(checkBox, createLayoutParams(1F))
-        lastView = checkBox
+        addViewToForm(checkBox)
         return this
     }
 
@@ -116,8 +124,7 @@ open class Form private constructor(val parent: LinearLayout) :
         textView.gravity = gravity
         textView.textColor = Color.BLACK
 
-        currentRow!!.addView(textView, createLayoutParams(1F))
-        lastView = textView
+        addViewToForm(textView)
         return this
     }
 
@@ -129,8 +136,7 @@ open class Form private constructor(val parent: LinearLayout) :
         rg.orientation = orientation
         rg.id = id
 
-        currentRow!!.addView(rg, createLayoutParams(1F))
-        lastView = rg
+        addViewToForm(rg)
         return this
     }
 
@@ -158,10 +164,9 @@ open class Form private constructor(val parent: LinearLayout) :
         if (rg != null) {
             addRadioButtonToRadioGroup(rg, radioButton)
         } else {
-            currentRow!!.addView(radioButton, createLayoutParams(1F))
+            addViewToForm(radioButton)
         }
 
-        lastView = radioButton
         return this
     }
 
@@ -171,6 +176,7 @@ open class Form private constructor(val parent: LinearLayout) :
         } else if (rg.orientation == LinearLayout.HORIZONTAL) {
             rg.addView(radioButton, createLayoutParams(1F))
         }
+        lastView = radioButton
     }
 
     private fun addRowIfNotExist() {
@@ -309,6 +315,11 @@ open class Form private constructor(val parent: LinearLayout) :
         if (view is RadioGroup){
             (view.getChildAt(0) as RadioButton).isChecked = true
         }
+    }
+
+    fun addViewToForm(view: View){
+        currentRow!!.addView(view, createLayoutParams(1F))
+        lastView = view
     }
 
     private data class Dependency(

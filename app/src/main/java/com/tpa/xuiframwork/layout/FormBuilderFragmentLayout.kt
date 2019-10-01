@@ -24,6 +24,7 @@ class FormBuilderFragmentLayout : AnkoComponent<ViewGroup> {
                 .editText(id = R.id.editAnother).depends(R.id.checkTest).checkbox("is something", id = R.id.checkTest, checked = true)
                 .text("some label", id = R.id.textLabel).depends(R.id.checkTest)
                 .row()
+                .spinner(R.array.testArray)
                 .radioGroup(orientation = LinearLayout.VERTICAL).radioButton("some option", id = R.id.radioOption).radioButton("another option")
                 .row().editText("some dependant text", id = R.id.textDependant).depends(R.id.radioOption)
                 .finish()

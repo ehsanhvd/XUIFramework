@@ -141,7 +141,7 @@ public class CustomSpinner<V> : Spinner {
     }
 
     companion object {
-        fun with(
+        fun withArray(
             context: Context,
             @ArrayRes items: Int,
             render: ((View, String, Int) -> Unit)? = null
@@ -149,6 +149,7 @@ public class CustomSpinner<V> : Spinner {
 
             return CustomSpinner(context, context.resources.getStringArray(items).toList(), render)
         }
+
     }
 }
 
@@ -169,4 +170,4 @@ fun ViewManager.customSpinner(
     @ArrayRes items: Int,
     init: CustomSpinner<String>.() -> Unit
 ) =
-    ankoView({ CustomSpinner.with(it, items, null) }, 0, init)
+    ankoView({ CustomSpinner.withArray(it, items, null) }, 0, init)
