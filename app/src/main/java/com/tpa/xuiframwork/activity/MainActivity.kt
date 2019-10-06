@@ -31,11 +31,13 @@ class MainActivity : XActionBarDrawerActivity() {
             FormBuilderFragment()
         )
 
+        setFragments(fragments)
+
         val drawerView = DrawerView { s: String, i: Int ->
             toggleDrawer()
-            setFragment(fragments[i], R.id.frameFragment)
+            setFragment(i, R.id.frameFragment)
         }
-        setFragment(fragments[0], R.id.frameFragment)
+        setFragment(0, R.id.frameFragment)
 
         setDrawerView(drawerView)
 
