@@ -2,7 +2,7 @@ package com.tpa.xuiframwork
 
 import android.app.Application
 import com.tpa.xuiframework.XConfig
-import com.tpa.xuiframework.XUtil
+import com.tpa.xuiframework.utils.XUtil
 
 class App : Application() {
 

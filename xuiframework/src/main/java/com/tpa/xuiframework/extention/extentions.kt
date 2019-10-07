@@ -8,7 +8,7 @@ import android.support.v4.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.tpa.xuiframework.XUtil
+import com.tpa.xuiframework.utils.XUtil
 import com.tpa.xuiframework.view.GlideImageView
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext

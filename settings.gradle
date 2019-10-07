@@ -1,1 +1,1 @@
-include ':app', ':xuiframework'
+include ':app', ':xuiframework', 'persiandatepicker'

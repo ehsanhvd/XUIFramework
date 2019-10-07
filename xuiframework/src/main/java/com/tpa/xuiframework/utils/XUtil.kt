@@ -1,10 +1,12 @@
-package com.tpa.xuiframework
+package com.tpa.xuiframework.utils
 
 import android.content.Context
 import android.graphics.Typeface
 import android.support.design.widget.Snackbar
 import android.util.TypedValue
 import android.view.View
+import com.tpa.xuiframework.R
+import com.tpa.xuiframework.XConfig
 
 
 class XUtil {

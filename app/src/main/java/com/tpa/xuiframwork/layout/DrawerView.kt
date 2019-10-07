@@ -3,7 +3,7 @@ package com.tpa.xuiframwork.layout
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.tpa.xuiframework.XUtil
+import com.tpa.xuiframework.utils.XUtil
 import com.tpa.xuiframwork.App
 import com.tpa.xuiframwork.R
 import org.jetbrains.anko.*

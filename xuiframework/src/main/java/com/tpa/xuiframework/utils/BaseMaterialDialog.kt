@@ -5,7 +5,6 @@ import android.content.Context
 import android.view.ViewGroup
 import android.view.Window
 import com.tpa.xuiframework.R
-import com.tpa.xuiframework.XUtil
 import com.tpa.xuiframework.extention.addView
 import kotlinx.android.synthetic.main.material_dialog.*
 import org.jetbrains.anko.AnkoComponent

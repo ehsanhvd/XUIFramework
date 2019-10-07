@@ -1,14 +1,18 @@
 package com.tpa.xuiframwork.layout
 
+import android.support.v7.app.AppCompatActivity
 import android.view.ViewGroup
+import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog
+import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog
 import com.tpa.xuiframework.utils.Dialogs
+import com.tpa.xuiframework.utils.XDatePicker
+import com.tpa.xuiframework.utils.XDateTimePicker
 import com.tpa.xuiframework.view.customSpinner
 import com.tpa.xuiframwork.R
-import com.tpa.xuiframwork.dialog.TestMaterialDialog
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class CustomViewsFragmentLayout : AnkoComponent<ViewGroup> {
+class CustomViewsFragmentLayout(val appCompatActivity: AppCompatActivity) : AnkoComponent<ViewGroup> {
     override fun createView(ui: AnkoContext<ViewGroup>) = with(ui) {
         verticalLayout {
             customSpinner(R.array.testArray) {
@@ -38,13 +42,27 @@ class CustomViewsFragmentLayout : AnkoComponent<ViewGroup> {
                     weight = 1F
                 }
             }
-            button("custom material dialog") {
-                onClick {
-                    TestMaterialDialog(ui.ctx) {
-                        it.dismiss()
-                    }.show()
+            linearLayout {
+                button("Date picker") {
+                    onClick {
+                        val datePicker = XDatePicker(appCompatActivity).showDatePicker { datePickerDialog: DatePickerDialog, i: Int, i1: Int, i2: Int ->
+
+                        }
+                    }
+                }.lparams {
+                    weight = 1F
+                }
+                button("Date Time picker") {
+                    onClick {
+                        val datePicker = XDateTimePicker(appCompatActivity).showDateTimePicker { timePickerDialog: TimePickerDialog, i: Int, i1: Int, i2: Int ->
+
+                        }
+                    }
+                }.lparams {
+                    weight = 1F
                 }
             }
+
 
         }
     }

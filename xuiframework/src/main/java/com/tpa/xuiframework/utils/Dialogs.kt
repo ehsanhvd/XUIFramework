@@ -6,7 +6,6 @@ import android.view.Window
 import android.widget.Button
 import android.widget.TextView
 import com.tpa.xuiframework.R
-import com.tpa.xuiframework.XUtil
 import org.jetbrains.anko.textColor
 
 class Dialogs() {
