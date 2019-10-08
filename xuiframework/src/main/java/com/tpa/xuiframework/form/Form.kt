@@ -3,18 +3,25 @@ package com.tpa.xuiframework.form
 import android.graphics.Color
 import android.support.annotation.ArrayRes
 import android.support.v4.view.GravityCompat
+import android.support.v7.app.AppCompatActivity
 import android.text.InputFilter
 import android.text.InputType
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.*
+import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog
+import com.tpa.xuiframework.utils.XDatePicker
+import com.tpa.xuiframework.utils.XUtil
 import com.tpa.xuiframework.view.*
 import org.jetbrains.anko.singleLine
 import org.jetbrains.anko.textColor
 import java.lang.reflect.Field
 
-open class Form private constructor(val parent: LinearLayout) :
+open class Form private constructor(
+    val appCompatActivity: AppCompatActivity,
+    val parent: LinearLayout
+) :
     CompoundButton.OnCheckedChangeListener {
 
     private val dependencies: ArrayList<Dependency> = arrayListOf()
@@ -34,8 +41,8 @@ open class Form private constructor(val parent: LinearLayout) :
             }
         }
 
-        fun with(parent: LinearLayout): Form {
-            return Form(parent)
+        fun with(appCompatActivity: AppCompatActivity, parent: LinearLayout): Form {
+            return Form(appCompatActivity, parent)
         }
 
         private fun getValue(entity: Any, field: Field): Any? {
@@ -68,12 +75,38 @@ open class Form private constructor(val parent: LinearLayout) :
         return this
     }
 
-    fun spinner(@ArrayRes items: Int, render: ((View, String, Int) -> Unit)? = null): Form{
+    fun datePicker(
+        hint: String = "",
+        text: String = "",
+        format: Int = XUtil.DATE_FORMAT_SHORT,
+        id: Int = 0
+
+    ): Form {
+        val editText = CustomEditText(parent.context)
+        editText.singleLine = true
+        editText.setText(text)
+        editText.hint = hint
+        editText.id = id
+
+        editText.setFocusable(false)
+        editText.setClickable(false)
+        editText.setOnClickListener {
+            XDatePicker(appCompatActivity).showDatePicker { datePickerDialog: DatePickerDialog, year: Int, month: Int, day: Int ->
+                editText.setText(XUtil.getPersianDate(format, day, month, year))
+            }
+        }
+
+        addRowIfNotExist()
+        addViewToForm(editText)
+        return this
+    }
+
+    fun spinner(@ArrayRes items: Int, render: ((View, String, Int) -> Unit)? = null): Form {
         addViewToForm(CustomSpinner.withArray(parent.context, items, render))
         return this
     }
 
-    fun spinner(items: List<Any>, render: ((View, Any, Int) -> Unit)? = null){
+    fun spinner(items: List<Any>, render: ((View, Any, Int) -> Unit)? = null) {
         val spinner = CustomSpinner(parent.context, items, render)
         spinner.set(items)
         addViewToForm(spinner)
@@ -292,7 +325,7 @@ open class Form private constructor(val parent: LinearLayout) :
     }
 
     fun finish() {
-        if (done){
+        if (done) {
             return
         }
         done = true
@@ -311,13 +344,13 @@ open class Form private constructor(val parent: LinearLayout) :
         }
     }
 
-    open fun validateViews(view: View){
-        if (view is RadioGroup){
+    open fun validateViews(view: View) {
+        if (view is RadioGroup) {
             (view.getChildAt(0) as RadioButton).isChecked = true
         }
     }
 
-    fun addViewToForm(view: View){
+    fun addViewToForm(view: View) {
         currentRow!!.addView(view, createLayoutParams(1F))
         lastView = view
     }

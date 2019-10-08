@@ -9,8 +9,6 @@ open class XDatePicker(
     val calendar: XPersianCalendar = XPersianCalendar()
 ) {
 
-    private val DATE_FORMAT = "%02d %s %04d"
-
     //persian
     protected var year: Int = 0
     protected var month: Int = 0
@@ -28,7 +26,7 @@ open class XDatePicker(
     }
 
     fun showDatePicker(
-        listener: ((datePickerDialog: DatePickerDialog, day: Int, month: Int, year: Int) -> Unit)
+        listener: ((datePickerDialog: DatePickerDialog, year: Int, month: Int, day: Int) -> Unit)
     ): XDatePicker {
         buildAndShowDatePicker(listener)
         return this
@@ -38,7 +36,7 @@ open class XDatePicker(
         day: Int,
         month: Int,
         year: Int,
-        listener: ((datePickerDialog: DatePickerDialog, day: Int, month: Int, year: Int) -> Unit)
+        listener: ((datePickerDialog: DatePickerDialog, year: Int, month: Int, day: Int) -> Unit)
     ): XDatePicker {
         this.year = year
         this.month = month

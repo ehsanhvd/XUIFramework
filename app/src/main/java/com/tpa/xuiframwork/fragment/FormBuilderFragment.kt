@@ -2,6 +2,7 @@ package com.tpa.xuiframwork.fragment
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,6 @@ class FormBuilderFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return FormBuilderFragmentLayout().createView(AnkoContext.create(context!!, container!!))
+        return FormBuilderFragmentLayout(activity as AppCompatActivity).createView(AnkoContext.create(context!!, container!!))
     }
 }
