@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.view.View
@@ -13,8 +14,6 @@ import com.tpa.xuiframework.R
 import com.tpa.xuiframework.extention.addView
 import kotlinx.android.synthetic.main.activity_drawer.*
 import org.jetbrains.anko.AnkoComponent
-
-
 
 abstract class XDrawerActivity : XActivity() {
 
@@ -83,26 +82,28 @@ abstract class XDrawerActivity : XActivity() {
         this.fragmentItems = fragments
     }
 
+    var BACK_STACK_ROOT_TAG = "root_fragment"
+
     protected fun setFragment(position: Int, intRes: Int) {
-        if (supportFragmentManager.findFragmentByTag(position.toString()) != null) {
-            //if the fragment exists, show it.
-            supportFragmentManager.beginTransaction()
-                .show(supportFragmentManager.findFragmentByTag(position.toString())!!).commit()
-        } else {
-            //if the fragment does not exist, add it to fragment manager.
-            supportFragmentManager.beginTransaction().add(intRes, fragmentItems[position], position.toString())
-                .commit()
-        }
-        hideAllFrags(position)
+        val fragmentManager = supportFragmentManager
+        fragmentManager.popBackStack(BACK_STACK_ROOT_TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+        fragmentManager.beginTransaction()
+            .replace(
+                intRes,
+                fragmentItems[position],
+                position.toString()
+            )
+            .addToBackStack(null)
+            .commit()
+        fragmentManager.executePendingTransactions()
     }
 
-    protected fun hideAllFrags(except: Int){
-        for (i in 0 until fragmentItems.size){
-            if (i != except && supportFragmentManager.findFragmentByTag(i.toString()) != null) {
-                //if the other fragment is visible, hide it.
-                supportFragmentManager.beginTransaction()
-                    .hide(supportFragmentManager.findFragmentByTag(i.toString())!!).commit()
-            }
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 1) {
+            supportFragmentManager.popBackStackImmediate()
+        } else {
+            supportFinishAfterTransition()
         }
     }
 }
