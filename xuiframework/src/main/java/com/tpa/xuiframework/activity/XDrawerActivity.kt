@@ -16,7 +16,7 @@ import org.jetbrains.anko.AnkoComponent
 
 
 
-open class XDrawerActivity : XActivity() {
+abstract class XDrawerActivity : XActivity() {
 
     var fragmentItems: List<Fragment> = arrayListOf();
 

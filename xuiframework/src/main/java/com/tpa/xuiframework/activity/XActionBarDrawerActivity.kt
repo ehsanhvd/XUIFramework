@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.merge_simple_drawer_layout.*
 import org.jetbrains.anko.AnkoComponent
 
-open class XActionBarDrawerActivity : XDrawerActivity() {
+abstract class XActionBarDrawerActivity : XDrawerActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

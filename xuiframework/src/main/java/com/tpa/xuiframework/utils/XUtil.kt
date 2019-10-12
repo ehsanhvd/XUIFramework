@@ -55,18 +55,57 @@ class XUtil {
             }
         }
 
-        fun getPersianDate(format: Int, persianCalendar: PersianCalendar = PersianCalendar()): String {
+        fun getPersianDate(
+            format: Int,
+            persianCalendar: PersianCalendar = PersianCalendar()
+        ): String {
             persianCalendar.set(Calendar.HOUR_OF_DAY, 0)
             persianCalendar.set(Calendar.MINUTE, 0)
             persianCalendar.set(Calendar.SECOND, 0)
             persianCalendar.set(Calendar.MILLISECOND, 0)
 
-            if (format == DATE_FORMAT_SHORT){
+            if (format == DATE_FORMAT_SHORT) {
                 return getPersianNo(persianCalendar.persianDay) + " " + persianCalendar.persianMonthName
-            } else if (format == DATE_FORMAT_FULL){
+            } else if (format == DATE_FORMAT_FULL) {
                 val DATE_FORMAT = "%02d %s %04d"
 
-                return getPersianNo(String.format(DATE_FORMAT, persianCalendar.persianDay, persianCalendar.persianMonthName, persianCalendar.persianYear))
+                return getPersianNo(
+                    String.format(
+                        DATE_FORMAT,
+                        persianCalendar.persianDay,
+                        persianCalendar.persianMonthName,
+                        persianCalendar.persianYear
+                    )
+                )
+            }
+            return ""
+        }
+
+        fun getPersianDateTime(
+            format: Int,
+            persianCalendar: PersianCalendar = PersianCalendar()
+        ): String {
+            persianCalendar.set(Calendar.SECOND, 0)
+            persianCalendar.set(Calendar.MILLISECOND, 0)
+
+            if (format == DATE_FORMAT_SHORT) {
+                return getPersianNo(
+                    persianCalendar.persianDay.toString() + " " + persianCalendar.persianMonthName + " " +
+                            persianCalendar.get(Calendar.HOUR_OF_DAY).toString() + ":" + persianCalendar.get(
+                        Calendar.MINUTE
+                    ).toString()
+                )
+            } else if (format == DATE_FORMAT_FULL) {
+                val DATE_FORMAT = "%02d %s %04d %02d:%02d"
+
+                return getPersianNo(
+                    String.format(
+                        DATE_FORMAT,
+                        persianCalendar.persianDay,
+                        persianCalendar.persianMonthName,
+                        persianCalendar.persianYear
+                    )
+                )
             }
             return ""
         }
@@ -83,6 +122,22 @@ class XUtil {
             persianCalendar.setPersianDate(year, month, day)
 
             return getPersianDate(format, persianCalendar)
+        }
+
+        fun getPersianDateTime(
+            format: Int,
+            day: Int,
+            month: Int,
+            year: Int,
+            hour: Int,
+            min: Int
+        ): String {
+            val persianCalendar = PersianCalendar()
+            persianCalendar.setPersianDate(year, month, day)
+            persianCalendar.set(Calendar.HOUR_OF_DAY, hour)
+            persianCalendar.set(Calendar.MINUTE, min)
+
+            return getPersianDateTime(format, persianCalendar)
         }
     }
 }

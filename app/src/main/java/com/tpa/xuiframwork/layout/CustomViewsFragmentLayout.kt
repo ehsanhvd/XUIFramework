@@ -54,12 +54,17 @@ class CustomViewsFragmentLayout(val appCompatActivity: AppCompatActivity) : Anko
                 }
                 button("Date Time picker") {
                     onClick {
-                        val datePicker = XDateTimePicker(appCompatActivity).showDateTimePicker { timePickerDialog: TimePickerDialog, i: Int, i1: Int, i2: Int ->
+                        val datePicker = XDateTimePicker(appCompatActivity).showDateTimePicker { timePickerDialog: TimePickerDialog, i: Int, i1: Int, i2: Int, i3: Int, i4: Int ->
 
                         }
                     }
                 }.lparams {
                     weight = 1F
+                }
+            }
+            button("Buttom nav activity") {
+                onClick {
+                    ButtomNavActivity.start(appCompatActivity)
                 }
             }
 

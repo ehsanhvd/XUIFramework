@@ -11,7 +11,9 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog
+import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog
 import com.tpa.xuiframework.utils.XDatePicker
+import com.tpa.xuiframework.utils.XDateTimePicker
 import com.tpa.xuiframework.utils.XUtil
 import com.tpa.xuiframework.view.*
 import org.jetbrains.anko.singleLine
@@ -93,6 +95,32 @@ open class Form private constructor(
         editText.setOnClickListener {
             XDatePicker(appCompatActivity).showDatePicker { datePickerDialog: DatePickerDialog, year: Int, month: Int, day: Int ->
                 editText.setText(XUtil.getPersianDate(format, day, month, year))
+            }
+        }
+
+        addRowIfNotExist()
+        addViewToForm(editText)
+        return this
+    }
+
+    fun dateTimePicker(
+        hint: String = "",
+        text: String = "",
+        format: Int = XUtil.DATE_FORMAT_SHORT,
+        id: Int = 0
+
+    ): Form {
+        val editText = CustomEditText(parent.context)
+        editText.singleLine = true
+        editText.setText(text)
+        editText.hint = hint
+        editText.id = id
+
+        editText.setFocusable(false)
+        editText.setClickable(false)
+        editText.setOnClickListener {
+            XDateTimePicker(appCompatActivity).showDateTimePicker { timePickerDialog: TimePickerDialog, day: Int, month: Int, year: Int, hour: Int, min: Int ->
+                editText.setText(XUtil.getPersianDateTime(format, day, month, year, hour, min))
             }
         }
 

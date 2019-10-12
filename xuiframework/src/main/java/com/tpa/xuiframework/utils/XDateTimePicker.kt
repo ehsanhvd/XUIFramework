@@ -12,10 +12,10 @@ class XDateTimePicker(
 
     protected var hour: Int = 0
     protected var min: Int = 0
-    var timeListener: ((TimePickerDialog, Int, Int, Int) -> Unit)? = null
+    var timeListener: ((TimePickerDialog, Int, Int, Int, Int, Int) -> Unit)? = null
 
     fun showDateTimePicker(
-        listener: ((datePickerDialog: TimePickerDialog, day: Int, month: Int, year: Int) -> Unit)? = null
+        listener: ((datePickerDialog: TimePickerDialog, day: Int, month: Int, year: Int, hour: Int, min : Int) -> Unit)? = null
     ): XDatePicker {
         timeListener = listener
         buildAndShowDatePicker()
@@ -28,7 +28,7 @@ class XDateTimePicker(
         year: Int,
         hour: Int,
         min: Int,
-        listener: ((datePickerDialog: TimePickerDialog, day: Int, month: Int, year: Int) -> Unit)? = null
+        listener: ((datePickerDialog: TimePickerDialog, day: Int, month: Int, year: Int, hour: Int, min : Int) -> Unit)? = null
     ): XDatePicker {
         timeListener = listener
 
@@ -55,9 +55,11 @@ class XDateTimePicker(
 
     private fun showTimePicker(){
         timePicker = TimePickerDialog.newInstance(
-            { radialPickerLayout: RadialPickerLayout, i: Int, i1: Int ->
+            { radialPickerLayout: RadialPickerLayout, hour: Int, min: Int ->
+                this@XDateTimePicker.hour = hour
+                this@XDateTimePicker.min = min
                 if (timeListener != null){
-                    timeListener!!(timePicker!!, day, month, year)
+                    timeListener!!(timePicker!!, day, month, year, hour, min)
                 }
             },
             hour,

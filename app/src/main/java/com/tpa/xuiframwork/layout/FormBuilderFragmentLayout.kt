@@ -27,6 +27,7 @@ class FormBuilderFragmentLayout(val appCompatActivity: AppCompatActivity) : Anko
                 .text("some label", id = R.id.textLabel).depends(R.id.checkTest)
                 .row()
                 .spinner(R.array.testArray).datePicker(format = XUtil.DATE_FORMAT_FULL)
+                .row().dateTimePicker(hint = "some date")
                 .radioGroup(orientation = LinearLayout.VERTICAL).radioButton("some option", id = R.id.radioOption).radioButton("another option")
                 .row().editText("some dependant text", id = R.id.textDependant).depends(R.id.radioOption)
                 .finish()
