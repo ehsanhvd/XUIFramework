@@ -62,12 +62,6 @@ class CustomViewsFragmentLayout(val appCompatActivity: AppCompatActivity) : Anko
                     weight = 1F
                 }
             }
-            button("Buttom nav activity") {
-                onClick {
-                    ButtomNavActivity.start(appCompatActivity)
-                }
-            }
-
 
         }
     }
