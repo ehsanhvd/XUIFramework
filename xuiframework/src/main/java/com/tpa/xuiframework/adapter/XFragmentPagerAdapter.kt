@@ -1,4 +1,4 @@
-package com.tpa.xuiframework.view
+package com.tpa.xuiframework.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

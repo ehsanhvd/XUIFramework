@@ -66,15 +66,6 @@ open class GlideImageView(context: Context, val attrs: AttributeSet?, val defSty
         request.into(this)
     }
 
-    override fun setImageDrawable(drawable: Drawable?) {
-        val request = Glide.with(getContext())
-            .load(drawable)
-
-        getOptions()?.let { request.apply(it) }
-
-        request.into(this)
-    }
-
     companion object {
 
         @JvmStatic

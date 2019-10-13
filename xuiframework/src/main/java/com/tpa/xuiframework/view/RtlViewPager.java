@@ -31,6 +31,8 @@ import androidx.core.view.ViewCompat;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.tpa.xuiframework.adapter.PagerAdapterWrapper;
+
 import java.util.Map;
 
 /**

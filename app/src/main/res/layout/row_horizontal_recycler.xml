@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:layout_height="200dp"
+
+    android:orientation="vertical">
+
+    <com.tpa.xuiframework.view.CustomTextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="2dp"
+        android:background="#aaa"
+        android:gravity="center"
+        android:text="Horizontal recyclerview" />
+
+</LinearLayout>

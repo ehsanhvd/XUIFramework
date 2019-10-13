@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tpa.xuiframework.view;
+package com.tpa.xuiframework.adapter;
 
 import android.database.DataSetObservable;
 import android.database.DataSetObserver;
@@ -27,7 +27,7 @@ import androidx.viewpager.widget.PagerAdapter;
 /**
  * PagerAdapter decorator.
  */
-class PagerAdapterWrapper extends PagerAdapter {
+public class PagerAdapterWrapper extends PagerAdapter {
 
     @NonNull
     private final PagerAdapter adapter;

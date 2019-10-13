@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import com.tpa.xuiframework.adapter.XAdapter2
+import com.tpa.xuiframework.adapter.XPaginationAdapter
 import com.tpa.xuiframework.extention.loadImage
 import com.tpa.xuiframework.extention.setText
 import com.tpa.xuiframwork.R
@@ -25,7 +25,7 @@ class AnkoAdapterFragment : Fragment() {
         val viewComponent = AnkoAdapterRowItem()
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-        val pAdapter = XAdapter2(
+        val pAdapter = XPaginationAdapter(
             viewComponent,
             R.layout.row_loading,
             recyclerView,
@@ -33,7 +33,7 @@ class AnkoAdapterFragment : Fragment() {
 
                 //on reached last item do network request
                 Handler().postDelayed({
-                    adapter.addItem(getList())
+                    adapter.addItems(getList())
                 }, 2000)
             }, { v: View, item: TestData ->
                 v.setText(R.id.textTitle, item.name)
@@ -42,7 +42,7 @@ class AnkoAdapterFragment : Fragment() {
         )
 
         recyclerView.adapter = pAdapter
-        pAdapter.addItem(getList())
+        pAdapter.addItems(getList())
     }
 
     private fun getList(): List<TestData> = arrayListOf(
