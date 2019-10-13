@@ -1,7 +1,7 @@
 package com.tpa.xuiframework.viewholder
 
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 
 open class XViewHolder<T>(val view: View) : RecyclerView.ViewHolder(view) {
 

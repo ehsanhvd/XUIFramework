@@ -1,8 +1,6 @@
 package com.tpa.xuiframework.view
 
 import android.content.Context
-import android.support.annotation.ArrayRes
-import android.support.annotation.LayoutRes
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +9,8 @@ import android.view.ViewManager
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.annotation.ArrayRes
+import androidx.annotation.LayoutRes
 import com.tpa.xuiframework.R
 import org.jetbrains.anko.custom.ankoView
 

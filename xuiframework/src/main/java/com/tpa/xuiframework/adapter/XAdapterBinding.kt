@@ -1,10 +1,10 @@
 package com.tpa.xuiframework.adapter
 
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import com.tpa.xuiframework.viewholder.XViewHolder
 import com.tpa.xuiframework.viewholder.XViewHolderBinding
 

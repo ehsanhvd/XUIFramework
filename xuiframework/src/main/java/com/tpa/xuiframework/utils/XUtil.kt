@@ -2,9 +2,9 @@ package com.tpa.xuiframework.utils
 
 import android.content.Context
 import android.graphics.Typeface
-import android.support.design.widget.Snackbar
 import android.util.TypedValue
 import android.view.View
+import com.google.android.material.snackbar.Snackbar
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar
 import com.tpa.xuiframework.R
 import com.tpa.xuiframework.XConfig

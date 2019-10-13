@@ -27,7 +27,7 @@
         android:text="@string/rtl"
         android:textColor="@android:color/white"/>
 
-    <android.support.v7.widget.SwitchCompat
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switchRtl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

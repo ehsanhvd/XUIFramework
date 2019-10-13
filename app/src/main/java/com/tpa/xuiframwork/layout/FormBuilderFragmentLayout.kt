@@ -1,8 +1,8 @@
 package com.tpa.xuiframwork.layout
 
-import android.support.v7.app.AppCompatActivity
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import com.tpa.xuiframework.form.Form
 import com.tpa.xuiframework.utils.XUtil
 import com.tpa.xuiframwork.R

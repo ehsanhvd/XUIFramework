@@ -1,7 +1,7 @@
 package com.tpa.xuiframework.viewholder
 
-import android.databinding.ViewDataBinding
 import android.view.View
+import androidx.databinding.ViewDataBinding
 
 class XViewHolderBinding<T>(val viewDataBinding: ViewDataBinding) : XViewHolder<T>(viewDataBinding.root) {
 

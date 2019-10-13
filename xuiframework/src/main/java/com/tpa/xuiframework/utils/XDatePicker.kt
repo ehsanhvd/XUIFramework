@@ -1,6 +1,6 @@
 package com.tpa.xuiframework.utils
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog
 import java.util.*
 

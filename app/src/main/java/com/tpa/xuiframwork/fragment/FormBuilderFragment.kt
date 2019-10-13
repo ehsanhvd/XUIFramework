@@ -1,11 +1,11 @@
 package com.tpa.xuiframwork.fragment
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.tpa.xuiframwork.layout.FormBuilderFragmentLayout
 import org.jetbrains.anko.AnkoContext
 

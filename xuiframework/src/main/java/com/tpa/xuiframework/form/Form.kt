@@ -1,15 +1,15 @@
 package com.tpa.xuiframework.form
 
 import android.graphics.Color
-import android.support.annotation.ArrayRes
-import android.support.v4.view.GravityCompat
-import android.support.v7.app.AppCompatActivity
 import android.text.InputFilter
 import android.text.InputType
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.*
+import androidx.annotation.ArrayRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog
 import com.tpa.xuiframework.utils.XDatePicker

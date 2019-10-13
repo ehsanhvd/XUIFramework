@@ -1,11 +1,13 @@
 package com.tpa.xuiframework.view
 
 import android.content.Context
-import android.databinding.BindingAdapter
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.util.AttributeSet
 import android.view.ViewManager
 import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.tpa.xuiframework.R
@@ -43,6 +45,30 @@ open class GlideImageView(context: Context, val attrs: AttributeSet?, val defSty
         this.urlToLoad = url
         val request = Glide.with(getContext())
             .load(url)
+
+        getOptions()?.let { request.apply(it) }
+
+        request.into(this)
+    }
+
+    override fun setImageURI(uri: Uri?) {
+        if (uri != null) {
+            loadUrl(uri.path!!)
+        }
+    }
+
+    override fun setImageBitmap(bm: Bitmap?) {
+        val request = Glide.with(getContext())
+            .load(bm)
+
+        getOptions()?.let { request.apply(it) }
+
+        request.into(this)
+    }
+
+    override fun setImageDrawable(drawable: Drawable?) {
+        val request = Glide.with(getContext())
+            .load(drawable)
 
         getOptions()?.let { request.apply(it) }
 

@@ -3,13 +3,13 @@ package com.tpa.xuiframework.activity
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.tpa.xuiframework.R
 import com.tpa.xuiframework.extention.addView
 import kotlinx.android.synthetic.main.activity_drawer.*
@@ -27,7 +27,7 @@ abstract class XDrawerActivity : XActivity() {
 
     }
 
-    fun getDrawerLayout() : DrawerLayout{
+    fun getDrawerLayout() : DrawerLayout {
         return drawerView
     }
 

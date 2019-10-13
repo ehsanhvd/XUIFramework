@@ -4,10 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.tpa.xuiframework.utils.XUtil
 import com.tpa.xuiframework.view.GlideImageView
 import org.jetbrains.anko.AnkoComponent
