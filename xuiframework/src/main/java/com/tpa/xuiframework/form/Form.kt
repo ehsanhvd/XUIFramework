@@ -93,7 +93,7 @@ open class Form private constructor(
         editText.setFocusable(false)
         editText.setClickable(false)
         editText.setOnClickListener {
-            XDatePicker(appCompatActivity).showDatePicker { datePickerDialog: DatePickerDialog, year: Int, month: Int, day: Int ->
+            XDatePicker(appCompatActivity).showDatePicker { datePickerDialog: DatePickerDialog, day: Int, month: Int, year: Int ->
                 editText.setText(XUtil.getPersianDate(format, day, month, year))
             }
         }

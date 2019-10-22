@@ -15,7 +15,7 @@ class XDateTimePicker(
     var timeListener: ((TimePickerDialog, Int, Int, Int, Int, Int) -> Unit)? = null
 
     fun showDateTimePicker(
-        listener: ((datePickerDialog: TimePickerDialog, day: Int, month: Int, year: Int, hour: Int, min : Int) -> Unit)? = null
+        listener: ((datePickerDialog: TimePickerDialog, day: Int, month: Int, year: Int, hour: Int, min: Int) -> Unit)? = null
     ): XDatePicker {
         timeListener = listener
         buildAndShowDatePicker()
@@ -28,7 +28,7 @@ class XDateTimePicker(
         year: Int,
         hour: Int,
         min: Int,
-        listener: ((datePickerDialog: TimePickerDialog, day: Int, month: Int, year: Int, hour: Int, min : Int) -> Unit)? = null
+        listener: ((datePickerDialog: TimePickerDialog, day: Int, month: Int, year: Int, hour: Int, min: Int) -> Unit)? = null
     ): XDatePicker {
         timeListener = listener
 
@@ -44,21 +44,22 @@ class XDateTimePicker(
 
     private fun buildAndShowDatePicker() {
         val datePickerDialog =
-            DatePickerDialog.newInstance({ datePickerDialog: DatePickerDialog, day: Int, month: Int, year: Int ->
+            DatePickerDialog.newInstance({ datePickerDialog: DatePickerDialog, i: Int, i1: Int, i2: Int ->
                 showTimePicker()
-            }, this.year, this.month, this.day)
+            }, year, month, day)
+
 
         datePickerDialog.show(getActivity().fragmentManager, "TAG")
     }
 
     var timePicker: TimePickerDialog? = null
 
-    private fun showTimePicker(){
+    private fun showTimePicker() {
         timePicker = TimePickerDialog.newInstance(
             { radialPickerLayout: RadialPickerLayout, hour: Int, min: Int ->
                 this@XDateTimePicker.hour = hour
                 this@XDateTimePicker.min = min
-                if (timeListener != null){
+                if (timeListener != null) {
                     timeListener!!(timePicker!!, day, month, year, hour, min)
                 }
             },

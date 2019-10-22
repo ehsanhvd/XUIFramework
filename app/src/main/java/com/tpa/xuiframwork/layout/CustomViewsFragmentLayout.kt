@@ -55,9 +55,7 @@ class CustomViewsFragmentLayout(
                 button("Date picker") {
                     onClick {
                         val datePicker =
-                            XDatePicker(appCompatActivity).showDatePicker { datePickerDialog: DatePickerDialog, i: Int, i1: Int, i2: Int ->
-
-                            }
+                            XDatePicker(appCompatActivity).showDatePicker { datePickerDialog: DatePickerDialog, year: Int, month: Int, day: Int -> }
                     }
                 }.lparams {
                     weight = 1F
@@ -65,9 +63,7 @@ class CustomViewsFragmentLayout(
                 button("Date Time picker") {
                     onClick {
                         val datePicker =
-                            XDateTimePicker(appCompatActivity).showDateTimePicker { timePickerDialog: TimePickerDialog, i: Int, i1: Int, i2: Int, i3: Int, i4: Int ->
-
-                            }
+                            XDateTimePicker(appCompatActivity).showDateTimePicker { timePickerDialog: TimePickerDialog, year: Int, month: Int, day: Int, hour: Int, min: Int -> }
                     }
                 }.lparams {
                     weight = 1F

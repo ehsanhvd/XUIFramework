@@ -48,7 +48,7 @@ open class XDatePicker(
 
     private fun buildAndShowDatePicker(listener: ((datePickerDialog: DatePickerDialog, day: Int, month: Int, year: Int) -> Unit)) {
         val datePickerDialog =
-            DatePickerDialog.newInstance({ datePickerDialog: DatePickerDialog, day: Int, month: Int, year: Int ->
+            DatePickerDialog.newInstance({ datePickerDialog: DatePickerDialog, i: Int, i1: Int, i2: Int ->
                 listener(datePickerDialog, day, month, year)
             }, this.year, this.month, this.day)
 
