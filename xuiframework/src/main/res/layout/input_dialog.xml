@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/dlg_width"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/dialogBody"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.tpa.xuiframework.view.CustomTextView
+            android:id="@+id/texTitle"
+            style="@style/dialogHeader"
+            tools:text="title" />
+
+        <com.tpa.xuiframework.view.CustomEditText
+            android:id="@+id/editInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:singleLine="true"
+            android:textColor="@color/textColor"
+            tools:text="body" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linButtons"
+        style="@style/dialogButtonBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.tpa.xuiframework.view.CustomButton
+            android:id="@+id/btnAccept"
+            style="@style/FlatButtonSmall"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="@string/ok" />
+
+    </LinearLayout>
+
+</LinearLayout>

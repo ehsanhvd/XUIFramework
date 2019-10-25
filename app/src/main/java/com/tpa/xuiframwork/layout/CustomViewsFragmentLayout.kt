@@ -50,6 +50,15 @@ class CustomViewsFragmentLayout(
                 }.lparams {
                     weight = 1F
                 }
+                button("input dialog") {
+                    onClick {
+                        Dialogs.inputDialog(ui.ctx, "this is a title", hint = "this is a hint") {
+                            it.dismiss()
+                        }.show()
+                    }
+                }.lparams {
+                    weight = 1F
+                }
             }
             linearLayout {
                 button("Date picker") {
