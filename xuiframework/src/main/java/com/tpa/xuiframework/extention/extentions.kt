@@ -35,7 +35,13 @@ fun Fragment.addParam(name: String, value: String) {
     this.arguments = arguments
 }
 
-fun Boolean.ifT(op: () -> Any) {
+fun Boolean.ifT(op: () -> Unit) {
+    if (this) {
+        op()
+    }
+}
+
+fun Boolean.ifNT(op: () -> Unit) {
     if (this) {
         op()
     }

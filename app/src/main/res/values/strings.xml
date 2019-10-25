@@ -4,6 +4,7 @@
     <string name="paginationAdapter">Pagination adapter</string>
     <string name="customViews">Custom views</string>
     <string name="formBuilder">Form builder</string>
+    <string name="autoForm">Auto form</string>
     <string name="rtl">rtl</string>
     <string name="multiSelectAdapter">Multi Select adapter</string>
 </resources>

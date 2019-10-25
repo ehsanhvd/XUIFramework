@@ -26,7 +26,8 @@ class MainActivity : XActionBarDrawerActivity() {
             MultiSelectFragment(),
             PaginationAdapterFragment(),
             CustomViewsFragment(),
-            FormBuilderFragment()
+            FormBuilderFragment(),
+            AutoFormFragment()
         )
 
         setFragments(fragments)

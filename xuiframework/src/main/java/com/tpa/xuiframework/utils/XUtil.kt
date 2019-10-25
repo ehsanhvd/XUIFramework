@@ -9,6 +9,8 @@ import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar
 import com.tpa.xuiframework.R
 import com.tpa.xuiframework.XConfig
 import java.util.*
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 
 class XUtil {
@@ -139,5 +141,60 @@ class XUtil {
 
             return getPersianDateTime(format, persianCalendar)
         }
+
+
+        fun isValidIranTel(tel: String): Boolean {
+            val pattern: Pattern
+            val matcher: Matcher
+            val TEL_PATTERN = "^(09|۰۹)([0-9]|[۰-۹]){9}$"
+            pattern = Pattern.compile(TEL_PATTERN)
+            matcher = pattern.matcher(tel)
+            return matcher.matches()
+        }
+
+        fun isEmailValid(email: String): Boolean {
+            val EMAIL_PATTERN =
+                Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+            val matcher = EMAIL_PATTERN.matcher(email)
+            return matcher.matches()
+        }
+
+        fun isIranNationalIdValid(melliCode: String): Boolean {
+            if (melliCode.trim { it <= ' ' }.isEmpty()) {
+                return false // Melli Code is empty
+            } else if (melliCode.length != 10) {
+                return false // Melli Code is less or more than 10 digits
+            } else {
+                var sum = 0
+
+                for (i in 0..8) {
+                    sum += Character.getNumericValue(melliCode[i]) * (10 - i)
+                }
+
+                val lastDigit: Int
+                val divideRemaining = sum % 11
+
+                if (divideRemaining < 2) {
+                    lastDigit = divideRemaining
+                } else {
+                    lastDigit = 11 - divideRemaining
+                }
+
+                return if (Character.getNumericValue(melliCode[9]) == lastDigit) {
+                    true
+                } else {
+                    false // Invalid MelliCode
+                }
+            }
+        }
+
+    }
+}
+
+
+//not null
+fun <T> NN(any: T?, op: ((it: T) -> Any)){
+    if (any != null){
+        op(any)
     }
 }

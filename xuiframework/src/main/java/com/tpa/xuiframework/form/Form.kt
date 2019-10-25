@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog
+import com.tpa.xuiframework.extention.ifNT
+import com.tpa.xuiframework.utils.NN
 import com.tpa.xuiframework.utils.XDatePicker
 import com.tpa.xuiframework.utils.XDateTimePicker
 import com.tpa.xuiframework.utils.XUtil
@@ -30,29 +32,7 @@ open class Form private constructor(
     private var currentRow: LinearLayout? = null
     private var lastView: View? = null
     private var done = false
-
-    companion object {
-        fun with(parent: LinearLayout, entity: Any) {
-            val fields = entity.javaClass.declaredFields
-
-            for (m in fields) {
-                if (m.isAnnotationPresent(Input::class.java)) {
-                    val ta = m.getAnnotation(Input::class.java)
-                    println(ta.prop + " " + getValue(entity, m))
-                }
-            }
-        }
-
-        fun with(appCompatActivity: AppCompatActivity, parent: LinearLayout): Form {
-            return Form(appCompatActivity, parent)
-        }
-
-        private fun getValue(entity: Any, field: Field): Any? {
-            field.setAccessible(true)
-            return field.get(entity)
-        }
-    }
-
+    private val validators = arrayListOf<ValidEditText>()
 
     fun editText(
         hint: String = "",
@@ -60,6 +40,7 @@ open class Form private constructor(
         maxLength: Int = 50,
         inputType: Int = InputType.TYPE_CLASS_TEXT,
         imeOpt: Int = EditorInfo.IME_ACTION_NEXT,
+        validator: Validator? = null,
         id: Int = 0
 
     ): Form {
@@ -74,6 +55,9 @@ open class Form private constructor(
 
         addRowIfNotExist()
         addViewToForm(editText)
+        NN(validator) {
+            validators.add(ValidEditText(editText, it))
+        }
         return this
     }
 
@@ -352,18 +336,19 @@ open class Form private constructor(
         return false
     }
 
-    fun finish() {
+    fun finish(): Form {
         if (done) {
-            return
+            return this
         }
         done = true
         for (i in 0 until parent.childCount) {
             val viewGroup = parent.getChildAt(i) as ViewGroup
             for (rowChildI in 0 until viewGroup.childCount) {
-                validateViews(viewGroup.getChildAt(rowChildI))
+                validateRadios(viewGroup.getChildAt(rowChildI))
             }
         }
         refreshDependencies()
+        return this
     }
 
     public fun refreshDependencies() {
@@ -372,7 +357,7 @@ open class Form private constructor(
         }
     }
 
-    open fun validateViews(view: View) {
+    protected open fun validateRadios(view: View) {
         if (view is RadioGroup) {
             (view.getChildAt(0) as RadioButton).isChecked = true
         }
@@ -389,4 +374,55 @@ open class Form private constructor(
         val visibIfAvail: Int,
         val visibIfNotAvail: Int
     )
+
+    //returns true when form has error
+    fun validateForm(checkResult: ((editText: EditText, isValid: Boolean) -> Any)? = null): Boolean {
+        var anyError = false
+
+        validators.forEach { ve ->
+            val isValid = ve.validator.isValid(ve.editText)
+
+            NN(checkResult) {
+                it(ve.editText, isValid)
+            }
+            isValid.ifNT {
+                anyError = true
+            }
+        }
+
+        return anyError
+    }
+
+
+    companion object {
+        fun with(appCompatActivity: AppCompatActivity, parent: LinearLayout, entity: Any): Form {
+            val fields = entity.javaClass.declaredFields
+
+            val form = Form(appCompatActivity, parent)
+
+            for (m in fields) {
+                if (m.isAnnotationPresent(Input::class.java)) {
+                    val ta = m.getAnnotation(Input::class.java)
+
+                    form.editText(
+                        text = getValue(entity, m).toString(),
+                        hint = ta.hint
+                    )
+
+                }
+            }
+
+            return form
+        }
+
+        fun with(appCompatActivity: AppCompatActivity, parent: LinearLayout): Form {
+            return Form(appCompatActivity, parent)
+        }
+
+        private fun getValue(entity: Any, field: Field): Any? {
+            field.setAccessible(true)
+            return field.get(entity)
+        }
+    }
+
 }

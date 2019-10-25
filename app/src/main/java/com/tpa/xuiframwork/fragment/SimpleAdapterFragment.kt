@@ -4,16 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.tpa.xuiframework.adapter.XAdapter
 import com.tpa.xuiframework.extention.loadImage
 import com.tpa.xuiframework.extention.setText
 import com.tpa.xuiframework.extention.showSnackbar
+import com.tpa.xuiframework.fragment.BaseFragment
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
 
-class SimpleAdapterFragment : Fragment() {
+class SimpleAdapterFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_simple_adapter, container, false)
     }

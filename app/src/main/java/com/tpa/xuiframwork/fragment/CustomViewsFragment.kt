@@ -6,12 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
+import com.tpa.xuiframework.fragment.BaseFragment
 import com.tpa.xuiframework.utils.XImagePicker
 import com.tpa.xuiframwork.layout.CustomViewsFragmentLayout
 import org.jetbrains.anko.AnkoContext
 
-class CustomViewsFragment : Fragment() {
+class CustomViewsFragment : BaseFragment() {
 
     private lateinit var xImagePicker: XImagePicker
 

@@ -5,16 +5,16 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.tpa.xuiframework.adapter.XPaginationAdapter
 import com.tpa.xuiframework.extention.loadImage
 import com.tpa.xuiframework.extention.setText
+import com.tpa.xuiframework.fragment.BaseFragment
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
 import com.tpa.xuiframwork.layout.AnkoAdapterRowItem
 
-class PaginationAdapterFragment : Fragment() {
+class PaginationAdapterFragment : BaseFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_pagination_adapter, container, false)
     }

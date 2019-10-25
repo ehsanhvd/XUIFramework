@@ -4,16 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.tpa.xuiframework.adapter.XMultiSelectAdapter
 import com.tpa.xuiframework.extention.loadImage
 import com.tpa.xuiframework.extention.setText
+import com.tpa.xuiframework.fragment.BaseFragment
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
 import kotlinx.android.synthetic.main.fragment_multiselect.*
 import org.jetbrains.anko.sdk27.coroutines.onLongClick
 
-class MultiSelectFragment : Fragment() {
+class MultiSelectFragment : BaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
