@@ -34,6 +34,22 @@ open class Form private constructor(
     private var done = false
     private val validators = arrayListOf<ValidEditText>()
 
+    fun iranTelInput(
+        hint: String = "",
+        text: String = "",
+        imeOpt: Int = EditorInfo.IME_ACTION_NEXT
+    ): Form {
+        return editText(hint, text, 11, InputType.TYPE_CLASS_PHONE, imeOpt, IranTelValidator())
+    }
+
+    fun emailInput(
+        hint: String = "",
+        text: String = "",
+        imeOpt: Int = EditorInfo.IME_ACTION_NEXT
+    ): Form {
+        return editText(hint, text, 11, InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS, imeOpt, EmailValidator())
+    }
+
     fun editText(
         hint: String = "",
         text: String = "",

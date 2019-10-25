@@ -1,11 +1,9 @@
 package com.tpa.xuiframwork.layout
 
-import android.text.InputType
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.tpa.xuiframework.form.Form
-import com.tpa.xuiframework.form.IranTelValidator
 import com.tpa.xuiframework.utils.XUtil
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
@@ -36,12 +34,10 @@ class FormBuilderFragmentLayout(val appCompatActivity: AppCompatActivity) :
                 .row().editText("some dependant text", id = R.id.textDependant)
                 .depends(R.id.radioOption)
                 .row().row()
-                .editText(
-                    hint = "iran tel",
-                    inputType = InputType.TYPE_CLASS_PHONE,
-                    validator = IranTelValidator(),
-                    maxLength = 11
+                .iranTelInput(
+                    hint = "iran tel"
                 )
+                .emailInput()
                 .finish()
 
             button("validate") {
