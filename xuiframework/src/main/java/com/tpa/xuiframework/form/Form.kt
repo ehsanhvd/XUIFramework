@@ -20,7 +20,6 @@ import com.tpa.xuiframework.utils.XUtil
 import com.tpa.xuiframework.view.*
 import org.jetbrains.anko.singleLine
 import org.jetbrains.anko.textColor
-import java.lang.reflect.Field
 
 open class Form private constructor(
     val appCompatActivity: AppCompatActivity,
@@ -412,21 +411,9 @@ open class Form private constructor(
 
     companion object {
         fun with(appCompatActivity: AppCompatActivity, parent: LinearLayout, entity: Any): Form {
-            val fields = entity.javaClass.declaredFields
-
             val form = Form(appCompatActivity, parent)
 
-            for (m in fields) {
-                if (m.isAnnotationPresent(Input::class.java)) {
-                    val ta = m.getAnnotation(Input::class.java)
-
-                    form.editText(
-                        text = getValue(entity, m).toString(),
-                        hint = ta.hint
-                    )
-
-                }
-            }
+            FormAnnotationProcessor(form, entity)
 
             return form
         }
@@ -435,10 +422,6 @@ open class Form private constructor(
             return Form(appCompatActivity, parent)
         }
 
-        private fun getValue(entity: Any, field: Field): Any? {
-            field.setAccessible(true)
-            return field.get(entity)
-        }
     }
 
 }
