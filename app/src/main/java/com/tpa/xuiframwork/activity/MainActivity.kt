@@ -7,10 +7,7 @@ import com.tpa.xuiframework.webservice.XRequest
 import com.tpa.xuiframework.webservice.iz
 import com.tpa.xuiframework.webservice.xRequest
 import com.tpa.xuiframwork.R
-import com.tpa.xuiframwork.fragment.AnkoAdapterFragment
-import com.tpa.xuiframwork.fragment.CustomViewsFragment
-import com.tpa.xuiframwork.fragment.FormBuilderFragment
-import com.tpa.xuiframwork.fragment.SimpleAdapterFragment
+import com.tpa.xuiframwork.fragment.*
 import com.tpa.xuiframwork.layout.DrawerView
 import org.jetbrains.anko.sdk27.coroutines.onCheckedChange
 import org.jetbrains.anko.setContentView
@@ -26,7 +23,8 @@ class MainActivity : XActionBarDrawerActivity() {
 
         val fragments = arrayListOf(
             SimpleAdapterFragment(),
-            AnkoAdapterFragment(),
+            MultiSelectFragment(),
+            PaginationAdapterFragment(),
             CustomViewsFragment(),
             FormBuilderFragment()
         )

@@ -10,7 +10,7 @@ import com.tpa.xuiframework.viewholder.XViewHolder
 open class XAdapter<T>(
     val res: Int,
     val list: ArrayList<T> = arrayListOf(),
-    val renderer: ((View, T) -> Unit)? = null
+    val renderer: ((View, T, Int) -> Unit)? = null
 ) : RecyclerView.Adapter<XViewHolder<T>>() {
 
 

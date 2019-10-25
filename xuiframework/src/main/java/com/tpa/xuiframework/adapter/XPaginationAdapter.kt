@@ -9,11 +9,11 @@ import com.tpa.xuiframework.viewholder.XViewHolder
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
 
-class XPaginationAdapter<T> private constructor(
+open class XPaginationAdapter<T>(
     @LayoutRes val progressLayout: Int? = null,
     val recyclerView: RecyclerView,
     val endListReached: ((XPaginationAdapter<T>, Int) -> Unit)? = null,
-    val renderer: ((View, T) -> Unit)? = null
+    var renderer: ((View, T, Int) -> Unit)? = null
 ) : RecyclerView.Adapter<XViewHolder<T>>() {
 
     constructor(
@@ -21,7 +21,7 @@ class XPaginationAdapter<T> private constructor(
         @LayoutRes progressLayout: Int? = null,
         recyclerView: RecyclerView,
         endListReached: ((XPaginationAdapter<T>, Int) -> Unit)? = null,
-        renderer: ((View, T) -> Unit)? = null
+        renderer: ((View, T, Int) -> Unit)? = null
     ) : this(progressLayout, recyclerView, endListReached, renderer) {
         this.resId = resId
     }
@@ -31,7 +31,7 @@ class XPaginationAdapter<T> private constructor(
         @LayoutRes progressLayout: Int? = null,
         recyclerView: RecyclerView,
         endListReached: ((XPaginationAdapter<T>, Int) -> Unit)? = null,
-        renderer: ((View, T) -> Unit)? = null
+        renderer: ((View, T, Int) -> Unit)? = null
     ) : this(progressLayout, recyclerView, endListReached, renderer) {
         this.viewComponent = viewComponent;
     }
@@ -43,7 +43,8 @@ class XPaginationAdapter<T> private constructor(
     val VIEWTYPE_LOADING = 1
     val VIEWTYPE_CONTENT = 2
 
-    public var loading = false
+    var listFinished = false
+    var loading = false
         set(value) {
             field = value
             if (loading) {
@@ -57,19 +58,20 @@ class XPaginationAdapter<T> private constructor(
 
     override fun onBindViewHolder(viewHolder: XViewHolder<T>, index: Int) {
         if (getItemViewType(index) == VIEWTYPE_CONTENT) {
-            viewHolder.bind(getItem(index), renderer)
+            viewHolder.bind(getItem(index)) { view: View, t: T, i: Int ->
+                renderer?.invoke(view, t, i)
+            }
 
-            if (index == itemCount - 1 && progressLayout != null) {
+            if (index == itemCount - 1 && progressLayout != null && !listFinished) {
                 println("end list")
                 endListReached?.let { it(this, itemCount) }
                 loading = true
             }
         }
-
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (loading && position == itemCount - 1 && progressLayout != progressLayout) {
+        return if (loading && position == itemCount - 1 && progressLayout != null && !listFinished) {
             VIEWTYPE_LOADING
         } else {
             VIEWTYPE_CONTENT
@@ -102,14 +104,14 @@ class XPaginationAdapter<T> private constructor(
         }
     }
 
-    fun addItems(items: List<T>) {
+    open fun addItems(items: List<T>) {
         loading = false
         val oldSize = itemCount;
         list.addAll(items)
         notifyItemRangeInserted(oldSize, itemCount)
     }
 
-    fun addItem(item: T) {
+    open fun addItem(item: T) {
         loading = false
         val oldSize = itemCount;
         list.add(item)
@@ -119,5 +121,11 @@ class XPaginationAdapter<T> private constructor(
     fun getItem(i: Int): T {
         return list.get(i)
     }
+
+    @JvmName("changeRenderer")
+    fun setRenderer (renderer: ((View, T, Int) -> Unit)){
+        this.renderer = renderer
+    }
+
 
 }

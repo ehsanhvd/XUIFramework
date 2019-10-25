@@ -14,7 +14,7 @@ import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
 import com.tpa.xuiframwork.layout.AnkoAdapterRowItem
 
-class AnkoAdapterFragment : Fragment() {
+class PaginationAdapterFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_pagination_adapter, container, false)
     }
@@ -35,7 +35,7 @@ class AnkoAdapterFragment : Fragment() {
                 Handler().postDelayed({
                     adapter.addItems(getList())
                 }, 2000)
-            }, { v: View, item: TestData ->
+            }, { v: View, item: TestData, i : Int ->
                 v.setText(R.id.textTitle, item.name)
                 v.loadImage(R.id.imageProfile, item.profile)
             }

@@ -39,7 +39,7 @@ class SimpleAdapterFragment : Fragment() {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.adapter =
-            XAdapter(R.layout.row_list_test, list) { view, item ->
+            XAdapter(R.layout.row_list_test, list) { view, item, i ->
                 view.setText(R.id.textTitle, item.name)
                 view.loadImage(R.id.imageProfile, item.profile)
 

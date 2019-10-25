@@ -13,6 +13,7 @@ class DrawerView(val onclick: (tag: String, i: Int) -> Unit = { s: String, i: In
 
     private val menus = arrayListOf(
         R.string.simpleAdapter,
+        R.string.multiSelectAdapter,
         R.string.paginationAdapter,
         R.string.customViews,
         R.string.formBuilder

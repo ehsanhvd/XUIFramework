@@ -86,7 +86,7 @@ class CustomViewsFragmentLayout(
                 }
             }
             xhorizontalRecyclerView {
-                adapter = XAdapter(R.layout.row_horizontal_recycler, arrayListOf("item1", "item2", "item3", "item4"), { view: View, s: String -> })
+                adapter = XAdapter(R.layout.row_horizontal_recycler, arrayListOf("item1", "item2", "item3", "item4"), { view: View, s: String, i: Int -> })
             }
         }
     }

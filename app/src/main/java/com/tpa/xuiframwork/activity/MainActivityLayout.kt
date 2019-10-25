@@ -2,10 +2,7 @@ package com.tpa.xuiframwork.activity
 
 import android.view.View
 import com.tpa.xuiframwork.R
-import org.jetbrains.anko.AnkoComponent
-import org.jetbrains.anko.AnkoContext
-import org.jetbrains.anko.frameLayout
-import org.jetbrains.anko.verticalLayout
+import org.jetbrains.anko.*
 
 class MainActivityLayout : AnkoComponent<MainActivity> {
 
@@ -14,7 +11,7 @@ class MainActivityLayout : AnkoComponent<MainActivity> {
             verticalLayout {
                 frameLayout {
                     id = R.id.frameFragment
-                }
+                }.lparams(width = matchParent, height = matchParent)
             }
         }
     }
