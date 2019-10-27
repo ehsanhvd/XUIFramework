@@ -28,9 +28,7 @@ class AutoFormFragment : BaseFragment() {
 
         btnValidate.setOnClickListener {
             form.validateForm { editText: EditText, isValid: Boolean ->
-                if (isValid){
-                    editText.setError("")
-                } else {
+                if (!isValid) {
                     editText.setError("error")
                 }
             }

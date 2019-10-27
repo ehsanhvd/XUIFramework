@@ -1,13 +1,12 @@
-package com.tpa.xuiframework.form
+package com.tpa.xuiframework.form.annotation
 
-import android.text.InputType
 import android.view.inputmethod.EditorInfo
 
 @Target(AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class Input(
+annotation class IranTelInput(
     val displayName: String = "",
-    val inputType: Int = InputType.TYPE_CLASS_TEXT,
+    val text: String = "",
     val imeOpt: Int = EditorInfo.IME_ACTION_NEXT,
-    val maxLenght: Int = 50
+    val lastRow: Boolean = false
 )
