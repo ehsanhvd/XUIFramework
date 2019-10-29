@@ -13,6 +13,8 @@ import androidx.core.view.GravityCompat
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog
 import com.tpa.xuiframework.extention.ifNT
+import com.tpa.xuiframework.form.validator.EmailValidator
+import com.tpa.xuiframework.form.validator.IranTelValidator
 import com.tpa.xuiframework.utils.NN
 import com.tpa.xuiframework.utils.XDatePicker
 import com.tpa.xuiframework.utils.XDateTimePicker
@@ -38,7 +40,9 @@ open class Form private constructor(
         text: String = "",
         imeOpt: Int = EditorInfo.IME_ACTION_NEXT
     ): Form {
-        return editText(hint, text, 11, InputType.TYPE_CLASS_PHONE, imeOpt, IranTelValidator())
+        return editText(hint, text, 11, InputType.TYPE_CLASS_PHONE, imeOpt,
+            IranTelValidator()
+        )
     }
 
     fun emailInput(
@@ -46,7 +50,9 @@ open class Form private constructor(
         text: String = "",
         imeOpt: Int = EditorInfo.IME_ACTION_NEXT
     ): Form {
-        return editText(hint, text, 11, InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS, imeOpt, EmailValidator())
+        return editText(hint, text, 11, InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS, imeOpt,
+            EmailValidator()
+        )
     }
 
     fun editText(
@@ -78,14 +84,16 @@ open class Form private constructor(
 
     fun datePicker(
         hint: String = "",
-        text: String = "",
+        date: Long = 0,
         format: Int = XUtil.DATE_FORMAT_SHORT,
         id: Int = 0
 
     ): Form {
         val editText = CustomEditText(parent.context)
         editText.singleLine = true
-        editText.setText(text)
+        if (date != 0L){
+            editText.setText(XUtil.getPersianDate(format, date))
+        }
         editText.hint = hint
         editText.id = id
 
@@ -104,14 +112,16 @@ open class Form private constructor(
 
     fun dateTimePicker(
         hint: String = "",
-        text: String = "",
+        date: Long = 0,
         format: Int = XUtil.DATE_FORMAT_SHORT,
         id: Int = 0
 
     ): Form {
         val editText = CustomEditText(parent.context)
         editText.singleLine = true
-        editText.setText(text)
+        if (date != 0L){
+            editText.setText(XUtil.getPersianDate(format, date))
+        }
         editText.hint = hint
         editText.id = id
 

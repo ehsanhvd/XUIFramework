@@ -22,7 +22,7 @@ class AutoFormFragment : BaseFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val person = Person("some name")
+        val person = Person("name")
 
         val form = Form.with(activity as AppCompatActivity, linForm, person)
 

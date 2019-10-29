@@ -1,6 +1,7 @@
-package com.tpa.xuiframework.form
+package com.tpa.xuiframework.form.validator
 
 import android.widget.EditText
+import com.tpa.xuiframework.form.Validator
 import com.tpa.xuiframework.utils.XUtil
 
 class EmailValidator : Validator {
