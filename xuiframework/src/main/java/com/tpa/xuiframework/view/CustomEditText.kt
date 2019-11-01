@@ -6,7 +6,7 @@ import android.widget.EditText
 import com.tpa.xuiframework.R
 import com.tpa.xuiframework.XConfig
 
-class CustomEditText : EditText {
+open class CustomEditText : EditText {
 
     var attrs : AttributeSet? = null
     var defStyleAttr : Int = 0

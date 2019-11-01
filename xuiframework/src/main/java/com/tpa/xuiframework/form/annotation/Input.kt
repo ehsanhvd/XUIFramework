@@ -13,6 +13,5 @@ annotation class Input(
     val inputType: Int = InputType.TYPE_CLASS_TEXT,
     val imeOpt: Int = EditorInfo.IME_ACTION_NEXT,
     val maxLenght: Int = 50,
-    val required: Boolean = false,
     val validator: KClass<out Validator> = DefaultValidator::class
 )

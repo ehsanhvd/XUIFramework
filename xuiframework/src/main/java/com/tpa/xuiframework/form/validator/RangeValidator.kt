@@ -11,7 +11,7 @@ class RangeValidator(val min: Long = -1, val max: Long = -1) : Validator {
         if (numVal == null){
             return false
         } else {
-            return min < numVal && numVal < max
+            return numVal in (min + 1) until max
         }
 
     }

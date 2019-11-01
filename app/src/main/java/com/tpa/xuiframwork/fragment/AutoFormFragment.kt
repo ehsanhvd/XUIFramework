@@ -33,5 +33,11 @@ class AutoFormFragment : BaseFragment() {
                 }
             }
         }
+
+        btnPopulate.setOnClickListener {
+            println("before populate: $person")
+            form.populateToEntity()
+            println("after populate: $person")
+        }
     }
 }

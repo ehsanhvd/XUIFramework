@@ -4,9 +4,8 @@ import android.view.inputmethod.EditorInfo
 
 @Target(AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class IranTelInput(
+annotation class EmailInput(
     val displayName: String = "",
-    val text: String = "",
     val imeOpt: Int = EditorInfo.IME_ACTION_NEXT,
     val mandatory: Boolean = false
 )

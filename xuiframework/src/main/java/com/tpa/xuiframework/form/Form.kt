@@ -10,14 +10,11 @@ import android.widget.*
 import androidx.annotation.ArrayRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog
-import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog
 import com.tpa.xuiframework.extention.ifNT
+import com.tpa.xuiframework.form.validator.DateRangeValidator
 import com.tpa.xuiframework.form.validator.EmailValidator
 import com.tpa.xuiframework.form.validator.IranTelValidator
 import com.tpa.xuiframework.utils.NN
-import com.tpa.xuiframework.utils.XDatePicker
-import com.tpa.xuiframework.utils.XDateTimePicker
 import com.tpa.xuiframework.utils.XUtil
 import com.tpa.xuiframework.view.*
 import org.jetbrains.anko.singleLine
@@ -29,29 +26,41 @@ open class Form private constructor(
 ) :
     CompoundButton.OnCheckedChangeListener {
 
+    private var processor: FormAnnotationProcessor? = null
     private val dependencies: ArrayList<Dependency> = arrayListOf()
     private var currentRow: LinearLayout? = null
     private var lastView: View? = null
     private var done = false
     private val validators = arrayListOf<ValidEditText>()
 
+    constructor(appCompatActivity: AppCompatActivity, parent: LinearLayout, entity: Any) : this(
+        appCompatActivity,
+        parent
+    ) {
+        processor = FormAnnotationProcessor(this, entity)
+    }
+
     fun iranTelInput(
         hint: String = "",
         text: String = "",
-        imeOpt: Int = EditorInfo.IME_ACTION_NEXT
+        imeOpt: Int = EditorInfo.IME_ACTION_NEXT,
+        mandatory: Boolean = false
     ): Form {
-        return editText(hint, text, 11, InputType.TYPE_CLASS_PHONE, imeOpt,
-            IranTelValidator()
+        return editText(
+            hint, text, 11, InputType.TYPE_CLASS_PHONE, imeOpt,
+            IranTelValidator(mandatory)
         )
     }
 
     fun emailInput(
         hint: String = "",
         text: String = "",
-        imeOpt: Int = EditorInfo.IME_ACTION_NEXT
+        imeOpt: Int = EditorInfo.IME_ACTION_NEXT,
+        mandatory: Boolean = false
     ): Form {
-        return editText(hint, text, 11, InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS, imeOpt,
-            EmailValidator()
+        return editText(
+            hint, text, 11, InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS, imeOpt,
+            EmailValidator(mandatory)
         )
     }
 
@@ -86,27 +95,24 @@ open class Form private constructor(
         hint: String = "",
         date: Long = 0,
         format: Int = XUtil.DATE_FORMAT_SHORT,
-        id: Int = 0
+        id: Int = 0,
+        validator: DateRangeValidator? = null
 
     ): Form {
-        val editText = CustomEditText(parent.context)
-        editText.singleLine = true
-        if (date != 0L){
+        val editText = DatePickerTextView(parent.context, format)
+        if (date != 0L) {
             editText.setText(XUtil.getPersianDate(format, date))
         }
         editText.hint = hint
         editText.id = id
 
-        editText.setFocusable(false)
-        editText.setClickable(false)
-        editText.setOnClickListener {
-            XDatePicker(appCompatActivity).showDatePicker { datePickerDialog: DatePickerDialog, day: Int, month: Int, year: Int ->
-                editText.setText(XUtil.getPersianDate(format, day, month, year))
-            }
-        }
-
         addRowIfNotExist()
         addViewToForm(editText)
+
+        NN(validator) {
+            validators.add(ValidEditText(editText, it))
+        }
+
         return this
     }
 
@@ -114,27 +120,25 @@ open class Form private constructor(
         hint: String = "",
         date: Long = 0,
         format: Int = XUtil.DATE_FORMAT_SHORT,
-        id: Int = 0
+        id: Int = 0,
+        validator: DateRangeValidator? = null
 
     ): Form {
-        val editText = CustomEditText(parent.context)
-        editText.singleLine = true
-        if (date != 0L){
+        val editText = DateTimePickerTextView(parent.context)
+
+        if (date != 0L) {
             editText.setText(XUtil.getPersianDate(format, date))
         }
         editText.hint = hint
         editText.id = id
 
-        editText.setFocusable(false)
-        editText.setClickable(false)
-        editText.setOnClickListener {
-            XDateTimePicker(appCompatActivity).showDateTimePicker { timePickerDialog: TimePickerDialog, day: Int, month: Int, year: Int, hour: Int, min: Int ->
-                editText.setText(XUtil.getPersianDateTime(format, day, month, year, hour, min))
-            }
-        }
-
         addRowIfNotExist()
         addViewToForm(editText)
+
+        NN(validator) {
+            validators.add(ValidEditText(editText, it))
+        }
+
         return this
     }
 
@@ -419,13 +423,17 @@ open class Form private constructor(
     }
 
 
+    public fun populateToEntity() {
+        processor?.populateToEntity()
+    }
+
+    public fun getLastView(): View? {
+        return lastView
+    }
+
     companion object {
         fun with(appCompatActivity: AppCompatActivity, parent: LinearLayout, entity: Any): Form {
-            val form = Form(appCompatActivity, parent)
-
-            FormAnnotationProcessor(form, entity)
-
-            return form
+            return Form(appCompatActivity, parent, entity)
         }
 
         fun with(appCompatActivity: AppCompatActivity, parent: LinearLayout): Form {

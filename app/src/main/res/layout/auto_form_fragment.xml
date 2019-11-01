@@ -16,4 +16,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Validate" />
+
+    <com.tpa.xuiframework.view.CustomButton
+        android:id="@+id/btnPopulate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="populate to entity" />
 </LinearLayout>
