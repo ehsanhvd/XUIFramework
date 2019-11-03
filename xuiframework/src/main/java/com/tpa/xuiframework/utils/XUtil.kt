@@ -142,6 +142,23 @@ class XUtil {
             return getPersianDateTime(format, persianCalendar)
         }
 
+        fun getMilis(
+            format: Int,
+            day: Int,
+            month: Int,
+            year: Int,
+            hour: Int,
+            min: Int
+        ): Long {
+
+        }
+
+        fun getMilis(
+            time: Long
+        ): PersianCalendar {
+
+        }
+
 
         fun isValidIranTel(tel: String): Boolean {
             val pattern: Pattern

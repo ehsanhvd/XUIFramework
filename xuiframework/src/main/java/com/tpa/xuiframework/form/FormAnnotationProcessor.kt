@@ -54,7 +54,7 @@ class FormAnnotationProcessor(val form: Form, val entity: Any) {
                     form.row()
                 }
 
-                val formField = FormField(DatePicker::class, datePicker(ta))
+                val formField = FormField(DatePicker::class, datePicker(m, ta))
                 formFields.put(m, formField)
 
             } else if (m.isAnnotationPresent(DateTimePicker::class.java)) {
@@ -65,7 +65,7 @@ class FormAnnotationProcessor(val form: Form, val entity: Any) {
                     form.row()
                 }
 
-                val formField = FormField(DateTimePicker::class, dateTimePicker(ta))
+                val formField = FormField(DateTimePicker::class, dateTimePicker(m, ta))
                 formFields.put(m, formField)
             } else if (m.isAnnotationPresent(IranTelInput::class.java)) {
                 val ta = m.getAnnotation(IranTelInput::class.java)
@@ -117,11 +117,11 @@ class FormAnnotationProcessor(val form: Form, val entity: Any) {
         ta.mandatory
     ).getLastView()!!
 
-    private fun datePicker(ta: DatePicker) =
-        form.datePicker(ta.displayName, ta.date).getLastView()!!
+    private fun datePicker(m: Field, ta: DatePicker) =
+        form.datePicker(ta.displayName, getValue(entity, m) as Long).getLastView()!!
 
-    private fun dateTimePicker(ta: DateTimePicker) =
-        form.dateTimePicker(ta.displayName, ta.date).getLastView()!!
+    private fun dateTimePicker(m: Field, ta: DateTimePicker) =
+        form.dateTimePicker(ta.displayName, getValue(entity, m) as Long).getLastView()!!
 
     private fun getValue(entity: Any, field: Field): Any? {
         field.setAccessible(true)
