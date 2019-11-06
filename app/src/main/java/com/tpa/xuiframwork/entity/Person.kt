@@ -22,6 +22,11 @@ data class Person(
 
     @Order(4)
     @EmailInput(displayName = "email")
-    var email: String = ""
+    var email: String = "",
+
+    @Order(5)
+    @KeepRow
+    @CheckBox(displayName = "subscribe to news")
+    var subscribed: Boolean = true
     ) {
 }

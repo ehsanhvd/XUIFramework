@@ -142,7 +142,7 @@ class XUtil {
             return getPersianDateTime(format, persianCalendar)
         }
 
-        fun getMilis(
+        fun getMilisPersian(
             format: Int,
             day: Int,
             month: Int,
@@ -150,13 +150,21 @@ class XUtil {
             hour: Int,
             min: Int
         ): Long {
-
+            val persianCalendar = PersianCalendar()
+            persianCalendar.setPersianDate(year, month, day)
+            persianCalendar.set(Calendar.HOUR_OF_DAY, hour)
+            persianCalendar.set(Calendar.MINUTE, min)
+            persianCalendar.set(Calendar.SECOND, 0)
+            persianCalendar.set(Calendar.MILLISECOND, 0)
+            return persianCalendar.timeInMillis
         }
 
         fun getMilis(
             time: Long
         ): PersianCalendar {
-
+            val persianCalendar = PersianCalendar()
+            persianCalendar.timeInMillis = time
+            return persianCalendar
         }
 
 

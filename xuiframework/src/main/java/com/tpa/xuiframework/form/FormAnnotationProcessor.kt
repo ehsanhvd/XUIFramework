@@ -1,6 +1,7 @@
 package com.tpa.xuiframework.form
 
 import android.view.View
+import android.widget.CompoundButton
 import android.widget.EditText
 import com.tpa.xuiframework.form.annotation.*
 import com.tpa.xuiframework.view.BaseDatePickerTextView
@@ -88,6 +89,16 @@ class FormAnnotationProcessor(val form: Form, val entity: Any) {
 
                 val formField = FormField(EmailInput::class, emailInput(m, ta))
                 formFields.put(m, formField)
+            } else if (m.isAnnotationPresent(CheckBox::class.java)) {
+                val ta = m.getAnnotation(CheckBox::class.java)
+                val keepRow = m.isAnnotationPresent(KeepRow::class.java)
+
+                if (0 < i && !keepRow) {
+                    form.row()
+                }
+
+                val formField = FormField(CheckBox::class, checkbox(m, ta))
+                formFields.put(m, formField)
             }
 
             i++
@@ -117,6 +128,11 @@ class FormAnnotationProcessor(val form: Form, val entity: Any) {
         ta.mandatory
     ).getLastView()!!
 
+    private fun checkbox(m: Field, ta: CheckBox) = form.checkbox(
+        ta.displayName,
+        checked = getValue(entity, m) as Boolean
+    ).getLastView()!!
+
     private fun datePicker(m: Field, ta: DatePicker) =
         form.datePicker(ta.displayName, getValue(entity, m) as Long).getLastView()!!
 
@@ -139,6 +155,9 @@ class FormAnnotationProcessor(val form: Form, val entity: Any) {
             } else if (value.type.equals(DatePicker::class) || value.type.equals(DateTimePicker::class)) {
                 key.setAccessible(true)
                 key.set(entity, (value.view as BaseDatePickerTextView).time)
+            } else if (value.type.equals(CheckBox::class)) {
+                key.setAccessible(true)
+                key.set(entity, (value.view as CompoundButton).isChecked)
             }
         }
     }
