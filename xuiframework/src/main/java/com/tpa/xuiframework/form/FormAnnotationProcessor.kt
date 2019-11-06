@@ -99,6 +99,16 @@ class FormAnnotationProcessor(val form: Form, val entity: Any) {
 
                 val formField = FormField(CheckBox::class, checkbox(m, ta))
                 formFields.put(m, formField)
+            } else if (m.isAnnotationPresent(Spinner::class.java)) {
+                val ta = m.getAnnotation(Spinner::class.java)
+                val keepRow = m.isAnnotationPresent(KeepRow::class.java)
+
+                if (0 < i && !keepRow) {
+                    form.row()
+                }
+
+                val formField = FormField(Spinner::class, spinner(m, ta))
+                formFields.put(m, formField)
             }
 
             i++
@@ -133,6 +143,11 @@ class FormAnnotationProcessor(val form: Form, val entity: Any) {
         checked = getValue(entity, m) as Boolean
     ).getLastView()!!
 
+    private fun spinner(m: Field, ta: Spinner) = form.spinner(
+        ta.itemsArray,
+        getValue(entity, m) as Int
+    ).getLastView()!!
+
     private fun datePicker(m: Field, ta: DatePicker) =
         form.datePicker(ta.displayName, getValue(entity, m) as Long).getLastView()!!
 
@@ -144,7 +159,7 @@ class FormAnnotationProcessor(val form: Form, val entity: Any) {
         return field.get(entity)
     }
 
-    public fun populateToEntity() {
+    fun populateToEntity() {
         formFields.forEach { (key, value) ->
             if (value.type.equals(Input::class) || value.type.equals(IranTelInput::class) || value.type.equals(
                     EmailInput::class
@@ -158,6 +173,9 @@ class FormAnnotationProcessor(val form: Form, val entity: Any) {
             } else if (value.type.equals(CheckBox::class)) {
                 key.setAccessible(true)
                 key.set(entity, (value.view as CompoundButton).isChecked)
+            } else if (value.type.equals(Spinner::class)) {
+                key.setAccessible(true)
+                key.set(entity, (value.view as android.widget.Spinner).selectedItemPosition)
             }
         }
     }

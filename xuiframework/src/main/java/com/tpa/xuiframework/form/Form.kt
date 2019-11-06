@@ -26,6 +26,8 @@ open class Form private constructor(
 ) :
     CompoundButton.OnCheckedChangeListener {
 
+    //TODO wrap content mode
+
     private var processor: FormAnnotationProcessor? = null
     private val dependencies: ArrayList<Dependency> = arrayListOf()
     private var currentRow: LinearLayout? = null
@@ -142,13 +144,13 @@ open class Form private constructor(
         return this
     }
 
-    fun spinner(@ArrayRes items: Int, render: ((View, String, Int) -> Unit)? = null): Form {
-        addViewToForm(CustomSpinner.withArray(parent.context, items, render))
+    fun spinner(@ArrayRes items: Int, default: Int = 0, render: ((View, String, Int) -> Unit)? = null): Form {
+        addViewToForm(CustomSpinner.withArray(parent.context, items,default, render))
         return this
     }
 
-    fun spinner(items: List<Any>, render: ((View, Any, Int) -> Unit)? = null) {
-        val spinner = CustomSpinner(parent.context, items, render)
+    fun spinner(items: List<Any>,default: Int = 0, render: ((View, Any, Int) -> Unit)? = null) {
+        val spinner = CustomSpinner(parent.context, items,default, render)
         spinner.set(items)
         addViewToForm(spinner)
     }

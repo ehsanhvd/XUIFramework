@@ -17,6 +17,7 @@ import org.jetbrains.anko.custom.ankoView
 
 public class CustomSpinner<V> : Spinner {
 
+    private var reqDefaultIndex : Int = 0
     private var adapter: SpinnerAdapter<V>? = null
     private var items: List<V> = ArrayList()
     private var render: ((View, V, Int) -> Unit) = { view: View, v: V, i: Int ->
@@ -36,15 +37,16 @@ public class CustomSpinner<V> : Spinner {
     private var dropDownItem = R.layout.spinner_dropdown_item
 
 
-    constructor(context: Context) : super(context) {
-    }
+    constructor(context: Context) : super(context)
 
     constructor(
         context: Context,
         item: List<V>,
+        default: Int = 0,
         render: ((View, V, Int) -> Unit)? = null
     ) : super(context) {
 
+        reqDefaultIndex = default
         if (render != null) {
             set(item, render)
         } else {
@@ -78,16 +80,14 @@ public class CustomSpinner<V> : Spinner {
         this.render = render;
 
         setAdapter(SpinnerAdapter(context, items))
+        setSelection(reqDefaultIndex)
     }
 
     fun set(item: List<V>) {
         items = item
 
         setAdapter(SpinnerAdapter(context, items))
-    }
-
-    fun getChoosenItemIndex(): Int {
-        return getSelectedItemPosition()
+        setSelection(reqDefaultIndex)
     }
 
     operator fun get(index: Int): V {
@@ -128,26 +128,30 @@ public class CustomSpinner<V> : Spinner {
                 view = inflater.inflate(itemResource, parent, false)
             }
 
-            if (render != null) {
-                (render!!)(view!!, items.get(position), position)
-            }
+            (render)(view!!, items.get(position), position)
 
-            return view!!
+            return view
         }
     }
 
-    fun onRender(render: ((View, V, Int) -> Unit)){
-        this.render =render;
+    fun onRender(render: ((View, V, Int) -> Unit)) {
+        this.render = render;
     }
 
     companion object {
         fun withArray(
             context: Context,
             @ArrayRes items: Int,
+            default: Int = 0,
             render: ((View, String, Int) -> Unit)? = null
         ): CustomSpinner<String> {
 
-            return CustomSpinner(context, context.resources.getStringArray(items).toList(), render)
+            return CustomSpinner(
+                context,
+                context.resources.getStringArray(items).toList(),
+                default,
+                render
+            )
         }
 
     }
@@ -157,8 +161,8 @@ fun <T> ViewManager.customSpinner(
     items: List<T> = arrayListOf()
 ) = customSpinner<T>(items, {})
 
-fun ViewManager.customSpinner(@ArrayRes items: Int) =
-    customSpinner(items, {})
+fun ViewManager.customSpinner(@ArrayRes items: Int, default: Int = 0) =
+    customSpinner(items, default, {})
 
 fun <T> ViewManager.customSpinner(
     items: List<T>,
@@ -168,6 +172,7 @@ fun <T> ViewManager.customSpinner(
 
 fun ViewManager.customSpinner(
     @ArrayRes items: Int,
+    default: Int = 0,
     init: CustomSpinner<String>.() -> Unit
 ) =
-    ankoView({ CustomSpinner.withArray(it, items, null) }, 0, init)
+    ankoView({ CustomSpinner.withArray(it, items, default, null) }, 0, init)

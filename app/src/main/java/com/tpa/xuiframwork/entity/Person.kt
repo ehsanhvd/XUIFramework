@@ -2,6 +2,7 @@ package com.tpa.xuiframwork.entity
 
 import com.tpa.xuiframework.form.annotation.*
 import com.tpa.xuiframework.form.validator.MandatoryValidator
+import com.tpa.xuiframwork.R
 
 data class Person(
     @Order(0)
@@ -27,6 +28,10 @@ data class Person(
     @Order(5)
     @KeepRow
     @CheckBox(displayName = "subscribe to news")
-    var subscribed: Boolean = true
+    var subscribed: Boolean = true,
+
+    @Order(6)
+    @Spinner(displayName = "gender", itemsArray =  R.array.gender)
+    var gender: Int = 1
     ) {
 }
