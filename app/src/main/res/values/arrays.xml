@@ -10,4 +10,11 @@
         <item>Male</item>
         <item>Female</item>
     </array>
+
+    <array name="inviteType">
+        <item>Friend</item>
+        <item>Ads</item>
+        <item>Facebook</item>
+        <item>Instagram</item>
+    </array>
 </resources>

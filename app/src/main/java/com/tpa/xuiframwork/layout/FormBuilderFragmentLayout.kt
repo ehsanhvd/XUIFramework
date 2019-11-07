@@ -23,16 +23,16 @@ class FormBuilderFragmentLayout(val appCompatActivity: AppCompatActivity) :
                     toast("done something")
                 }
                 .row()
-                .editText(id = R.id.editAnother).depends(R.id.checkTest)
+                .editText(id = R.id.editAnother).dependsOn(R.id.checkTest)
                 .checkbox("is something", id = R.id.checkTest, checked = true)
-                .text("some label", id = R.id.textLabel).depends(R.id.checkTest)
+                .text("some label", id = R.id.textLabel).dependsOn(R.id.checkTest)
                 .row()
                 .spinner(R.array.testArray).datePicker(format = XUtil.DATE_FORMAT_FULL)
                 .row().dateTimePicker(hint = "some date")
                 .radioGroup(orientation = LinearLayout.VERTICAL)
                 .radioButton("some option", id = R.id.radioOption).radioButton("another option")
                 .row().editText("some dependant text", id = R.id.textDependant)
-                .depends(R.id.radioOption)
+                .dependsOn(R.id.radioOption)
                 .row().row()
                 .iranTelInput(
                     hint = "iran tel"

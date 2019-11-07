@@ -3,6 +3,8 @@ package com.tpa.xuiframework.form
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.EditText
+import android.widget.RadioGroup
+import com.tpa.xuiframework.XConfig
 import com.tpa.xuiframework.form.annotation.*
 import com.tpa.xuiframework.view.BaseDatePickerTextView
 import java.lang.reflect.Field
@@ -109,6 +111,16 @@ class FormAnnotationProcessor(val form: Form, val entity: Any) {
 
                 val formField = FormField(Spinner::class, spinner(m, ta))
                 formFields.put(m, formField)
+            } else if (m.isAnnotationPresent(RadioButton::class.java)) {
+                val ta = m.getAnnotation(RadioButton::class.java)
+                val keepRow = m.isAnnotationPresent(KeepRow::class.java)
+
+                if (0 < i && !keepRow) {
+                    form.row()
+                }
+
+                val formField = FormField(RadioButton::class, radio(m, ta))
+                formFields.put(m, formField)
             }
 
             i++
@@ -121,7 +133,8 @@ class FormAnnotationProcessor(val form: Form, val entity: Any) {
         inputType = ta.inputType,
         imeOpt = ta.imeOpt,
         maxLength = ta.maxLenght,
-        validator = getInstance(ta.validator)
+        validator = getInstance(ta.validator),
+        id = ta.id
     ).getLastView()!!
 
     private fun iranTelInput(m: Field, ta: IranTelInput) = form.iranTelInput(
@@ -140,19 +153,39 @@ class FormAnnotationProcessor(val form: Form, val entity: Any) {
 
     private fun checkbox(m: Field, ta: CheckBox) = form.checkbox(
         ta.displayName,
-        checked = getValue(entity, m) as Boolean
+        checked = getValue(entity, m) as Boolean,
+        id = ta.id
     ).getLastView()!!
 
     private fun spinner(m: Field, ta: Spinner) = form.spinner(
         ta.itemsArray,
-        getValue(entity, m) as Int
+        getValue(entity, m) as Int,
+        ta.id
     ).getLastView()!!
 
+    private fun radio(m: Field, ta: RadioButton): View {
+
+        val lastView: View
+        if (ta.id != 0){
+            lastView = form.radioGroup(id = ta.id).getLastView()!!
+        } else {
+            lastView = form.radioGroup().getLastView()!!
+        }
+
+        val items = XConfig.app.resources.getStringArray(ta.itemsArray)
+
+        for (i in 0 until items.size) {
+            form.radioButton(items[i], checked = i == (getValue(entity, m) as Int))
+        }
+
+        return lastView //we've done this because we need to get radio group as last view
+    }
+
     private fun datePicker(m: Field, ta: DatePicker) =
-        form.datePicker(ta.displayName, getValue(entity, m) as Long).getLastView()!!
+        form.datePicker(ta.displayName, getValue(entity, m) as Long, id = ta.id).getLastView()!!
 
     private fun dateTimePicker(m: Field, ta: DateTimePicker) =
-        form.dateTimePicker(ta.displayName, getValue(entity, m) as Long).getLastView()!!
+        form.dateTimePicker(ta.displayName, getValue(entity, m) as Long, id = ta.id).getLastView()!!
 
     private fun getValue(entity: Any, field: Field): Any? {
         field.setAccessible(true)
@@ -176,6 +209,13 @@ class FormAnnotationProcessor(val form: Form, val entity: Any) {
             } else if (value.type.equals(Spinner::class)) {
                 key.setAccessible(true)
                 key.set(entity, (value.view as android.widget.Spinner).selectedItemPosition)
+            } else if (value.type.equals(RadioButton::class)) {
+
+                val checkedId = (value.view as RadioGroup).checkedRadioButtonId
+                val checkedView = value.view.findViewById<View>(checkedId)
+
+                key.setAccessible(true)
+                key.set(entity, value.view.indexOfChild(checkedView))
             }
         }
     }

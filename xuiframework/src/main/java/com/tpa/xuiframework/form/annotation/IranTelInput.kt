@@ -8,5 +8,6 @@ annotation class IranTelInput(
     val displayName: String = "",
     val text: String = "",
     val imeOpt: Int = EditorInfo.IME_ACTION_NEXT,
-    val mandatory: Boolean = false
+    val mandatory: Boolean = false,
+    val id: Int = 0
 )

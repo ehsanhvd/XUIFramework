@@ -7,5 +7,6 @@ import android.view.inputmethod.EditorInfo
 annotation class EmailInput(
     val displayName: String = "",
     val imeOpt: Int = EditorInfo.IME_ACTION_NEXT,
-    val mandatory: Boolean = false
+    val mandatory: Boolean = false,
+    val id: Int = 0
 )

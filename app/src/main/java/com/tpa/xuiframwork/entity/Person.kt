@@ -32,6 +32,10 @@ data class Person(
 
     @Order(6)
     @Spinner(displayName = "gender", itemsArray =  R.array.gender)
-    var gender: Int = 1
+    var gender: Int = 1,
+
+    @Order(6)
+    @RadioButton(displayName = "gender", itemsArray =  R.array.inviteType)
+    var inviteType: Int = 0
     ) {
 }

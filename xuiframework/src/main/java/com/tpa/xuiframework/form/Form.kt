@@ -46,11 +46,13 @@ open class Form private constructor(
         hint: String = "",
         text: String = "",
         imeOpt: Int = EditorInfo.IME_ACTION_NEXT,
-        mandatory: Boolean = false
+        mandatory: Boolean = false,
+        id: Int = 0
     ): Form {
         return editText(
             hint, text, 11, InputType.TYPE_CLASS_PHONE, imeOpt,
-            IranTelValidator(mandatory)
+            IranTelValidator(mandatory),
+            id
         )
     }
 
@@ -58,11 +60,13 @@ open class Form private constructor(
         hint: String = "",
         text: String = "",
         imeOpt: Int = EditorInfo.IME_ACTION_NEXT,
-        mandatory: Boolean = false
+        mandatory: Boolean = false,
+        id: Int = 0
     ): Form {
         return editText(
             hint, text, 11, InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS, imeOpt,
-            EmailValidator(mandatory)
+            EmailValidator(mandatory),
+            id
         )
     }
 
@@ -144,14 +148,26 @@ open class Form private constructor(
         return this
     }
 
-    fun spinner(@ArrayRes items: Int, default: Int = 0, render: ((View, String, Int) -> Unit)? = null): Form {
-        addViewToForm(CustomSpinner.withArray(parent.context, items,default, render))
+    fun spinner(
+        @ArrayRes items: Int, default: Int = 0,
+        id: Int = 0,
+        render: ((View, String, Int) -> Unit)? = null
+    ): Form {
+        val spinner = CustomSpinner.withArray(parent.context, items, default, render)
+        spinner.id = id
+        addViewToForm(spinner)
         return this
     }
 
-    fun spinner(items: List<Any>,default: Int = 0, render: ((View, Any, Int) -> Unit)? = null) {
-        val spinner = CustomSpinner(parent.context, items,default, render)
+    fun spinner(
+        items: List<Any>,
+        default: Int = 0,
+        id: Int = 0,
+        render: ((View, Any, Int) -> Unit)? = null
+    ) {
+        val spinner = CustomSpinner(parent.context, items, default, render)
         spinner.set(items)
+        spinner.id = id
         addViewToForm(spinner)
     }
 
@@ -201,6 +217,21 @@ open class Form private constructor(
         textView.textColor = Color.BLACK
 
         addViewToForm(textView)
+        return this
+    }
+
+    fun radioGroup(
+        @ArrayRes items: Int,
+        checkedIndex: Int = 0,
+        orientation: Int = LinearLayout.HORIZONTAL,
+        id: Int = 0
+    ): Form {
+        val itemStrings = appCompatActivity.resources.getStringArray(items)
+
+        for (i in 0 until itemStrings.size) {
+            radioButton(itemStrings[i], checked = i == checkedIndex)
+        }
+
         return this
     }
 
@@ -273,15 +304,15 @@ open class Form private constructor(
         return this
     }
 
-    fun depends(
+    fun dependsOn(
         depends: Int,
         visibIfAvail: Int = View.VISIBLE,
         visibIfNotAvail: Int = View.INVISIBLE
     ): Form {
-        return depends(arrayListOf(depends), visibIfAvail, visibIfNotAvail)
+        return dependsOn(arrayListOf(depends), visibIfAvail, visibIfNotAvail)
     }
 
-    fun depends(
+    fun dependsOn(
         depends: List<Int>,
         visibIfAvail: Int = View.VISIBLE,
         visibIfNotAvail: Int = View.INVISIBLE
