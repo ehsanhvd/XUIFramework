@@ -17,7 +17,8 @@ class DrawerView(val onclick: (tag: String, i: Int) -> Unit = { s: String, i: In
         R.string.paginationAdapter,
         R.string.customViews,
         R.string.formBuilder,
-        R.string.autoForm
+        R.string.autoForm,
+        R.string.dataFragment
     )
 
     override fun createView(ui: AnkoContext<ViewGroup>): View {

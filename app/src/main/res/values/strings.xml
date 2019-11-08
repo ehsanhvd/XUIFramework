@@ -7,4 +7,5 @@
     <string name="autoForm">Auto form</string>
     <string name="rtl">rtl</string>
     <string name="multiSelectAdapter">Multi Select adapter</string>
+    <string name="dataFragment">Data fragment</string>
 </resources>

@@ -22,6 +22,5 @@ class App : Application() {
         XConfig.typefaces.add(XUtil.getTypeface("font/Vazir-Bold.ttf"))
 
         XConfig.baseUrl = "http://localhost/travelo/ws"
-        XConfig.serviceNamePostfix = ".php"
     }
 }
