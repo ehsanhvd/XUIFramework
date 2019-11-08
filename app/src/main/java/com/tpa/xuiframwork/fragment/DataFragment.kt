@@ -35,15 +35,24 @@ class DataFragment : BaseFragment() {
         }
 
         btnGetReqData.setOnClickListener {
+//            xRequestDataAbs<ServerResponse>("http://date.jsontest.com/")
+//                .startData(
+//                    ServerResponse::class.java,
+//
+//                    {
+//                        textResponse.setText(it.toString())
+//                    }, {
+//
+//                    })
+//
             xRequestDataAbs<ServerResponse>("http://date.jsontest.com/")
-                .startData(
-                    ServerResponse::class.java,
+                .startDeserializer(ServerResponse::class.java, {
 
-                    {
-                        textResponse.setText(it.toString())
-                    }, {
+                }, {
 
-                    })
+                })
         }
+
+
     }
 }

@@ -2,16 +2,11 @@ package com.tpa.xuiframework.webservice
 
 import com.google.gson.Gson
 import com.tpa.xuiframework.XConfig
+import org.json.JSONObject
 import java.io.IOException
 
 
 class XRequestData<T>(absUrl: String) : XRequest(absUrl) {
-
-    init {
-
-
-//        type = (javaClass.getGenericSuperclass() as ParameterizedType).getActualTypeArguments()[0] as Class<T>?
-    }
 
     fun startData(
         clazz: Class<T>,
@@ -23,6 +18,21 @@ class XRequestData<T>(absUrl: String) : XRequest(absUrl) {
             val responseObj: T = Gson().fromJson(it, clazz)
 
             response(responseObj)
+        }, {
+            error(it)
+        })
+
+    }
+
+    fun startDeserializer(
+        clazz: Class<T>,
+        response: (json: JSONObject) -> Any,
+        error: (e: IOException) -> Any = {}
+    ) {
+
+        start({
+
+            response(JSONObject(it))
         }, {
             error(it)
         })
