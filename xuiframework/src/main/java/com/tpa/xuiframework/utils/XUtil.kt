@@ -218,8 +218,15 @@ class XUtil {
 
 
 //not null
-fun <T> NN(any: T?, op: ((it: T) -> Any)){
-    if (any != null){
+fun <T> NN(any: T?, op: ((it: T) -> Any)) {
+    if (any != null) {
         op(any)
+    }
+}
+
+//not null and not empty string
+fun NNE(string: String?, op: ((it: String) -> Any)) {
+    if (string != null && !string.isEmpty() && !string.equals("null")) {
+        op(string)
     }
 }

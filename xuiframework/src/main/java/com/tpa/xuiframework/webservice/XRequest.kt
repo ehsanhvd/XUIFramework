@@ -4,6 +4,7 @@ import android.os.Handler
 import android.os.Looper
 import com.tpa.xuiframework.XConfig
 import com.tpa.xuiframework.log
+import com.tpa.xuiframework.utils.NNE
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.json.JSONObject
@@ -24,6 +25,9 @@ open class XRequest(private val absUrl: String) {
             client = OkHttpClient.Builder().addInterceptor {
                 val request = it.request()
                 log("request: " + request.url)
+                NNE(request.body.toString()) {
+                    log("request body: $it")
+                }
                 it.proceed(request)
             }.build()
         }
