@@ -2,20 +2,18 @@ package com.tpa.xuiframework.webservice
 
 import com.google.gson.Gson
 import com.tpa.xuiframework.XConfig
-import org.json.JSONObject
 import java.io.IOException
 
 
-class XRequestData<T>(absUrl: String) : XRequest(absUrl) {
+class XRequestData(absUrl: String) : XRequest(absUrl) {
 
-    fun startData(
-        clazz: Class<T>,
-        response: (resObj: T) -> Any,
-        error: (e: IOException) -> Any = {}
+    inline fun <reified T> startData(
+        crossinline response: (resObj: T) -> Any,
+        crossinline error: (e: IOException) -> Any = {}
     ) {
 
-        start({
-            val responseObj: T = Gson().fromJson(it, clazz)
+        startRaw({
+            val responseObj: T = Gson().fromJson(it, T::class.java)
 
             response(responseObj)
         }, {
@@ -23,28 +21,13 @@ class XRequestData<T>(absUrl: String) : XRequest(absUrl) {
         })
 
     }
-
-    fun startDeserializer(
-        clazz: Class<T>,
-        response: (json: JSONObject) -> Any,
-        error: (e: IOException) -> Any = {}
-    ) {
-
-        start({
-
-            response(JSONObject(it))
-        }, {
-            error(it)
-        })
-
-    }
 }
 
 
-fun <T> xRequestDataAbs(absAddress: String): XRequestData<T> {
+fun xRequestDataAbs(absAddress: String): XRequestData {
     return XRequestData(absAddress)
 }
 
-fun <T> xRequestData(serviceName: String): XRequestData<T> {
+fun xRequestData(serviceName: String): XRequestData {
     return xRequestDataAbs(XConfig.baseUrl + serviceName)
 }

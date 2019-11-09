@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.tpa.xuiframework.fragment.BaseFragment
-import com.tpa.xuiframework.log
 import com.tpa.xuiframework.webservice.xRequestAbs
 import com.tpa.xuiframework.webservice.xRequestDataAbs
 import com.tpa.xuiframwork.R
@@ -26,31 +25,27 @@ class DataFragment : BaseFragment() {
 
         btnGetReq.setOnClickListener {
             xRequestAbs("http://date.jsontest.com/")
-                .start({
-                    log("response: $it")
+                .startRaw({
                     textResponse.setText(it)
                 }, {
 
                 })
         }
 
-        btnGetReqData.setOnClickListener {
-//            xRequestDataAbs<ServerResponse>("http://date.jsontest.com/")
-//                .startData(
-//                    ServerResponse::class.java,
-//
-//                    {
-//                        textResponse.setText(it.toString())
-//                    }, {
-//
-//                    })
-//
-            xRequestDataAbs<ServerResponse>("http://date.jsontest.com/")
-                .startDeserializer(ServerResponse::class.java, {
+        btnGetReqJsonObject.setOnClickListener {
+            xRequestAbs("http://date.jsontest.com/").startDeserializer({
+                textResponse.setText(it.toString())
+            })
+        }
 
-                }, {
+        btnGetReqDataObject.setOnClickListener {
+            xRequestDataAbs("http://date.jsontest.com/")
+                .startData<ServerResponse>(
+                    {
+                        textResponse.setText(it.toString())
+                    }, {
 
-                })
+                    })
         }
 
 

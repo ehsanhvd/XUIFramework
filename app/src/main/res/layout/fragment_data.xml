@@ -12,7 +12,13 @@
         android:text="test get request raw" />
 
     <Button
-        android:id="@+id/btnGetReqData"
+        android:id="@+id/btnGetReqJsonObject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test get request json object" />
+
+    <Button
+        android:id="@+id/btnGetReqDataObject"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="test get request data" />
