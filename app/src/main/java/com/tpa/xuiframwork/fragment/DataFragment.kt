@@ -39,8 +39,9 @@ class DataFragment : BaseFragment() {
         }
 
         btnGetReqDataObject.setOnClickListener {
-            xRequestDataAbs("http://date.jsontest.com/")
-                .startData<ServerResponse>(
+            val xReqData = xRequestDataAbs("http://date.jsontest.com/")
+            xReqData.bodyParam("name", "val")
+            xReqData.startData<ServerResponse>(
                     {
                         textResponse.setText(it.toString())
                     }, {

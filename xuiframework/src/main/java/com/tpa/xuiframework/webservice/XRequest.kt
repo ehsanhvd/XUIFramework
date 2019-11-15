@@ -13,8 +13,10 @@ import java.io.IOException
 
 open class XRequest(private val absUrl: String) {
 
-    var urlRequest: HttpUrl.Builder =
+    private var urlRequest: HttpUrl.Builder =
         absUrl.toHttpUrlOrNull()?.newBuilder()!!.addEncodedPathSegment(absUrl)
+
+    private var body: FormBody.Builder? = null
 
     companion object {
         var client: OkHttpClient? = null
@@ -33,11 +35,16 @@ open class XRequest(private val absUrl: String) {
         }
     }
 
-    fun qParam(name: String, value: String) {
+    fun qParam(name: String, value: String): XRequest {
         urlRequest.addQueryParameter(name, value)
+        return this
     }
 
     fun bodyParam(name: String, value: String) {
+        if (body == null){
+            body= FormBody.Builder()
+        }
+        body?.add(name, value)
     }
 
     fun startRaw(
@@ -46,6 +53,10 @@ open class XRequest(private val absUrl: String) {
     ) {
         val request = Request.Builder()
             .url(urlRequest.build())
+
+        if (body != null){
+            request.post(body!!.build())
+        }
 
         client!!.newCall(request.build()).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
