@@ -2,25 +2,29 @@ package com.tpa.xuiframwork.layout
 
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatActivity
+import com.tpa.xuiframework.activity.XActivity
+import com.tpa.xuiframework.extention.showSnackbar
 import com.tpa.xuiframework.form.Form
 import com.tpa.xuiframework.utils.XUtil
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
-import org.jetbrains.anko.*
+import org.jetbrains.anko.AnkoComponent
+import org.jetbrains.anko.AnkoContext
+import org.jetbrains.anko.button
 import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.verticalLayout
 
-class FormBuilderFragmentLayout(val appCompatActivity: AppCompatActivity) :
+class FormBuilderFragmentLayout(val xActivity: XActivity) :
     AnkoComponent<ViewGroup> {
     override fun createView(ui: AnkoContext<ViewGroup>) = with(ui) {
         verticalLayout {
             val testData = TestData("test")
 //            Form.with(this, testData)
 
-            val form = Form.with(appCompatActivity, this).editText("text 1").editText("text 2")
+            val form = Form.with(xActivity, this).editText("text 1").editText("text 2")
                 .row()
                 .editText("text 3").button("do something") {
-                    toast("done something")
+                    xActivity.showSnackbar("done something")
                 }
                 .row()
                 .editText(id = R.id.editAnother).dependsOn(R.id.checkTest)

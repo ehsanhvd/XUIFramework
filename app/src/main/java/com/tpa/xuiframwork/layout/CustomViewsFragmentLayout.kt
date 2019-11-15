@@ -12,6 +12,7 @@ import com.tpa.xuiframework.utils.XDatePicker
 import com.tpa.xuiframework.utils.XDateTimePicker
 import com.tpa.xuiframework.utils.XImagePicker
 import com.tpa.xuiframework.view.customSpinner
+import com.tpa.xuiframework.view.glideImageView
 import com.tpa.xuiframework.view.glideImageViewCircle
 import com.tpa.xuiframework.view.horizontalrecyclerview.xhorizontalRecyclerView
 import com.tpa.xuiframwork.R
@@ -24,11 +25,16 @@ class CustomViewsFragmentLayout(
 ) : AnkoComponent<ViewGroup> {
     override fun createView(ui: AnkoContext<ViewGroup>) = with(ui) {
         verticalLayout {
-            customSpinner(R.array.testArray) {
+            linearLayout {
+                gravity = Gravity.CENTER
 
-
-            }.lparams(wrapContent, wrapContent)
-
+                textView("easy spinner: ").lparams(weight = 1f){
+                    margin = dip(10)
+                }
+                customSpinner(R.array.testArray).lparams(weight = 1f)
+            }.lparams {
+                bottomMargin = dip(10)
+            }
 
             linearLayout {
                 button("ask dialog") {
@@ -59,9 +65,12 @@ class CustomViewsFragmentLayout(
                 }.lparams {
                     weight = 1F
                 }
+            }.lparams(matchParent, wrapContent) {
+                bottomMargin = dip(10)
             }
+
             linearLayout {
-                button("Date picker") {
+                button("Jalali date picker") {
                     onClick {
                         val datePicker =
                             XDatePicker(appCompatActivity).showDatePicker { datePickerDialog: DatePickerDialog, year: Int, month: Int, day: Int -> }
@@ -69,7 +78,7 @@ class CustomViewsFragmentLayout(
                 }.lparams {
                     weight = 1F
                 }
-                button("Date Time picker") {
+                button("Jalali date Time picker") {
                     onClick {
                         val datePicker =
                             XDateTimePicker(appCompatActivity).showDateTimePicker { timePickerDialog: TimePickerDialog, year: Int, month: Int, day: Int, hour: Int, min: Int -> }
@@ -77,22 +86,41 @@ class CustomViewsFragmentLayout(
                 }.lparams {
                     weight = 1F
                 }
+            }.lparams(matchParent, wrapContent) {
+                bottomMargin = dip(10)
             }
+
             linearLayout {
                 gravity = Gravity.CENTER_VERTICAL
-                textView("Image picker").lparams {
-                    marginStart = dip(20)
+                textView("Round\nimage picker").lparams {
+                    marginStart = dip(10)
                 }
                 glideImageViewCircle {
-                    backgroundResource = R.drawable.gray_circle
+                    imageResource = R.drawable.gray_circle
                     onClick {
                         xImagePicker.startWithFragment {
                             setImageURI(it)
                         }
                     }
-                }.lparams(dip(100), dip(100)) {
-                    marginStart = dip(20)
+                }.lparams(dip(80), dip(80)) {
+                    marginStart = dip(10)
                 }
+
+                textView("Image picker").lparams {
+                    marginStart = dip(10)
+                }
+                glideImageView {
+                    imageResource = R.drawable.gray_rect
+                    onClick {
+                        xImagePicker.startWithFragment {
+                            setImageURI(it)
+                        }
+                    }
+                }.lparams(dip(80), dip(80)) {
+                    marginStart = dip(10)
+                }
+            }.lparams(matchParent, wrapContent) {
+                bottomMargin = dip(10)
             }
             xhorizontalRecyclerView {
                 adapter = XAdapter(R.layout.row_horizontal_recycler, arrayListOf("item1", "item2", "item3", "item4"), { view: View, s: String, i: Int -> })

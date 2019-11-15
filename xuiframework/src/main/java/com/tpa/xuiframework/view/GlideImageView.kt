@@ -46,7 +46,9 @@ open class GlideImageView(context: Context, val attrs: AttributeSet?, val defSty
         val request = Glide.with(getContext())
             .load(url)
 
-        getOptions()?.let { request.apply(it) }
+        getOptions()?.let {
+            request.apply(it)
+        }
 
         request.into(this)
     }
@@ -61,7 +63,9 @@ open class GlideImageView(context: Context, val attrs: AttributeSet?, val defSty
         val request = Glide.with(getContext())
             .load(bm)
 
-        getOptions()?.let { request.apply(it) }
+        getOptions()?.let {
+            request.apply(it)
+        }
 
         request.into(this)
     }
@@ -81,5 +85,5 @@ open class GlideImageView(context: Context, val attrs: AttributeSet?, val defSty
 
 fun ViewManager.glideImageView() = glideImageView {}
 inline fun ViewManager.glideImageView(init: GlideImageView.() -> Unit) =
-    ankoView({ GlideImageView(it) },0,  init)
+    ankoView({ GlideImageView(it) }, 0, init)
 

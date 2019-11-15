@@ -22,19 +22,19 @@ class SimpleAdapterFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val list = arrayListOf(
-            TestData("item 1", "https://pickaface.net/gallery/avatar/Benjohnsone54fbec7a167c5.png"),
-            TestData("item 2"),
-            TestData("item 3"),
-            TestData("item 4"),
-            TestData("item 5"),
-            TestData("item 6"),
-            TestData("item 7"),
-            TestData("item 8"),
-            TestData("item 9"),
-            TestData("item 10"),
-            TestData("item 11"),
-            TestData("item 12"),
-            TestData("item 13")
+            TestData("item 1", "https://picsum.photos/200?random=1"),
+            TestData("item 2", "https://picsum.photos/200?random=2"),
+            TestData("item 3", "https://picsum.photos/200?random=3"),
+            TestData("item 4", "https://picsum.photos/200?random=4"),
+            TestData("item 5", "https://picsum.photos/200?random=5"),
+            TestData("item 6", "https://picsum.photos/200?random=6"),
+            TestData("item 7", "https://picsum.photos/200?random=7"),
+            TestData("item 8", "https://picsum.photos/200?random=8"),
+            TestData("item 9", "https://picsum.photos/200?random=9"),
+            TestData("item 10", "https://picsum.photos/200?random=10"),
+            TestData("item 11", "https://picsum.photos/200?random=11"),
+            TestData("item 12", "https://picsum.photos/200?random=12"),
+            TestData("item 13", "https://picsum.photos/200?random=13")
         )
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
@@ -44,7 +44,7 @@ class SimpleAdapterFragment : BaseFragment() {
                 view.loadImage(R.id.imageProfile, item.profile)
 
                 view.setOnClickListener {
-                    showSnackbar("Snackbar from fragment")
+                    showSnackbar("${item.name} clicked")
                 }
             }
 
