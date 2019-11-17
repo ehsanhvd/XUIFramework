@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.tpa.xuiframework.fragment.BaseFragment
+import com.tpa.xuiframework.fragment.XFragment
 import com.tpa.xuiframework.webservice.xRequestAbs
 import com.tpa.xuiframework.webservice.xRequestDataAbs
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.ServerResponse
 import kotlinx.android.synthetic.main.fragment_data.*
 
-class DataFragment : BaseFragment() {
+class DataFragment : XFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

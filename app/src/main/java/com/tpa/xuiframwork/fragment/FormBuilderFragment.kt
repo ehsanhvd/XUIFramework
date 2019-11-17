@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.tpa.xuiframework.activity.XActivity
-import com.tpa.xuiframework.fragment.BaseFragment
+import com.tpa.xuiframework.fragment.XFragment
 import com.tpa.xuiframwork.layout.FormBuilderFragmentLayout
 import org.jetbrains.anko.AnkoContext
 
-class FormBuilderFragment : BaseFragment() {
+class FormBuilderFragment : XFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

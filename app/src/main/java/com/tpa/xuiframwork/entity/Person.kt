@@ -10,7 +10,7 @@ data class Person(
     var name: String,
 
     @Order(1)
-    @IranTelInput(mandatory = true)
+    @IranTelInput(displayName = "Tel", mandatory = true)
     var tel: String = "",
 
     @Order(2)

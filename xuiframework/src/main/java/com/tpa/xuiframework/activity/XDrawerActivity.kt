@@ -12,12 +12,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.tpa.xuiframework.R
 import com.tpa.xuiframework.extention.addView
+import com.tpa.xuiframework.fragment.XFragment
 import kotlinx.android.synthetic.main.activity_drawer.*
 import org.jetbrains.anko.AnkoComponent
 
 abstract class XDrawerActivity : XActivity() {
 
-    var fragmentItems: List<Fragment> = arrayListOf();
+    //fragmentActivity or drawerActivity???
+
+    var fragmentItems: List<Fragment> = arrayListOf()
+    var currentIndex = -1;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -97,13 +101,24 @@ abstract class XDrawerActivity : XActivity() {
             .addToBackStack(null)
             .commit()
         fragmentManager.executePendingTransactions()
+
+        if (fragmentItems[position] is XFragment){
+            (fragmentItems[position] as XFragment).onSelected()
+        }
+        currentIndex = position
     }
 
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount > 1) {
             supportFragmentManager.popBackStackImmediate()
         } else {
-            supportFinishAfterTransition()
+            if (fragmentItems[currentIndex] is XFragment){
+                if (!(fragmentItems[currentIndex] as XFragment).onBackPressed()){
+                    supportFinishAfterTransition()
+                }
+            } else {
+                supportFinishAfterTransition()
+            }
         }
     }
 }

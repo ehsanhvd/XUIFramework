@@ -27,24 +27,24 @@ class FormBuilderFragmentLayout(val xActivity: XActivity) :
                     xActivity.showSnackbar("done something")
                 }
                 .row()
-                .editText(id = R.id.editAnother).dependsOn(R.id.checkTest)
-                .checkbox("is something", id = R.id.checkTest, checked = true)
-                .text("some label", id = R.id.textLabel).dependsOn(R.id.checkTest)
+                .checkbox("Checkbox", id = R.id.checkTest)
+                .editText(hint = "dependant edit", id = R.id.editAnother).dependsOn(R.id.checkTest)
+                .text("dependant label", id = R.id.textLabel).dependsOn(R.id.checkTest)
                 .row()
-                .spinner(R.array.testArray).datePicker(format = XUtil.DATE_FORMAT_FULL)
-                .row().dateTimePicker(hint = "some date")
+                .spinner(R.array.testArray).space().space()
+                .row()
+                .datePicker(hint = "Jalali date picker", format = XUtil.DATE_FORMAT_FULL).dateTimePicker(hint = "some date")
+                .row()
                 .radioGroup(orientation = LinearLayout.VERTICAL)
                 .radioButton("some option", id = R.id.radioOption).radioButton("another option")
                 .row().editText("some dependant text", id = R.id.textDependant)
                 .dependsOn(R.id.radioOption)
                 .row().row()
-                .iranTelInput(
-                    hint = "iran tel"
-                )
-                .emailInput()
+                .iranTelInput(hint = "iran tel")
+                .emailInput(hint ="mandatory email", mandatory = true)
                 .finish()
 
-            button("validate") {
+            button("Validate edit texts") {
                 onClick {
                     form.validateForm { editText, isValid ->
                         if (!isValid) {
