@@ -3,9 +3,11 @@ package com.tpa.xuiframwork.activity
 import android.os.Bundle
 import android.widget.CompoundButton
 import com.tpa.xuiframework.activity.XActionBarDrawerActivity
+import com.tpa.xuiframework.log
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.fragment.*
-import com.tpa.xuiframwork.layout.DrawerView
+import com.tpa.xuiframwork.layout.DrawerViewLayout
+import com.tpa.xuiframwork.layout.MainActivityLayout
 import org.jetbrains.anko.sdk27.coroutines.onCheckedChange
 import org.jetbrains.anko.setContentView
 
@@ -30,7 +32,7 @@ class MainActivity : XActionBarDrawerActivity() {
 
         setFragments(fragments)
 
-        val drawerView = DrawerView { s: String, i: Int ->
+        val drawerView = DrawerViewLayout { s: String, i: Int ->
             toggleDrawer()
             setFragment(i, R.id.frameFragment)
         }
@@ -38,8 +40,7 @@ class MainActivity : XActionBarDrawerActivity() {
 
         setDrawerView(drawerView)
 
-//        log("logged")
-//        showSnackbar("Snackbar from activity")
+        log("logged")
 
         findViewById<CompoundButton>(R.id.switchRtl).onCheckedChange { buttonView, isChecked ->
             setLanguage(if (isChecked) "fa" else "en")

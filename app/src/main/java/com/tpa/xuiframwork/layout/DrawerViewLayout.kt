@@ -9,7 +9,7 @@ import com.tpa.xuiframwork.R
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
-class DrawerView(val onclick: (tag: String, i: Int) -> Unit = { s: String, i: Int -> }) : AnkoComponent<ViewGroup> {
+class DrawerViewLayout(val onclick: (tag: String, i: Int) -> Unit = { s: String, i: Int -> }) : AnkoComponent<ViewGroup> {
 
     private val menus = arrayListOf(
         R.string.simpleAdapter,
