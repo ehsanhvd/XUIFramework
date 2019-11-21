@@ -26,8 +26,6 @@ open class Form private constructor(
 ) :
     CompoundButton.OnCheckedChangeListener {
 
-    //TODO wrap content mode
-
     private var processor: FormAnnotationProcessor? = null
     private val dependencies: ArrayList<Dependency> = arrayListOf()
     private var currentRow: LinearLayout? = null
@@ -320,7 +318,7 @@ open class Form private constructor(
         if (lastView != null && lastView!!.id != 0) {
             dependencies.add(Dependency(depends, lastView!!.id, visibIfAvail, visibIfNotAvail))
         } else {
-            throw IllegalStateException("last view cannot be found")
+            throw IllegalStateException("last view cannot be found or its id is empty")
         }
         return this
     }
@@ -462,6 +460,25 @@ open class Form private constructor(
 
     public fun getLastView(): View? {
         return lastView
+    }
+
+    public fun wrapContent(): Form {
+        val params: LinearLayout.LayoutParams?
+
+        if (lastView?.layoutParams == null) {
+            params = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                0f
+            )
+        } else {
+            params = lastView?.layoutParams as LinearLayout.LayoutParams?
+            params?.width = LinearLayout.LayoutParams.WRAP_CONTENT
+            params?.weight = 0f
+        }
+
+        lastView?.layoutParams = params
+        return this
     }
 
     companion object {

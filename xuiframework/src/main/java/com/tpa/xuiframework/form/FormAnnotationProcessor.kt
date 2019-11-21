@@ -122,7 +122,9 @@ class FormAnnotationProcessor(val form: Form, val entity: Any) {
                 val formField = FormField(RadioButton::class, radio(m, ta))
                 formFields.put(m, formField)
             }
-
+            if (m.isAnnotationPresent(WrapContent::class.java)) {
+                form.wrapContent()
+            }
             i++
         }
     }
@@ -166,7 +168,7 @@ class FormAnnotationProcessor(val form: Form, val entity: Any) {
     private fun radio(m: Field, ta: RadioButton): View {
 
         val lastView: View
-        if (ta.id != 0){
+        if (ta.id != 0) {
             lastView = form.radioGroup(id = ta.id).getLastView()!!
         } else {
             lastView = form.radioGroup().getLastView()!!

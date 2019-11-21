@@ -25,9 +25,10 @@ data class Person(
     @EmailInput(displayName = "email")
     var email: String = "",
 
+    @WrapContent
     @Order(5)
     @KeepRow
-    @CheckBox(displayName = "subscribe to news")
+    @CheckBox(displayName = "subscribe news")
     var subscribed: Boolean = true,
 
     @Order(6)

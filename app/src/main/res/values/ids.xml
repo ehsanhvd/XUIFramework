@@ -6,4 +6,5 @@
     <item name="textDependant" type="id" />
     <item name="editAnother" type="id" />
     <item name="radioOption" type="id" />
+    <item name="checkWrapDep" type="id" />
 </resources>
