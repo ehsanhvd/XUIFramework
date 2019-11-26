@@ -173,8 +173,10 @@ class FormAnnotationProcessor(val form: Form, val entity: Any) {
         } else {
             lastView = form.radioGroup().getLastView()!!
         }
-
-        val items = XConfig.app.resources.getStringArray(ta.itemsArray)
+        if (XConfig.app == null){
+            throw IllegalStateException("please set app context to XConfig")
+        }
+        val items = XConfig.app!!.resources.getStringArray(ta.itemsArray)
 
         for (i in 0 until items.size) {
             form.radioButton(items[i], checked = i == (getValue(entity, m) as Int))

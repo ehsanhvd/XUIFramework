@@ -19,7 +19,10 @@ class XUtil {
         val DATE_FORMAT_FULL: Int = 2
 
         public fun getTypeface(path: String): Typeface {
-            return Typeface.createFromAsset(XConfig.app.assets, path);
+            if (XConfig.app == null){
+                throw IllegalStateException("please set app context to XConfig")
+            }
+            return Typeface.createFromAsset(XConfig.app!!.assets, path);
         }
 
         public fun getAccentColor(context: Context): Int {

@@ -10,7 +10,7 @@ class XConfig {
 
         var baseUrl: String = ""
 
-        lateinit var app: Application
+        var app: Application? = null
         val typefaces = arrayListOf<Typeface>()
     }
 }
