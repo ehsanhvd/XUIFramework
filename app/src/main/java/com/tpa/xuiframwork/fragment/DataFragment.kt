@@ -40,7 +40,7 @@ class DataFragment : XFragment() {
 
         btnGetReqDataObject.setOnClickListener {
             val xReqData = xRequestDataAbs("http://date.jsontest.com/")
-            xReqData.bodyParam("name", "val")
+            xReqData.qParam("name", "val")
             xReqData.startData<ServerResponse>(
                     {
                         textResponse.setText(it.toString())

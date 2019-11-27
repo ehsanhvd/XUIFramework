@@ -208,11 +208,7 @@ class XUtil {
                     lastDigit = 11 - divideRemaining
                 }
 
-                return if (Character.getNumericValue(melliCode[9]) == lastDigit) {
-                    true
-                } else {
-                    false // Invalid MelliCode
-                }
+                return Character.getNumericValue(melliCode[9]) == lastDigit
             }
         }
 
