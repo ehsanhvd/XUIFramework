@@ -1,19 +1,1 @@
 ## XUIFramwork
-
-### Recycler adapters - wiki >
-pre-made common types of recycler adapters, like pagination adapter, multiselection adapter, etc. 
-### Custom views - wiki >
-extended android views to use them easily or use custom fonts, such as easy spinner, image pickers, expandable layout, etc.
-### Form - wiki >
-easily create forms:
-
-`Form.with(activity, yourLinearLayoutOrViewGroup).editText("text 1").row().checkbox("check box").finish()`
-### Auto Form - wiki >
-create forms using entity models and annotations:
-
-`data class Person(@Input(displayName = "name hint") var name: String)`
-### Data - wiki >
-access android shared prefrences, create easy http requests and get result as raw text, JSONObject or data model.
-### Custom dialogs - wiki >
-info, ask and input dialog
-### Other code utils - wiki >
