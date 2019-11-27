@@ -45,7 +45,7 @@ open class Form private constructor(
         text: String = "",
         imeOpt: Int = EditorInfo.IME_ACTION_NEXT,
         mandatory: Boolean = false,
-        id: Int = 0
+        id: Int = View.NO_ID
     ): Form {
         return editText(
             hint, text, 11, InputType.TYPE_CLASS_PHONE, imeOpt,
@@ -59,7 +59,7 @@ open class Form private constructor(
         text: String = "",
         imeOpt: Int = EditorInfo.IME_ACTION_NEXT,
         mandatory: Boolean = false,
-        id: Int = 0
+        id: Int = View.NO_ID
     ): Form {
         return editText(
             hint, text, 11, InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS, imeOpt,
@@ -75,7 +75,7 @@ open class Form private constructor(
         inputType: Int = InputType.TYPE_CLASS_TEXT,
         imeOpt: Int = EditorInfo.IME_ACTION_NEXT,
         validator: Validator? = null,
-        id: Int = 0
+        id: Int = View.NO_ID
 
     ): Form {
         val editText = CustomEditText(parent.context)
@@ -99,7 +99,7 @@ open class Form private constructor(
         hint: String = "",
         date: Long = 0,
         format: Int = XUtil.DATE_FORMAT_SHORT,
-        id: Int = 0,
+        id: Int = View.NO_ID,
         validator: DateRangeValidator? = null
 
     ): Form {
@@ -124,7 +124,7 @@ open class Form private constructor(
         hint: String = "",
         date: Long = 0,
         format: Int = XUtil.DATE_FORMAT_SHORT,
-        id: Int = 0,
+        id: Int = View.NO_ID,
         validator: DateRangeValidator? = null
 
     ): Form {
@@ -148,7 +148,7 @@ open class Form private constructor(
 
     fun spinner(
         @ArrayRes items: Int, default: Int = 0,
-        id: Int = 0,
+        id: Int = View.NO_ID,
         render: ((View, String, Int) -> Unit)? = null
     ): Form {
         val spinner = CustomSpinner.withArray(parent.context, items, default, render)
@@ -160,7 +160,7 @@ open class Form private constructor(
     fun spinner(
         items: List<Any>,
         default: Int = 0,
-        id: Int = 0,
+        id: Int = View.NO_ID,
         render: ((View, Any, Int) -> Unit)? = null
     ) {
         val spinner = CustomSpinner(parent.context, items, default, render)
@@ -171,7 +171,7 @@ open class Form private constructor(
 
     fun button(
         text: String,
-        id: Int = 0,
+        id: Int = View.NO_ID,
         onClick: ((Button) -> Unit)? = null
     ): Form {
         val button = CustomButton(parent.context)
@@ -191,7 +191,7 @@ open class Form private constructor(
 
     fun checkbox(
         text: String,
-        id: Int = 0,
+        id: Int = View.NO_ID,
         checked: Boolean = false
     ): Form {
         val checkBox = CustomCheckbox(parent.context)
@@ -205,7 +205,7 @@ open class Form private constructor(
 
     fun text(
         text: String,
-        id: Int = 0,
+        id: Int = View.NO_ID,
         gravity: Int = GravityCompat.START
     ): Form {
         val textView = CustomTextView(parent.context)
@@ -222,7 +222,7 @@ open class Form private constructor(
         @ArrayRes items: Int,
         checkedIndex: Int = 0,
         orientation: Int = LinearLayout.HORIZONTAL,
-        id: Int = 0
+        id: Int = View.NO_ID
     ): Form {
         val itemStrings = appCompatActivity.resources.getStringArray(items)
 
@@ -235,7 +235,7 @@ open class Form private constructor(
 
     fun radioGroup(
         orientation: Int = LinearLayout.HORIZONTAL,
-        id: Int = 0
+        id: Int = View.NO_ID
     ): Form {
         val rg = RadioGroup(parent.context)
         rg.orientation = orientation

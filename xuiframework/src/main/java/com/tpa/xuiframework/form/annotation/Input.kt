@@ -1,6 +1,7 @@
 package com.tpa.xuiframework.form.annotation
 
 import android.text.InputType
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import com.tpa.xuiframework.form.Validator
 import com.tpa.xuiframework.form.validator.DefaultValidator
@@ -14,5 +15,5 @@ annotation class Input(
     val imeOpt: Int = EditorInfo.IME_ACTION_NEXT,
     val maxLenght: Int = 50,
     val validator: KClass<out Validator> = DefaultValidator::class,
-    val id: Int = 0
+    val id: Int = View.NO_ID
 )

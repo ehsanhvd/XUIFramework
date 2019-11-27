@@ -1,5 +1,6 @@
 package com.tpa.xuiframework.form.annotation
 
+import android.view.View
 import android.view.inputmethod.EditorInfo
 
 @Target(AnnotationTarget.FIELD)
@@ -8,5 +9,5 @@ annotation class EmailInput(
     val displayName: String = "",
     val imeOpt: Int = EditorInfo.IME_ACTION_NEXT,
     val mandatory: Boolean = false,
-    val id: Int = 0
+    val id: Int = View.NO_ID
 )

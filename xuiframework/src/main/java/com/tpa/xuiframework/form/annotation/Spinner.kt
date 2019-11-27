@@ -1,5 +1,6 @@
 package com.tpa.xuiframework.form.annotation
 
+import android.view.View
 import androidx.annotation.ArrayRes
 
 @Target(AnnotationTarget.FIELD)
@@ -7,5 +8,5 @@ import androidx.annotation.ArrayRes
 annotation class Spinner(
     val displayName: String,
     @ArrayRes val itemsArray: Int,
-    val id: Int = 0
+    val id: Int = View.NO_ID
 )

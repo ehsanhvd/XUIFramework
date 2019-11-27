@@ -100,7 +100,7 @@ abstract class XDrawerActivity : XActivity() {
             )
             .addToBackStack(null)
             .commit()
-        fragmentManager.executePendingTransactions() //TODO class cast exception
+        fragmentManager.executePendingTransactions()
 
         if (fragmentItems[position] is XFragment){
             (fragmentItems[position] as XFragment).onSelected()
@@ -110,7 +110,7 @@ abstract class XDrawerActivity : XActivity() {
 
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount > 1) {
-            supportFragmentManager.popBackStackImmediate() //TODO class cast exception
+            supportFragmentManager.popBackStackImmediate()
         } else {
             if (fragmentItems[currentIndex] is XFragment){
                 if (!(fragmentItems[currentIndex] as XFragment).onBackPressed()){
