@@ -41,7 +41,7 @@ class DrawerViewLayout(val onclick: (tag: String, i: Int) -> Unit = { s: String,
         backgroundResource = R.drawable.bg_selector
 
         textView(menus[i]) {
-            textSize = 13f
+            textSize = 12f
         }.lparams {
             margin = dip(15)
         }

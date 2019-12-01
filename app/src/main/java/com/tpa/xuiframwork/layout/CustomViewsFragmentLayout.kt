@@ -79,7 +79,7 @@ class CustomViewsFragmentLayout(
                                 }.show()
                             }
 
-                        }.lparams {
+                        }.lparams(0, wrapContent) {
                             weight = 1F
                         }
                         button("info dialog") {
@@ -88,7 +88,7 @@ class CustomViewsFragmentLayout(
                                     it.dismiss()
                                 }.show()
                             }
-                        }.lparams {
+                        }.lparams(0, wrapContent) {
                             weight = 1F
                         }
 
@@ -104,7 +104,7 @@ class CustomViewsFragmentLayout(
                                     it.dismiss()
                                 }.show()
                             }
-                        }.lparams {
+                        }.lparams(0, wrapContent) {
                             weight = 1F
                         }
                         button("custom dialog") {
@@ -113,7 +113,7 @@ class CustomViewsFragmentLayout(
                                     it.dismiss()
                                 }).show()
                             }
-                        }.lparams {
+                        }.lparams(0, wrapContent) {
                             weight = 1F
                         }
                     }.lparams(matchParent, wrapContent) {
@@ -126,7 +126,7 @@ class CustomViewsFragmentLayout(
                                 val datePicker =
                                     XDatePicker(appCompatActivity).showDatePicker { datePickerDialog: DatePickerDialog, year: Int, month: Int, day: Int -> }
                             }
-                        }.lparams {
+                        }.lparams(0, wrapContent) {
                             weight = 1F
                         }
                         button("Jalali date Time picker") {
@@ -134,7 +134,7 @@ class CustomViewsFragmentLayout(
                                 val datePicker =
                                     XDateTimePicker(appCompatActivity).showDateTimePicker { timePickerDialog: TimePickerDialog, year: Int, month: Int, day: Int, hour: Int, min: Int -> }
                             }
-                        }.lparams {
+                        }.lparams(0, wrapContent) {
                             weight = 1F
                         }
                     }.lparams(matchParent, wrapContent) {
