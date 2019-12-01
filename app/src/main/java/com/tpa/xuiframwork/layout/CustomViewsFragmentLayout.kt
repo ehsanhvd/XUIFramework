@@ -19,6 +19,7 @@ import com.tpa.xuiframework.view.glideImageView
 import com.tpa.xuiframework.view.glideImageViewCircle
 import com.tpa.xuiframework.view.horizontalrecyclerview.xhorizontalRecyclerView
 import com.tpa.xuiframwork.R
+import com.tpa.xuiframwork.dialog.TestMaterialDialog
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
@@ -90,6 +91,9 @@ class CustomViewsFragmentLayout(
                         }.lparams {
                             weight = 1F
                         }
+
+                    }
+                    linearLayout {
                         button("input dialog") {
                             onClick {
                                 Dialogs.inputDialog(
@@ -99,6 +103,15 @@ class CustomViewsFragmentLayout(
                                 ) {
                                     it.dismiss()
                                 }.show()
+                            }
+                        }.lparams {
+                            weight = 1F
+                        }
+                        button("custom dialog") {
+                            onClick {
+                                TestMaterialDialog(appCompatActivity, {
+                                    it.dismiss()
+                                }).show()
                             }
                         }.lparams {
                             weight = 1F

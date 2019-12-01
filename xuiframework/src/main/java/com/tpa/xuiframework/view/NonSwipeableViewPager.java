@@ -1,4 +1,4 @@
-package com.tpa.xuiframwork.customview;
+package com.tpa.xuiframework.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -7,8 +7,6 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.Scroller;
 
 import androidx.viewpager.widget.ViewPager;
-
-import com.tpa.xuiframework.view.RtlViewPager;
 
 import java.lang.reflect.Field;
 
