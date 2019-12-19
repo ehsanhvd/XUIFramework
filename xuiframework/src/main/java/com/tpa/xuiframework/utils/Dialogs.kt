@@ -169,6 +169,14 @@ class Dialogs() {
 
             return askDialog
         }
+
+        fun getProgressDialog(context: Context, @StringRes waitingText: Int): Dialog {
+            val askDialog = Dialog(context, R.style.DialogTheme)
+            askDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            askDialog.setContentView(R.layout.progress_dialog)
+            askDialog.findViewById<TextView>(R.id.textLabel).setText(context.getString(waitingText))
+            return askDialog
+        }
     }
 
 }
