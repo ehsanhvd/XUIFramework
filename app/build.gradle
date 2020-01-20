@@ -13,6 +13,8 @@ android {
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -46,4 +48,7 @@ dependencies {
     implementation 'com.akexorcist:localizationactivity:1.2.2'
     implementation 'com.google.code.gson:gson:2.8.5'
 
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:2.2.1"
 }
