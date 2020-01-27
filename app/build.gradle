@@ -5,16 +5,17 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.tpa.xuiframwork"
         minSdkVersion 17
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -34,17 +35,21 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':xuiframework')
-    implementation project(path: ':persianmaterialdatetimepicker')
+    implementation project(path: ':xpersiandatetimepicker')
+    implementation project(path: ':xuiframework-core')
+    implementation 'com.android.support:multidex:1.0.3'
 
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-
-    implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation "org.jetbrains.anko:anko:0.10.8"
-    implementation "org.jetbrains.anko:anko-commons:0.10.8"
-    implementation 'com.google.android.material:material:1.0.0'
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.cardview:cardview:$appcompat_version"
+    implementation "androidx.recyclerview:recyclerview:$appcompat_version"
+    implementation "com.google.android.material:material:$appcompat_version"
+
+    implementation "org.jetbrains.anko:anko:$anko_version"
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+
     implementation 'com.akexorcist:localizationactivity:1.2.2'
     implementation 'com.google.code.gson:gson:2.8.5'
 

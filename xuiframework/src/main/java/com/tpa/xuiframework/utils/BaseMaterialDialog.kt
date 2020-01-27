@@ -4,8 +4,9 @@ import android.app.Dialog
 import android.content.Context
 import android.view.ViewGroup
 import android.view.Window
+import com.hvd.xcore.XUtil
+import com.hvd.xcore.extention.addView
 import com.tpa.xuiframework.R
-import com.tpa.xuiframework.extention.addView
 import kotlinx.android.synthetic.main.material_dialog.*
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.textColor

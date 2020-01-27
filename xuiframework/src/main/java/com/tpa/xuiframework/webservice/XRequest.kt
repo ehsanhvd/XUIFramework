@@ -2,9 +2,8 @@ package com.tpa.xuiframework.webservice
 
 import android.os.Handler
 import android.os.Looper
-import com.tpa.xuiframework.XConfig
+import com.hvd.xcore.NNE
 import com.tpa.xuiframework.log
-import com.tpa.xuiframework.utils.NNE
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.json.JSONObject
@@ -100,5 +99,5 @@ fun xRequestAbs(absAddress: String): XRequest {
 }
 
 fun xRequest(serviceName: String): XRequest {
-    return xRequestAbs(XConfig.baseUrl + serviceName)
+    return xRequestAbs(com.hvd.xcore.XConfig.baseUrl + serviceName)
 }

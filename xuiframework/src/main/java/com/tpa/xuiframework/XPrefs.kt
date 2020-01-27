@@ -10,10 +10,10 @@ class XPrefs {
     }
 
     init {
-        if (XConfig.app == null){
+        if (com.hvd.xcore.XConfig.app == null){
             throw IllegalStateException("please set app context to XConfig")
         }
-        prefs = XConfig.app!!.getSharedPreferences("xframework_prefs", Context.MODE_PRIVATE)
+        prefs = com.hvd.xcore.XConfig.app!!.getSharedPreferences("xframework_prefs", Context.MODE_PRIVATE)
     }
 
     fun put(key: String, value: String) {

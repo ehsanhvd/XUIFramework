@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.util.AttributeSet
+import android.view.View
 import android.view.ViewManager
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -82,6 +83,9 @@ open class GlideImageView(context: Context, val attrs: AttributeSet?, val defSty
 
 }
 
+fun View.loadImage(id: Int, url: String) {
+    findViewById<GlideImageView>(id).loadUrl(url)
+}
 
 fun ViewManager.glideImageView() = glideImageView {}
 inline fun ViewManager.glideImageView(init: GlideImageView.() -> Unit) =

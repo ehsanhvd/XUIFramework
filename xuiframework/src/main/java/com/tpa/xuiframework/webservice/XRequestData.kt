@@ -1,7 +1,6 @@
 package com.tpa.xuiframework.webservice
 
 import com.google.gson.Gson
-import com.tpa.xuiframework.XConfig
 import java.io.IOException
 
 
@@ -29,5 +28,5 @@ fun xRequestDataAbs(absAddress: String): XRequestData {
 }
 
 fun xRequestData(serviceName: String): XRequestData {
-    return xRequestDataAbs(XConfig.baseUrl + serviceName)
+    return xRequestDataAbs(com.hvd.xcore.XConfig.baseUrl + serviceName)
 }

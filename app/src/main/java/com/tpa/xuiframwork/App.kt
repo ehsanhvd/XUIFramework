@@ -1,10 +1,10 @@
 package com.tpa.xuiframwork
 
-import android.app.Application
-import com.tpa.xuiframework.XConfig
-import com.tpa.xuiframework.utils.XUtil
+import androidx.multidex.MultiDexApplication
+import com.hvd.xcore.XConfig
+import com.hvd.xcore.XUtil
 
-class App : Application() {
+class App : MultiDexApplication() {
 
     companion object {
         lateinit var app: App

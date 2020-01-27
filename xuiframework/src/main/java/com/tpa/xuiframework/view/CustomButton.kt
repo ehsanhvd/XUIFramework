@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.Button
 import com.tpa.xuiframework.R
-import com.tpa.xuiframework.XConfig
 
 class CustomButton :  Button {
 
@@ -27,7 +26,7 @@ class CustomButton :  Button {
         val ta = getContext().obtainStyledAttributes(attrs, R.styleable.CustomButton, defStyleAttr, 0)
         val fontI = ta.getInt(R.styleable.CustomButton_fontIndex, 0)
 
-        setTypeface(XConfig.typefaces[fontI])
+        setTypeface(com.hvd.xcore.XConfig.typefaces[fontI])
         ta.recycle()
     }
 }

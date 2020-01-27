@@ -1,4 +1,4 @@
-package com.tpa.xuiframework.extention
+package com.hvd.xcore.extention
 
 import android.app.Activity
 import android.content.Context
@@ -8,8 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.tpa.xuiframework.utils.XUtil
-import com.tpa.xuiframework.view.GlideImageView
+import com.hvd.xcore.XUtil
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
 
@@ -19,10 +18,6 @@ fun ViewGroup.addView(ctext: Context, view: AnkoComponent<ViewGroup>){
 
 fun View.setText(id: Int, text: String) {
     findViewById<TextView>(id).setText(text)
-}
-
-fun View.loadImage(id: Int, url: String) {
-    findViewById<GlideImageView>(id).loadUrl(url)
 }
 
 fun Fragment.addParam(name: String, value: String) {

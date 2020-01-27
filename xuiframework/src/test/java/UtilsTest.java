@@ -1,4 +1,4 @@
-import com.tpa.xuiframework.utils.XUtil;
+import com.hvd.xcore.XUtil;
 
 import org.junit.Test;
 

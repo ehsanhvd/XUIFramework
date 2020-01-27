@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.hvd.xcore.extention.setText
 import com.tpa.xuiframework.adapter.XPaginationAdapter
-import com.tpa.xuiframework.extention.loadImage
-import com.tpa.xuiframework.extention.setText
 import com.tpa.xuiframework.fragment.XFragment
 import com.tpa.xuiframework.log
+import com.tpa.xuiframework.view.loadImage
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
 import com.tpa.xuiframwork.layout.AnkoAdapterRowItem

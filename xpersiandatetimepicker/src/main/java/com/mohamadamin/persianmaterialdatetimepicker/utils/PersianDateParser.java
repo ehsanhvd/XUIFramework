@@ -31,7 +31,7 @@ package com.mohamadamin.persianmaterialdatetimepicker.utils;
  *                     
  *  {@code
  *    PersianCalendar pCal =
- *     new PersianDateParser("1361/3/1").getPersianDate();             
+ *     new PersianDateParser("1361/3/1").getFormatedPersianDate();
  *  }
  * </pre>
  * 
@@ -56,7 +56,7 @@ public class PersianDateParser {
 	 *                     
 	 *  {@code
 	 *    PersianCalendar pCal =
-	 *     new PersianDateParser("1361/3/1").getPersianDate();             
+	 *     new PersianDateParser("1361/3/1").getFormatedPersianDate();
 	 *  }
 	 * </pre>
 	 * 
@@ -79,7 +79,7 @@ public class PersianDateParser {
 	 *                     
 	 *  {@code
 	 *    PersianCalendar pCal =
-	 *     new PersianDateParser("1361-3-1","-").getPersianDate();             
+	 *     new PersianDateParser("1361-3-1","-").getFormatedPersianDate();
 	 *  }
 	 * </pre>
 	 * 

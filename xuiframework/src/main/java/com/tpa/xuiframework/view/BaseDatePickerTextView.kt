@@ -2,12 +2,12 @@ package com.tpa.xuiframework.view
 
 import android.content.Context
 import android.util.AttributeSet
-import com.tpa.xuiframework.utils.XUtil
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar
 import org.jetbrains.anko.singleLine
 
 open class BaseDatePickerTextView : CustomEditText {
 
-    var format = XUtil.DATE_FORMAT_SHORT
+    var format = PersianCalendar.DATE_FORMAT_SHORT
 
     var time = 0L
 

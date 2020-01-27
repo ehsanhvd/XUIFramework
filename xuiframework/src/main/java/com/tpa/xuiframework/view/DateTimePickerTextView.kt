@@ -7,8 +7,9 @@ import android.util.AttributeSet
 import androidx.appcompat.app.AppCompatActivity
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar
+import com.mohamadamin.persianmaterialdatetimepicker.utils.getFormatedPersianDate
+import com.mohamadamin.persianmaterialdatetimepicker.utils.setPersianDateTime
 import com.tpa.xuiframework.utils.XDateTimePicker
-import com.tpa.xuiframework.utils.XUtil
 
 class DateTimePickerTextView : BaseDatePickerTextView {
     constructor(context: Context) : super(context)
@@ -33,7 +34,9 @@ class DateTimePickerTextView : BaseDatePickerTextView {
     init {
         setOnClickListener {
             XDateTimePicker(getActivity() as AppCompatActivity).showDateTimePicker { timePickerDialog: TimePickerDialog, day: Int, month: Int, year: Int, hour: Int, min: Int ->
-                setText(XUtil.getPersianDateTime(format, day, month, year, hour, min))
+                val calendar = PersianCalendar()
+                calendar.setPersianDateTime(day, month, year, hour, min)
+                setText(calendar.getFormatedPersianDate(format))
 
                 val persianCalendar = PersianCalendar()
                 persianCalendar.setPersianDate(year, month, day)

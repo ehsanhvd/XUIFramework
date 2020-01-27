@@ -1,8 +1,8 @@
 package com.tpa.xuiframework.form.validator
 
 import android.widget.EditText
+import com.hvd.xcore.XUtil
 import com.tpa.xuiframework.form.Validator
-import com.tpa.xuiframework.utils.XUtil
 
 class IranTelValidator(val mandatory: Boolean = false) : Validator {
     override fun isValid(editText: EditText): Boolean {

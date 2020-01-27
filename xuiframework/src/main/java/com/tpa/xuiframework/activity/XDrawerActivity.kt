@@ -10,8 +10,8 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.hvd.xcore.extention.addView
 import com.tpa.xuiframework.R
-import com.tpa.xuiframework.extention.addView
 import com.tpa.xuiframework.fragment.XFragment
 import kotlinx.android.synthetic.main.activity_drawer.*
 import org.jetbrains.anko.AnkoComponent

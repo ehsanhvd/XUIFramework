@@ -10,12 +10,13 @@ import android.widget.*
 import androidx.annotation.ArrayRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
-import com.tpa.xuiframework.extention.ifNT
+import com.hvd.xcore.NN
+import com.hvd.xcore.extention.ifNT
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar
+import com.mohamadamin.persianmaterialdatetimepicker.utils.getFormatedPersianDate
 import com.tpa.xuiframework.form.validator.DateRangeValidator
 import com.tpa.xuiframework.form.validator.EmailValidator
 import com.tpa.xuiframework.form.validator.IranTelValidator
-import com.tpa.xuiframework.utils.NN
-import com.tpa.xuiframework.utils.XUtil
 import com.tpa.xuiframework.view.*
 import org.jetbrains.anko.singleLine
 import org.jetbrains.anko.textColor
@@ -98,14 +99,17 @@ open class Form private constructor(
     fun datePicker(
         hint: String = "",
         date: Long = 0,
-        format: Int = XUtil.DATE_FORMAT_SHORT,
+        format: Int = PersianCalendar.DATE_FORMAT_SHORT,
         id: Int = View.NO_ID,
         validator: DateRangeValidator? = null
 
     ): Form {
         val editText = DatePickerTextView(parent.context, format)
         if (date != 0L) {
-            editText.setText(XUtil.getPersianDate(format, date))
+
+            val calendar = PersianCalendar()
+            calendar.timeInMillis = date
+            editText.setText(calendar.getFormatedPersianDate(format))
         }
         editText.hint = hint
         editText.id = id
@@ -123,7 +127,7 @@ open class Form private constructor(
     fun dateTimePicker(
         hint: String = "",
         date: Long = 0,
-        format: Int = XUtil.DATE_FORMAT_SHORT,
+        format: Int = PersianCalendar.DATE_FORMAT_SHORT,
         id: Int = View.NO_ID,
         validator: DateRangeValidator? = null
 
@@ -131,7 +135,9 @@ open class Form private constructor(
         val editText = DateTimePickerTextView(parent.context)
 
         if (date != 0L) {
-            editText.setText(XUtil.getPersianDate(format, date))
+            val calendar = PersianCalendar()
+            calendar.timeInMillis = date
+            editText.setText(calendar.getFormatedPersianDate(format))
         }
         editText.hint = hint
         editText.id = id

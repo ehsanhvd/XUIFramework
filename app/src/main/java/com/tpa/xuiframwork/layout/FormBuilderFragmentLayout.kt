@@ -2,10 +2,10 @@ package com.tpa.xuiframwork.layout
 
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import com.hvd.xcore.extention.showSnackbar
+import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar
 import com.tpa.xuiframework.activity.XActivity
-import com.tpa.xuiframework.extention.showSnackbar
 import com.tpa.xuiframework.form.Form
-import com.tpa.xuiframework.utils.XUtil
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
 import org.jetbrains.anko.AnkoComponent
@@ -33,7 +33,7 @@ class FormBuilderFragmentLayout(val xActivity: XActivity) :
                 .row()
                 .spinner(R.array.testArray).space().space()
                 .row()
-                .datePicker(hint = "Jalali date picker", format = XUtil.DATE_FORMAT_FULL).dateTimePicker(hint = "some date")
+                .datePicker(hint = "Jalali date picker", format = PersianCalendar.DATE_FORMAT_FULL).dateTimePicker(hint = "some date")
                 .row()
                 .radioGroup(orientation = LinearLayout.VERTICAL)
                 .radioButton("some option", id = R.id.radioOption).radioButton("another option")

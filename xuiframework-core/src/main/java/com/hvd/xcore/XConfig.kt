@@ -1,4 +1,4 @@
-package com.tpa.xuiframework
+package com.hvd.xcore
 
 import android.app.Application
 import android.graphics.Typeface

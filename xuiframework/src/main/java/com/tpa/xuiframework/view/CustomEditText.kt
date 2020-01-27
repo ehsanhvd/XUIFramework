@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.EditText
 import com.tpa.xuiframework.R
-import com.tpa.xuiframework.XConfig
 
 open class CustomEditText : EditText {
 
@@ -27,7 +26,7 @@ open class CustomEditText : EditText {
         val ta = getContext().obtainStyledAttributes(attrs, R.styleable.CustomEditText, defStyleAttr, 0)
         val fontI = ta.getInt(R.styleable.CustomEditText_fontIndex, 0)
 
-        setTypeface(XConfig.typefaces[fontI])
+        setTypeface(com.hvd.xcore.XConfig.typefaces[fontI])
         ta.recycle()
     }
 }

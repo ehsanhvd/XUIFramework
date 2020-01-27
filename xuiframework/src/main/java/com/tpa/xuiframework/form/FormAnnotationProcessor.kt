@@ -4,7 +4,6 @@ import android.view.View
 import android.widget.CompoundButton
 import android.widget.EditText
 import android.widget.RadioGroup
-import com.tpa.xuiframework.XConfig
 import com.tpa.xuiframework.form.annotation.*
 import com.tpa.xuiframework.view.BaseDatePickerTextView
 import java.lang.reflect.Field
@@ -173,10 +172,10 @@ class FormAnnotationProcessor(val form: Form, val entity: Any) {
         } else {
             lastView = form.radioGroup().getLastView()!!
         }
-        if (XConfig.app == null){
+        if (com.hvd.xcore.XConfig.app == null){
             throw IllegalStateException("please set app context to XConfig")
         }
-        val items = XConfig.app!!.resources.getStringArray(ta.itemsArray)
+        val items = com.hvd.xcore.XConfig.app!!.resources.getStringArray(ta.itemsArray)
 
         for (i in 0 until items.size) {
             form.radioButton(items[i], checked = i == (getValue(entity, m) as Int))

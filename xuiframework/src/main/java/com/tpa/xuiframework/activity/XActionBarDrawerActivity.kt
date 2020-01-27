@@ -3,9 +3,9 @@ package com.tpa.xuiframework.activity
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import com.hvd.xcore.extention.addView
+import com.hvd.xcore.extention.getActivityLabel
 import com.tpa.xuiframework.R
-import com.tpa.xuiframework.extention.addView
-import com.tpa.xuiframework.extention.getActivityLabel
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.merge_simple_drawer_layout.*
 import org.jetbrains.anko.AnkoComponent

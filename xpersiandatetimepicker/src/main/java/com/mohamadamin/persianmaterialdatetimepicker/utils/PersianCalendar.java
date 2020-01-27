@@ -22,6 +22,9 @@ import java.util.TimeZone;
 
 public class PersianCalendar extends GregorianCalendar {
 
+  public static final Integer DATE_FORMAT_SHORT = 1;
+  public static final Integer DATE_FORMAT_FULL = 2;
+
   private int persianYear;
   private int persianMonth;
   private int persianDay;

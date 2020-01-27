@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.StringRes
+import com.hvd.xcore.XUtil
 import com.tpa.xuiframework.R
 import org.jetbrains.anko.textColor
 
