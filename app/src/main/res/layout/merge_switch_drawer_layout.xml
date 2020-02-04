@@ -12,14 +12,14 @@
             style="@style/ActionButton"
             app:srcCompat="@drawable/ic_menu_black_24dp"/>
 
-    <com.tpa.xuiframework.view.CustomTextView
+    <com.hvd.xcustomview.view.CustomTextView
             android:id="@+id/textAppbarTitle"
             style="@style/ActivityHeading"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
-    <com.tpa.xuiframework.view.CustomTextView
+    <com.hvd.xcustomview.view.CustomTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"

@@ -34,8 +34,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(path: ':xuiframework')
-    implementation project(path: ':xpersiandatetimepicker')
+    implementation project(path: ':xuiframework-form')
+    implementation project(path: ':xuiframework-customviews')
     implementation project(path: ':xuiframework-core')
     implementation 'com.android.support:multidex:1.0.3'
 

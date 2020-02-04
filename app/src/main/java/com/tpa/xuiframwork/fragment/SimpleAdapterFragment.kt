@@ -7,13 +7,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hvd.xcore.extention.setText
 import com.hvd.xcore.extention.showSnackbar
-import com.tpa.xuiframework.adapter.XAdapter
-import com.tpa.xuiframework.fragment.XFragment
-import com.tpa.xuiframework.view.loadImage
+import com.hvd.xcustomview.view.loadImage
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
 
-class SimpleAdapterFragment : XFragment() {
+class SimpleAdapterFragment : com.hvd.xcustomview.fragment.XFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_simple_adapter, container, false)
     }
@@ -39,7 +37,7 @@ class SimpleAdapterFragment : XFragment() {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.adapter =
-            XAdapter(R.layout.row_list_test, list) { view, item, i ->
+            com.hvd.xcustomview.adapter.XAdapter(R.layout.row_list_test, list) { view, item, i ->
                 view.setText(R.id.textTitle, item.name)
                 view.loadImage(R.id.imageProfile, item.profile)
 

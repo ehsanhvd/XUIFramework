@@ -1,7 +1,7 @@
 package com.tpa.xuiframwork.entity
 
-import com.tpa.xuiframework.form.annotation.*
-import com.tpa.xuiframework.form.validator.MandatoryValidator
+import com.tpa.formbuilder.annotation.*
+import com.tpa.formbuilder.validator.MandatoryValidator
 import com.tpa.xuiframwork.R
 
 data class Person(

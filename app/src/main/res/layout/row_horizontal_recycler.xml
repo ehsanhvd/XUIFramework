@@ -5,7 +5,7 @@
 
     android:orientation="vertical">
 
-    <com.tpa.xuiframework.view.CustomTextView
+    <com.hvd.xcustomview.view.CustomTextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="2dp"

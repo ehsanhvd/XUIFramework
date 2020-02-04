@@ -7,15 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hvd.xcore.extention.setText
-import com.tpa.xuiframework.adapter.XPaginationAdapter
-import com.tpa.xuiframework.fragment.XFragment
-import com.tpa.xuiframework.log
-import com.tpa.xuiframework.view.loadImage
+import com.hvd.xcustomview.view.loadImage
+import com.tpa.formbuilder.log
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
 import com.tpa.xuiframwork.layout.AnkoAdapterRowItem
 
-class PaginationAdapterFragment : XFragment() {
+class PaginationAdapterFragment : com.hvd.xcustomview.fragment.XFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_pagination_adapter, container, false)
     }
@@ -26,7 +24,7 @@ class PaginationAdapterFragment : XFragment() {
         val viewComponent = AnkoAdapterRowItem()
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
-        val pAdapter = XPaginationAdapter(
+        val pAdapter = com.hvd.xcustomview.adapter.XPaginationAdapter(
             viewComponent,
             R.layout.row_loading,
             recyclerView,
@@ -36,7 +34,7 @@ class PaginationAdapterFragment : XFragment() {
                 Handler().postDelayed({
                     adapter.addItems(getList())
                 }, 2000)
-            }, { v: View, item: TestData, i : Int ->
+            }, { v: View, item: TestData, i: Int ->
                 v.setText(R.id.textTitle, item.name)
                 v.loadImage(R.id.imageProfile, item.profile)
             }

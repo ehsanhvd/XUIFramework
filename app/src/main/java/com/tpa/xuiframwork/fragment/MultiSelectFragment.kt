@@ -5,15 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hvd.xcore.extention.setText
-import com.tpa.xuiframework.adapter.XMultiSelectAdapter
-import com.tpa.xuiframework.fragment.XFragment
-import com.tpa.xuiframework.view.loadImage
+import com.hvd.xcustomview.view.loadImage
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
 import kotlinx.android.synthetic.main.fragment_multiselect.*
 import org.jetbrains.anko.sdk27.coroutines.onLongClick
 
-class MultiSelectFragment : XFragment() {
+class MultiSelectFragment : com.hvd.xcustomview.fragment.XFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,9 +39,9 @@ class MultiSelectFragment : XFragment() {
             TestData("item 13", "https://picsum.photos/200?random=13")
         )
 
-        var pAdapter : XMultiSelectAdapter<TestData>? = null
+        var pAdapter : com.hvd.xcustomview.adapter.XMultiSelectAdapter<TestData>? = null
 
-        pAdapter = XMultiSelectAdapter(
+        pAdapter = com.hvd.xcustomview.adapter.XMultiSelectAdapter(
             resId = R.layout.row_list_test,
             progressLayout = R.layout.row_loading,
             recyclerView = recyclerView
@@ -51,7 +49,13 @@ class MultiSelectFragment : XFragment() {
             v.onLongClick {
                 pAdapter!!.invertSelection(i)
             }
-            v.setText(R.id.textTitle, item.name + (if (b) {" [selected]"} else {""}))
+            v.setText(
+                R.id.textTitle, item.name + (if (b) {
+                    " [selected]"
+                } else {
+                    ""
+                })
+            )
             v.loadImage(R.id.imageProfile, item.profile)
         }
 
@@ -61,6 +65,6 @@ class MultiSelectFragment : XFragment() {
     }
 
     fun unselectAll(){
-        (recyclerView.adapter as XMultiSelectAdapter<*>).unSelectAll()
+        (recyclerView.adapter as com.hvd.xcustomview.adapter.XMultiSelectAdapter<*>).unSelectAll()
     }
 }

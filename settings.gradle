@@ -1,1 +1,1 @@
-include ':app', ':xuiframework', ':xpersiandatetimepicker', ':xuiframework-core'
+include ':app', ':xuiframework-form', ':xpersiandatetimepicker', ':xuiframework-core', ':xuiframework-customviews'

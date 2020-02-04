@@ -2,7 +2,7 @@ package com.tpa.xuiframwork.dialog
 
 import android.app.Dialog
 import android.content.Context
-import com.tpa.xuiframework.utils.BaseMaterialDialog
+import com.hvd.xcustomview.dialog.BaseMaterialDialog
 import com.tpa.xuiframwork.R
 
 class TestMaterialDialog(context: Context, okListener: ((Dialog) -> Unit) = {}) : BaseMaterialDialog(context, okListener) {

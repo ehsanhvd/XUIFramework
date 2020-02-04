@@ -1,7 +1,0 @@
-<resources>
-    <string name="app_name">XUIFramework</string>
-
-    <string name="ok">OK</string>
-    <string name="cancel">Cancel</string>
-    <string name="pleaseWait">Please wait</string>
-</resources>

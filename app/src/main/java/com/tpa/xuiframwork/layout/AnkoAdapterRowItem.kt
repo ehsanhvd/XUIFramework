@@ -2,7 +2,7 @@ package com.tpa.xuiframwork.layout
 
 import android.view.View
 import android.view.ViewGroup
-import com.tpa.xuiframework.view.glideImageView
+import com.hvd.xcustomview.view.glideImageView
 import com.tpa.xuiframwork.App
 import com.tpa.xuiframwork.R
 import org.jetbrains.anko.*

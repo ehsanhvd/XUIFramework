@@ -6,18 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.hvd.xcustomview.date.XDatePicker
+import com.hvd.xcustomview.date.XDateTimePicker
+import com.hvd.xcustomview.dialog.Dialogs
+import com.hvd.xcustomview.view.customSpinner
+import com.hvd.xcustomview.view.expandablelayout.expandableLayout
+import com.hvd.xcustomview.view.glideImageView
+import com.hvd.xcustomview.view.glideImageViewCircle
+import com.hvd.xcustomview.view.horizontalrecyclerview.xhorizontalRecyclerView
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog
-import com.tpa.xuiframework.adapter.XAdapter
-import com.tpa.xuiframework.utils.Dialogs
-import com.tpa.xuiframework.utils.XDatePicker
-import com.tpa.xuiframework.utils.XDateTimePicker
-import com.tpa.xuiframework.utils.XImagePicker
-import com.tpa.xuiframework.view.customSpinner
-import com.tpa.xuiframework.view.expandablelayout.expandableLayout
-import com.tpa.xuiframework.view.glideImageView
-import com.tpa.xuiframework.view.glideImageViewCircle
-import com.tpa.xuiframework.view.horizontalrecyclerview.xhorizontalRecyclerView
+import com.tpa.formbuilder.utils.XImagePicker
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.dialog.TestMaterialDialog
 import org.jetbrains.anko.*
@@ -124,7 +123,8 @@ class CustomViewsFragmentLayout(
                         button("Jalali date picker") {
                             onClick {
                                 val datePicker =
-                                    XDatePicker(appCompatActivity).showDatePicker { datePickerDialog: DatePickerDialog, year: Int, month: Int, day: Int -> }
+                                    XDatePicker(appCompatActivity)
+                                        .showDatePicker { datePickerDialog: DatePickerDialog, year: Int, month: Int, day: Int -> }
                             }
                         }.lparams(0, wrapContent) {
                             weight = 1F
@@ -132,7 +132,8 @@ class CustomViewsFragmentLayout(
                         button("Jalali date Time picker") {
                             onClick {
                                 val datePicker =
-                                    XDateTimePicker(appCompatActivity).showDateTimePicker { timePickerDialog: TimePickerDialog, year: Int, month: Int, day: Int, hour: Int, min: Int -> }
+                                    XDateTimePicker(appCompatActivity)
+                                        .showDateTimePicker { timePickerDialog: TimePickerDialog, year: Int, month: Int, day: Int, hour: Int, min: Int -> }
                             }
                         }.lparams(0, wrapContent) {
                             weight = 1F
@@ -174,7 +175,7 @@ class CustomViewsFragmentLayout(
                         bottomMargin = dip(10)
                     }
                     xhorizontalRecyclerView {
-                        adapter = XAdapter(
+                        adapter = com.hvd.xcustomview.adapter.XAdapter(
                             R.layout.row_horizontal_recycler,
                             arrayListOf("item1", "item2", "item3", "item4"),
                             { view: View, s: String, i: Int -> })

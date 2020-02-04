@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <com.tpa.xuiframework.view.GlideImageView
+    <com.hvd.xcustomview.view.GlideImageView
         android:id="@+id/imageProfile"
         android:layout_width="100dp"
         android:layout_height="100dp"

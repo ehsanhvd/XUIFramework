@@ -4,8 +4,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.hvd.xcore.extention.showSnackbar
 import com.mohamadamin.persianmaterialdatetimepicker.utils.PersianCalendar
-import com.tpa.xuiframework.activity.XActivity
-import com.tpa.xuiframework.form.Form
+import com.tpa.formbuilder.Form
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
 import org.jetbrains.anko.AnkoComponent
@@ -14,7 +13,7 @@ import org.jetbrains.anko.button
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.verticalLayout
 
-class FormBuilderFragmentLayout(val xActivity: XActivity) :
+class FormBuilderFragmentLayout(val xActivity: com.hvd.xcustomview.activity.XActivity) :
     AnkoComponent<ViewGroup> {
     override fun createView(ui: AnkoContext<ViewGroup>) = with(ui) {
         verticalLayout {

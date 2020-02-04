@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">xuiframework-customviews</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="pleaseWait">Please wait</string>
+</resources>
