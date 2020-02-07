@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.hvd.xcustomview.date.XDatePicker
 import com.hvd.xcustomview.date.XDateTimePicker
 import com.hvd.xcustomview.dialog.Dialogs
+import com.hvd.xcustomview.util.XImagePicker
 import com.hvd.xcustomview.view.customSpinner
 import com.hvd.xcustomview.view.expandablelayout.expandableLayout
 import com.hvd.xcustomview.view.glideImageView
@@ -16,7 +17,6 @@ import com.hvd.xcustomview.view.glideImageViewCircle
 import com.hvd.xcustomview.view.horizontalrecyclerview.xhorizontalRecyclerView
 import com.mohamadamin.persianmaterialdatetimepicker.date.DatePickerDialog
 import com.mohamadamin.persianmaterialdatetimepicker.time.TimePickerDialog
-import com.tpa.formbuilder.utils.XImagePicker
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.dialog.TestMaterialDialog
 import org.jetbrains.anko.*

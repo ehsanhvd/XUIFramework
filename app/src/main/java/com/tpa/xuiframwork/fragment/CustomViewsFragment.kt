@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import com.tpa.formbuilder.utils.XImagePicker
+import com.hvd.xcustomview.util.XImagePicker
 import com.tpa.xuiframwork.layout.CustomViewsFragmentLayout
 import org.jetbrains.anko.AnkoContext
 
