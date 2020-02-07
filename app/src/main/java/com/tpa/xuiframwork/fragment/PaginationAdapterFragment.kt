@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.hvd.xcore.extention.setText
+import com.hvd.xcore.log
 import com.hvd.xcustomview.view.loadImage
-import com.tpa.formbuilder.log
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.TestData
 import com.tpa.xuiframwork.layout.AnkoAdapterRowItem

@@ -14,7 +14,13 @@ android {
 
         consumerProguardFiles 'consumer-rules.pro'
     }
-
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -26,6 +32,9 @@ android {
 
 dependencies {
     api project(path: ':xpersiandatetimepicker')
+
+    implementation("com.squareup.okhttp3:okhttp:4.0.1")
+    implementation 'com.google.code.gson:gson:2.8.5'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

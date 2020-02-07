@@ -1,6 +1,7 @@
-package com.tpa.formbuilder.webservice
+package com.hvd.xcore.webservice
 
 import com.google.gson.Gson
+import com.hvd.xcore.XConfig
 import java.io.IOException
 
 
@@ -28,5 +29,5 @@ fun xRequestDataAbs(absAddress: String): XRequestData {
 }
 
 fun xRequestData(serviceName: String): XRequestData {
-    return xRequestDataAbs(com.hvd.xcore.XConfig.baseUrl + serviceName)
+    return xRequestDataAbs(XConfig.baseUrl + serviceName)
 }

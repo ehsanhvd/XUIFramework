@@ -1,14 +1,14 @@
-package com.tpa.formbuilder.webservice
+package com.hvd.xcore.webservice
 
 import android.os.Handler
 import android.os.Looper
 import com.hvd.xcore.NNE
-import com.tpa.formbuilder.log
+import com.hvd.xcore.XConfig
+import com.hvd.xcore.log
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.json.JSONObject
 import java.io.IOException
-
 
 open class XRequest(private val absUrl: String) {
 
@@ -99,5 +99,5 @@ fun xRequestAbs(absAddress: String): XRequest {
 }
 
 fun xRequest(serviceName: String): XRequest {
-    return xRequestAbs(com.hvd.xcore.XConfig.baseUrl + serviceName)
+    return xRequestAbs(XConfig.baseUrl + serviceName)
 }

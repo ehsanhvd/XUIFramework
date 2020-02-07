@@ -1,7 +1,6 @@
-package com.tpa.formbuilder
+package com.hvd.xcore
 
 import android.util.Log
-import com.hvd.xcore.XConfig
 import com.hvd.xcore.extention.ifT
 
 fun log(any: Any) {

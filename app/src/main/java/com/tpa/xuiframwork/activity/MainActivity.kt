@@ -2,8 +2,8 @@ package com.tpa.xuiframwork.activity
 
 import android.os.Bundle
 import android.widget.CompoundButton
+import com.hvd.xcore.log
 import com.hvd.xcustomview.activity.XActionBarDrawerActivity
-import com.tpa.formbuilder.log
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.fragment.*
 import com.tpa.xuiframwork.layout.DrawerViewLayout

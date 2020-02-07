@@ -1,4 +1,4 @@
-package com.tpa.formbuilder
+package com.hvd.xcore
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -10,10 +10,10 @@ class XPrefs {
     }
 
     init {
-        if (com.hvd.xcore.XConfig.app == null){
+        if (XConfig.app == null){
             throw IllegalStateException("please set app context to XConfig")
         }
-        prefs = com.hvd.xcore.XConfig.app!!.getSharedPreferences("xframework_prefs", Context.MODE_PRIVATE)
+        prefs = XConfig.app!!.getSharedPreferences("xframework_prefs", Context.MODE_PRIVATE)
     }
 
     fun put(key: String, value: String) {

@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.tpa.formbuilder.webservice.xRequestAbs
-import com.tpa.formbuilder.webservice.xRequestDataAbs
+import com.hvd.xcore.webservice.xRequestAbs
+import com.hvd.xcore.webservice.xRequestDataAbs
 import com.tpa.xuiframwork.R
 import com.tpa.xuiframwork.entity.ServerResponse
 import kotlinx.android.synthetic.main.fragment_data.*
