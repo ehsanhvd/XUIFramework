@@ -2,13 +2,18 @@ package com.hvd.xcore.webservice
 
 import android.os.Handler
 import android.os.Looper
+import androidx.annotation.NonNull
+import androidx.annotation.VisibleForTesting
+import androidx.test.espresso.IdlingResource
 import com.hvd.xcore.NNE
 import com.hvd.xcore.XConfig
 import com.hvd.xcore.log
+import com.jakewharton.espresso.OkHttp3IdlingResource
 import okhttp3.*
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.json.JSONObject
 import java.io.IOException
+
 
 open class XRequest(private val absUrl: String) {
 
@@ -19,19 +24,35 @@ open class XRequest(private val absUrl: String) {
 
     companion object {
         var client: OkHttpClient? = null
+
+        @VisibleForTesting
+        var resource: OkHttp3IdlingResource? = null;
+
+        @VisibleForTesting
+        @NonNull
+        fun getIdlingResource(): IdlingResource {
+            initClientIfNeeded();
+            return this.resource!!
+        }
+
+        private fun initClientIfNeeded() {
+            if (client == null){
+                client = OkHttpClient.Builder().addInterceptor {
+                    val request = it.request()
+                    log("request: " + request.url)
+                    NNE(request.body.toString()) {
+                        log("request body: $it")
+                    }
+                    it.proceed(request)
+                }.build()
+
+                resource = OkHttp3IdlingResource.create("OkHttp", client!!)
+            }
+        }
     }
 
     init {
-        if (client == null){
-            client = OkHttpClient.Builder().addInterceptor {
-                val request = it.request()
-                log("request: " + request.url)
-                NNE(request.body.toString()) {
-                    log("request body: $it")
-                }
-                it.proceed(request)
-            }.build()
-        }
+        initClientIfNeeded();
     }
 
     fun qParam(name: String, value: String): XRequest {

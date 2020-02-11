@@ -25,7 +25,9 @@ class DataFragment : com.hvd.xcustomview.fragment.XFragment() {
         btnGetReq.setOnClickListener {
             xRequestAbs("http://date.jsontest.com/")
                 .startRaw({
-                    textResponse.setText(it)
+                    if (activity != null && !activity!!.isFinishing && !isRemoving) {
+                        textResponse.setText(it)
+                    }
                 }, {
 
                 })
@@ -41,11 +43,11 @@ class DataFragment : com.hvd.xcustomview.fragment.XFragment() {
             val xReqData = xRequestDataAbs("http://date.jsontest.com/")
             xReqData.qParam("name", "val")
             xReqData.startData<ServerResponse>(
-                    {
-                        textResponse.setText(it.toString())
-                    }, {
+                {
+                    textResponse.setText(it.toString())
+                }, {
 
-                    })
+                })
         }
 
 
