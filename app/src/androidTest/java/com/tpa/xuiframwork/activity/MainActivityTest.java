@@ -1,3 +1,5 @@
+package com.tpa.xuiframwork.activity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
@@ -8,7 +10,6 @@ import androidx.test.rule.ActivityTestRule;
 
 import com.hvd.xcore.webservice.XRequest;
 import com.tpa.xuiframwork.R;
-import com.tpa.xuiframwork.activity.MainActivity;
 
 import org.junit.Before;
 import org.junit.Rule;
